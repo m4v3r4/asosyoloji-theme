@@ -73,8 +73,8 @@ function asosyoloji_reading_time( $post_id = 0 ) {
 	$words   = str_word_count( wp_strip_all_tags( $content ) );
 	$minutes = max( 1, (int) ceil( $words / 220 ) );
 
-	/* translators: %s: Estimated reading time in minutes. */
 	return sprintf(
+		/* translators: %s: Estimated reading time in minutes. */
 		_n( '%s dk okuma', '%s dk okuma', $minutes, 'asosyoloji' ),
 		number_format_i18n( $minutes )
 	);
