@@ -174,3 +174,74 @@ function asosyoloji_github_force_refresh() {
 	delete_site_transient( 'asosyoloji_github_latest_release' );
 }
 add_action( 'wp_update_themes', 'asosyoloji_github_force_refresh', 1 );
+
+
+/**
+ * Show a compact updater diagnostic under Appearance for administrators.
+ */
+function asosyoloji_github_updater_status_menu() {
+	add_theme_page(
+		__( 'Asosyoloji Güncelleme Durumu', 'asosyoloji' ),
+		__( 'Güncelleme Durumu', 'asosyoloji' ),
+		'update_themes',
+		'asosyoloji-update-status',
+		'asosyoloji_github_updater_status_page'
+	);
+}
+add_action( 'admin_menu', 'asosyoloji_github_updater_status_menu' );
+
+function asosyoloji_github_updater_status_page() {
+	if ( ! current_user_can( 'update_themes' ) ) {
+		return;
+	}
+
+	$release = asosyoloji_github_latest_release( true );
+	$theme   = wp_get_theme();
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Asosyoloji Güncelleme Durumu', 'asosyoloji' ); ?></h1>
+		<table class="widefat striped" style="max-width:760px">
+			<tbody>
+				<tr>
+					<th><?php esc_html_e( 'Kurulu tema klasörü', 'asosyoloji' ); ?></th>
+					<td><code><?php echo esc_html( get_template() ); ?></code></td>
+				</tr>
+				<tr>
+					<th><?php esc_html_e( 'Kurulu sürüm', 'asosyoloji' ); ?></th>
+					<td><code><?php echo esc_html( $theme->get( 'Version' ) ); ?></code></td>
+				</tr>
+				<tr>
+					<th><?php esc_html_e( 'Kod sürümü', 'asosyoloji' ); ?></th>
+					<td><code><?php echo esc_html( ASOSYOLOJI_VERSION ); ?></code></td>
+				</tr>
+				<tr>
+					<th><?php esc_html_e( 'GitHub durumu', 'asosyoloji' ); ?></th>
+					<td>
+						<?php if ( is_wp_error( $release ) ) : ?>
+							<strong><?php esc_html_e( 'Hata', 'asosyoloji' ); ?></strong>
+							— <?php echo esc_html( $release->get_error_message() ); ?>
+						<?php else : ?>
+							<strong><?php esc_html_e( 'Bağlantı başarılı', 'asosyoloji' ); ?></strong>
+						<?php endif; ?>
+					</td>
+				</tr>
+				<?php if ( ! is_wp_error( $release ) ) : ?>
+					<tr>
+						<th><?php esc_html_e( 'GitHub son sürüm', 'asosyoloji' ); ?></th>
+						<td><code><?php echo esc_html( $release['version'] ); ?></code></td>
+					</tr>
+					<tr>
+						<th><?php esc_html_e( 'Paket', 'asosyoloji' ); ?></th>
+						<td><?php echo $release['download_url'] ? '<code>asosyoloji-theme.zip</code>' : esc_html__( 'Bulunamadı', 'asosyoloji' ); ?></td>
+					</tr>
+				<?php endif; ?>
+			</tbody>
+		</table>
+		<p style="margin-top:20px">
+			<a class="button button-primary" href="<?php echo esc_url( wp_nonce_url( admin_url( 'update-core.php?force-check=1' ), 'force-check' ) ); ?>">
+				<?php esc_html_e( 'WordPress güncellemelerini yeniden kontrol et', 'asosyoloji' ); ?>
+			</a>
+		</p>
+	</div>
+	<?php
+}
