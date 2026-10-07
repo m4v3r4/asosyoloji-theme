@@ -4059,3 +4059,30 @@ html[data-theme="dark"] .site-menu-bar.aso-menu-bg-light {
     flex: none;
   }
 }
+
+
+/* Uniform article card layout */
+@media (min-width: 1101px) {
+  .home-section .article-grid .article-card:first-child {
+    grid-column: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    padding-bottom: 28px;
+  }
+
+  .home-section .article-grid .article-card:first-child .article-card__image {
+    margin: 0 0 18px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-section .article-grid .article-card:first-child .article-card__title {
+    font-size: clamp(1.35rem, 2.1vw, 2rem);
+    line-height: 1.03;
+  }
+
+  .home-section .article-grid .article-card:first-child .article-card__excerpt {
+    font-size: .94em;
+  }
+}
