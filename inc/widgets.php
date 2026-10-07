@@ -342,45 +342,22 @@ function asosyoloji_render_magazine_archive( $args = array() ) {
 		</div>
 	</section>
 
-	<?php if ( function_exists( 'asosyoloji_theme_seo_enabled' ) && asosyoloji_theme_seo_enabled() ) : ?>
-		<?php
-		$publication_items = array();
-		foreach ( $items as $position => $item ) {
-			$issue = array(
-				'@type'      => 'PublicationIssue',
-				'name'       => sanitize_text_field( $item['title'] ?? '' ),
-				'url'        => esc_url_raw( $item['pdf_url'] ?? '' ),
-				'inLanguage' => 'tr-TR',
-				'isPartOf'   => array(
-					'@type' => 'Periodical',
-					'name'  => get_bloginfo( 'name' ),
-					'url'   => home_url( '/' ),
-				),
-				'publisher'  => array(
-					'@id' => home_url( '/' ) . '#organization',
-				),
-			);
-
-			if ( ! empty( $item['cover_url'] ) ) {
-				$issue['image'] = esc_url_raw( $item['cover_url'] );
-			}
-
-			$publication_items[] = array(
-				'@type'    => 'ListItem',
-				'position' => $position + 1,
-				'item'     => $issue,
-			);
+	<?php
+	if ( function_exists( 'asosyoloji_theme_seo_enabled' ) && asosyoloji_theme_seo_enabled() ) {
+		if ( ! isset( $GLOBALS['asosyoloji_publication_issues'] ) || ! is_array( $GLOBALS['asosyoloji_publication_issues'] ) ) {
+			$GLOBALS['asosyoloji_publication_issues'] = array();
 		}
 
-		$publication_schema = array(
-			'@context'        => 'https://schema.org',
-			'@type'           => 'ItemList',
-			'name'            => $args['title'],
-			'itemListElement' => $publication_items,
-		);
-		?>
-		<script type="application/ld+json"><?php echo wp_json_encode( $publication_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?></script>
-	<?php endif; ?>
+		foreach ( $items as $item ) {
+			$GLOBALS['asosyoloji_publication_issues'][] = array(
+				'title'     => sanitize_text_field( $item['title'] ?? '' ),
+				'pdf_url'   => esc_url_raw( $item['pdf_url'] ?? '' ),
+				'cover_url' => esc_url_raw( $item['cover_url'] ?? '' ),
+			);
+		}
+	}
+	?>
+
 	<?php
 
 	return (string) ob_get_clean();
@@ -493,3 +470,55 @@ function asosyoloji_announcements_shortcode( $atts ) {
 	);
 }
 add_shortcode( 'asosyoloji_duyurular', 'asosyoloji_announcements_shortcode' );
+
+
+/**
+ * Output PublicationIssue schema collected by magazine archive components.
+ */
+function asosyoloji_publication_issue_schema_output() {
+	if (
+		! function_exists( 'asosyoloji_theme_seo_enabled' ) ||
+		! asosyoloji_theme_seo_enabled() ||
+		empty( $GLOBALS['asosyoloji_publication_issues'] )
+	) {
+		return;
+	}
+
+	$list_items = array();
+	foreach ( array_values( $GLOBALS['asosyoloji_publication_issues'] ) as $position => $item ) {
+		$issue = array(
+			'@type'      => 'PublicationIssue',
+			'name'       => $item['title'],
+			'url'        => $item['pdf_url'],
+			'inLanguage' => 'tr-TR',
+			'isPartOf'   => array(
+				'@type' => 'Periodical',
+				'name'  => get_bloginfo( 'name' ),
+				'url'   => home_url( '/' ),
+			),
+			'publisher'  => array(
+				'@id' => home_url( '/' ) . '#organization',
+			),
+		);
+
+		if ( $item['cover_url'] ) {
+			$issue['image'] = $item['cover_url'];
+		}
+
+		$list_items[] = array(
+			'@type'    => 'ListItem',
+			'position' => $position + 1,
+			'item'     => $issue,
+		);
+	}
+
+	$schema = array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'ItemList',
+		'name'            => __( 'Dergi Arşivi', 'asosyoloji' ),
+		'itemListElement' => $list_items,
+	);
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
+}
+add_action( 'wp_footer', 'asosyoloji_publication_issue_schema_output', 99 );
