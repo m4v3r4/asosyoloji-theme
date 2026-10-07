@@ -2,6 +2,21 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.2 - 2026-10-07
+
+### Added
+- Companion plugin manager under **Görünüm → Asosyoloji Eklentileri**.
+- Asosyoloji Haftalık recommendation notice when the companion plugin is not active.
+- One-click GitHub Release installation and activation for Asosyoloji Haftalık.
+- Native integration with the standalone `m4v3r4/asosyoloji-weekly` repository.
+
+### Changed
+- Printed magazine PDFs are now exposed explicitly as **Asosyoloji: Basılı Sayılar (PDF)**.
+- Removed the obsolete homepage post/archive callout and its Customizer section.
+- Homepage section ordering no longer includes the old archive section.
+- Weekly events functionality is kept outside the theme as a standalone plugin.
+
+
 ## 0.7.0 - 2026-10-07
 
 ### Added
