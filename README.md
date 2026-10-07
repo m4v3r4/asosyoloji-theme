@@ -28,7 +28,7 @@ Başlangıç yapısı:
 
 ## Durum
 
-Tema aktif geliştirme aşamasında **0.6 beta** seviyesindedir. Ana sayfa, slider, kategori akışları, yazı sayfası, yazar sayfaları, arşiv/PDF araçları, widget/blok sistemi, light/dark tema ve WordPress Customizer seçenekleri çalışır durumdadır. 1.0 öncesinde canlı içerik QA ve son erişilebilirlik kontrolleri yürütülmektedir.
+Tema aktif geliştirme aşamasında **0.7 beta** seviyesindedir. Ana sayfa, slider, kategori akışları, yazı sayfası, yazar sayfaları, arşiv/PDF araçları, widget/blok sistemi, light/dark tema ve WordPress Customizer seçenekleri çalışır durumdadır. 1.0 öncesinde canlı içerik QA ve son erişilebilirlik kontrolleri yürütülmektedir.
 
 
 ## Footer Builder
@@ -198,3 +198,54 @@ Animasyon sistemi:
 - Buton ve bağlantı geçişleri
 
 Ziyaretçinin `prefers-reduced-motion` sistem tercihi her zaman önceliklidir; bu durumda hareketler otomatik olarak devre dışı bırakılır.
+
+
+## SEO / GEO 0.7
+
+**Görünüm → Özelleştir → Asosyoloji Tema Ayarları → SEO / GEO** bölümünde:
+
+- Tema SEO çıktısı: Otomatik / Her zaman tema / Kapalı
+- Yayıncı adı ve açıklaması
+- Yayıncı sosyal / profil URL'leri
+- Yayın ilkeleri URL'si
+- Varsayılan sosyal paylaşım görseli
+- Otomatik İçindekiler
+- GEO özet / “Bu yazıda” kutusu
+- Kaynaklar bölümü
+- IndexNow
+- llms.txt
+
+ayarları bulunur.
+
+Tema schema graph'ı şu entity'leri birbirine bağlar:
+
+- Organization
+- WebSite
+- WebPage
+- Article
+- ProfilePage
+- Person
+- BreadcrumbList
+- PublicationIssue
+
+Yazı editöründeki **Asosyoloji SEO / GEO** kutusunda:
+- SEO açıklaması
+- Kısa özet
+- “Bu yazıda” maddeleri
+- Ana konular / entity'ler
+- Kaynak URL'leri
+
+tanımlanabilir.
+
+Tema SEO modu varsayılan olarak **Otomatik** çalışır. Yoast SEO, Rank Math, SEOPress veya AIOSEO gibi bilinen SEO eklentileri tespit edilirse tema kendi meta/schema çıktısını tekrar basmaz.
+
+### Ana sayfa progressive loading
+
+**Ana Sayfa: Yazı Akışı** bölümünde:
+- Kapalı
+- Daha fazla yükle butonu
+- Aşağı indikçe otomatik yükle
+
+modlarından biri seçilebilir. Her yüklemede getirilecek yazı sayısı da panelden ayarlanır.
+
+Kategori hariç tutma ve slider/hero tekrar engelleme mantığı AJAX ile gelen yazılarda da korunur.
