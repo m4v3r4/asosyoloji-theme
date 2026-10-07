@@ -15,7 +15,7 @@ function asosyoloji_load_sortable_control() {
 add_action( 'customize_register', 'asosyoloji_load_sortable_control', 5 );
 
 function asosyoloji_sanitize_section_order( $value ) {
-	$allowed = array( 'slider', 'hero', 'latest', 'featured', 'archive' );
+	$allowed = array( 'slider', 'hero', 'latest', 'featured' );
 	$items   = array_filter( array_map( 'sanitize_key', explode( ',', (string) $value ) ) );
 	$items   = array_values( array_intersect( $items, $allowed ) );
 
@@ -44,7 +44,7 @@ function asosyoloji_section_order_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'aso_home_section_order',
 		array(
-			'default'           => 'slider,hero,latest,featured,archive',
+			'default'           => 'slider,hero,latest,featured',
 			'sanitize_callback' => 'asosyoloji_sanitize_section_order',
 		)
 	);
@@ -62,7 +62,6 @@ function asosyoloji_section_order_customize_register( $wp_customize ) {
 					'hero'     => __( 'Öne Çıkan', 'asosyoloji' ),
 					'latest'   => __( 'Son Yazılar', 'asosyoloji' ),
 					'featured' => __( 'Kategori Bölümü', 'asosyoloji' ),
-					'archive'  => __( 'Arşiv', 'asosyoloji' ),
 				),
 			)
 		)
