@@ -329,6 +329,32 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
+
+	$wp_customize->add_section(
+		'aso_footer',
+		array(
+			'title' => __( 'Alt Alan', 'asosyoloji' ),
+			'panel' => 'aso_theme_options',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_note',
+		array(
+			'default'           => __( 'Bağımsız düşünce, kültür ve toplum dergisi.', 'asosyoloji' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_footer_note',
+		array(
+			'label'   => __( 'Footer kısa notu', 'asosyoloji' ),
+			'section' => 'aso_footer',
+			'type'    => 'text',
+		)
+	);
+
 	$wp_customize->add_section(
 		'aso_home_hero',
 		array(
