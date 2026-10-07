@@ -97,19 +97,19 @@ function asosyoloji_customize_register( $wp_customize ) {
 	$colors = array(
 		'aso_primary_color' => array(
 			'label'   => __( 'Vurgu rengi', 'asosyoloji' ),
-			'default' => '#b3212b',
+			'default' => '#8f1d2c',
 		),
 		'aso_text_color' => array(
 			'label'   => __( 'Metin rengi', 'asosyoloji' ),
-			'default' => '#171717',
+			'default' => '#111111',
 		),
 		'aso_muted_color' => array(
 			'label'   => __( 'İkincil metin rengi', 'asosyoloji' ),
-			'default' => '#6d6d6d',
+			'default' => '#666666',
 		),
 		'aso_border_color' => array(
 			'label'   => __( 'Çizgi ve kenarlık rengi', 'asosyoloji' ),
-			'default' => '#dedede',
+			'default' => '#d8d8d8',
 		),
 		'aso_background_color' => array(
 			'label'   => __( 'Arka plan rengi', 'asosyoloji' ),
@@ -117,7 +117,7 @@ function asosyoloji_customize_register( $wp_customize ) {
 		),
 		'aso_surface_color' => array(
 			'label'   => __( 'İkincil arka plan rengi', 'asosyoloji' ),
-			'default' => '#f6f4f1',
+			'default' => '#f5f3ef',
 		),
 	);
 
