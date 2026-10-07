@@ -105,6 +105,10 @@ while ( have_posts() ) :
 		<?php the_post_navigation(); ?>
 	</div>
 
+	<?php if ( comments_open() || get_comments_number() ) : ?>
+		<?php comments_template(); ?>
+	<?php endif; ?>
+
 	<?php if ( get_theme_mod( 'aso_show_related_posts', true ) ) : ?>
 		<?php
 		$category_ids = wp_get_post_categories( get_the_ID() );
