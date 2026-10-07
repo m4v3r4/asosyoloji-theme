@@ -1,6 +1,6 @@
 <?php
 /**
- * Sortable Customizer control for homepage sections.
+ * Homepage section order settings.
  *
  * @package Asosyoloji
  */
@@ -9,53 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( class_exists( 'WP_Customize_Control' ) ) {
-	class Asosyoloji_Sortable_Control extends WP_Customize_Control {
-		public $type = 'aso-sortable';
-
-		public function enqueue() {
-			wp_enqueue_script(
-				'asosyoloji-customizer-sortable',
-				get_template_directory_uri() . '/assets/js/customizer-sortable.js',
-				array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ),
-				ASOSYOLOJI_VERSION,
-				true
-			);
-		}
-
-		public function render_content() {
-			if ( empty( $this->choices ) ) {
-				return;
-			}
-			?>
-			<label>
-				<?php if ( $this->label ) : ?>
-					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-				<?php endif; ?>
-				<?php if ( $this->description ) : ?>
-					<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-				<?php endif; ?>
-			</label>
-
-			<ul class="aso-sortable-control" data-aso-sortable>
-				<?php
-				$value = array_filter( array_map( 'sanitize_key', explode( ',', (string) $this->value() ) ) );
-				foreach ( $value as $key ) :
-					if ( ! isset( $this->choices[ $key ] ) ) {
-						continue;
-					}
-					?>
-					<li data-value="<?php echo esc_attr( $key ); ?>">
-						<span class="dashicons dashicons-menu" aria-hidden="true"></span>
-						<?php echo esc_html( $this->choices[ $key ] ); ?>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-			<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>">
-			<?php
-		}
-	}
+function asosyoloji_load_sortable_control() {
+	require_once get_template_directory() . '/inc/class-asosyoloji-sortable-control.php';
 }
+add_action( 'customize_register', 'asosyoloji_load_sortable_control', 5 );
 
 function asosyoloji_sanitize_section_order( $value ) {
 	$allowed = array( 'slider', 'hero', 'latest', 'featured', 'archive' );
@@ -72,6 +29,10 @@ function asosyoloji_sanitize_section_order( $value ) {
 }
 
 function asosyoloji_section_order_customize_register( $wp_customize ) {
+	if ( ! class_exists( 'Asosyoloji_Sortable_Control' ) ) {
+		return;
+	}
+
 	$wp_customize->add_section(
 		'aso_home_order',
 		array(
