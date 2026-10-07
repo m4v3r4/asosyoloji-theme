@@ -17,7 +17,8 @@ while ( have_posts() ) :
 		<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
 	<?php endif; ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> data-reading-article>
-		<header class="entry-header">
+		<div class="entry-hero aso-container">
+		<header class="entry-header entry-hero__header">
 			<?php if ( ! empty( $categories ) ) : ?>
 				<div class="entry-kicker"><?php echo esc_html( $categories[0]->name ); ?></div>
 			<?php endif; ?>
@@ -67,8 +68,9 @@ while ( have_posts() ) :
 
 		<?php $entry_image = asosyoloji_get_post_image( get_the_ID(), 'full', array( 'class' => 'entry-featured-image__img' ) ); ?>
 		<?php if ( $entry_image ) : ?>
-			<figure class="entry-featured-image"><?php echo wp_kses_post( $entry_image ); ?></figure>
+			<figure class="entry-featured-image entry-hero__media"><?php echo wp_kses_post( $entry_image ); ?></figure>
 		<?php endif; ?>
+		</div>
 
 		<?php echo wp_kses_post( asosyoloji_geo_summary_markup( get_the_ID() ) ); ?>
 
