@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.3.0
+Version: 0.4.0
 Text Domain: asosyoloji
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -2284,4 +2284,20 @@ html[data-theme="dark"] .aso-slider__arrow {
   .archive-tools__years {
     width: 100%;
   }
+}
+
+
+.skip-link:focus {
+  position: fixed !important;
+  top: 10px;
+  left: 10px;
+  z-index: 10000;
+  width: auto;
+  height: auto;
+  padding: 10px 14px;
+  clip: auto;
+  background: var(--aso-primary);
+  color: #fff;
+  font-family: var(--aso-heading-font);
+  font-weight: 800;
 }
