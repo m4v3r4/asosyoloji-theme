@@ -2,6 +2,24 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.4 - 2026-10-07
+
+### Added
+- Configurable main navigation bar with accent, light, dark and custom background modes.
+- Main menu alignment options: left, center, right and spread.
+- Main menu width, density, separators, capitalization and active-item style controls.
+- Optional social media bar with Instagram, X, Facebook, YouTube, LinkedIn, Mastodon and Telegram links.
+- Lightweight inline SVG social icons without an external icon library.
+
+### Changed
+- Main menu bar now uses the theme accent color by default.
+- Desktop menu toggle is hidden; the collapsible menu button is mobile-only.
+- Article cards now use a consistent vertical layout: image, title, excerpt and metadata.
+- Article category is displayed as an overlay in the upper-right corner of the image.
+- Removed breadcrumb trails from primary page, post, archive, category and author templates.
+- Hardened article cards against long-word, URL and excerpt overflow.
+
+
 ## 0.7.3 - 2026-10-07
 
 ### Added
