@@ -352,8 +352,9 @@ function asosyoloji_schema_graph() {
 		'publisher'  => array( '@id' => $publisher_id ),
 	);
 
+	$page_type = is_author() ? 'ProfilePage' : ( ( is_category() || is_archive() ) ? 'CollectionPage' : 'WebPage' );
 	$page_node = array(
-		'@type'      => is_author() ? 'ProfilePage' : 'WebPage',
+		'@type'      => $page_type,
 		'@id'        => $webpage_id,
 		'url'        => $current_url,
 		'name'       => wp_get_document_title(),
@@ -427,10 +428,12 @@ function asosyoloji_schema_graph() {
 		$image      = asosyoloji_get_post_image_url( $post_id );
 
 		$person = array(
-			'@type' => 'Person',
-			'@id'   => $person_id,
-			'name'  => get_the_author_meta( 'display_name', $author_id ),
-			'url'   => $author_url,
+			'@type'       => 'Person',
+			'@id'         => $person_id,
+			'name'        => get_the_author_meta( 'display_name', $author_id ),
+			'url'         => $author_url,
+			'description' => get_the_author_meta( 'description', $author_id ),
+			'image'       => get_avatar_url( $author_id, array( 'size' => 240 ) ),
 		);
 		$author_same_as = asosyoloji_author_same_as( $author_id );
 		if ( $author_same_as ) {
@@ -438,9 +441,10 @@ function asosyoloji_schema_graph() {
 		}
 		$graph[] = $person;
 
-		$article = array(
+		$article_id = get_permalink( $post_id ) . '#article';
+		$article    = array(
 			'@type'            => 'Article',
-			'@id'              => get_permalink( $post_id ) . '#article',
+			'@id'              => $article_id,
 			'headline'         => get_the_title( $post_id ),
 			'description'      => asosyoloji_get_seo_description( $post_id ),
 			'datePublished'    => get_the_date( DATE_W3C, $post_id ),
@@ -452,6 +456,7 @@ function asosyoloji_schema_graph() {
 			'inLanguage'       => 'tr-TR',
 			'wordCount'        => asosyoloji_unicode_word_count( $content ),
 			'commentCount'     => get_comments_number( $post_id ),
+			'isAccessibleForFree' => true,
 		);
 
 		if ( $image ) {
@@ -486,6 +491,7 @@ function asosyoloji_schema_graph() {
 			);
 		}
 
+		$graph[ $page_index ]['mainEntity'] = array( '@id' => $article_id );
 		$graph[] = $article;
 	}
 
