@@ -30,6 +30,7 @@ require_once get_template_directory() . '/inc/customizer-preview.php';
 require_once get_template_directory() . '/inc/widgets.php';
 require_once get_template_directory() . '/inc/blocks.php';
 require_once get_template_directory() . '/inc/activation.php';
+require_once get_template_directory() . '/inc/github-updater.php';
 
 function asosyoloji_setup() {
 	load_theme_textdomain( 'asosyoloji', get_template_directory() . '/languages' );
