@@ -285,6 +285,29 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'aso_page_content_width',
+		array(
+			'default'           => 'wide',
+			'sanitize_callback' => 'asosyoloji_sanitize_select',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_page_content_width',
+		array(
+			'label'       => __( 'Sayfa içerik genişliği', 'asosyoloji' ),
+			'description' => __( 'Dar: makale genişliği, Geniş: site container genişliği, Tam: ekran genişliği.', 'asosyoloji' ),
+			'section'     => 'aso_layout',
+			'type'        => 'select',
+			'choices'     => array(
+				'narrow' => __( 'Dar', 'asosyoloji' ),
+				'wide'   => __( 'Geniş', 'asosyoloji' ),
+				'full'   => __( 'Tam', 'asosyoloji' ),
+			),
+		)
+	);
+
 	$wp_customize->add_section(
 		'aso_header',
 		array(
