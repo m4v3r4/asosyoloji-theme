@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:22:08+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:22:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -728,6 +728,7 @@ msgid "Son Yazılar bölümünde ilk grup sonrasında yeni içeriklerin nasıl y
 msgstr ""
 
 #: inc/customizer.php:642
+#: inc/seo-settings.php:39
 msgid "Kapalı"
 msgstr ""
 
@@ -969,6 +970,118 @@ msgstr ""
 
 #: inc/section-order.php:64
 msgid "Kategori Bölümü"
+msgstr ""
+
+#: inc/seo-editor.php:15
+msgid "Asosyoloji SEO / GEO"
+msgstr ""
+
+#: inc/seo-editor.php:34
+msgid "SEO açıklaması"
+msgstr ""
+
+#: inc/seo-editor.php:36
+msgid "Boşsa excerpt, o da yoksa yazı metninden otomatik üretilir."
+msgstr ""
+
+#: inc/seo-editor.php:40
+msgid "Kısa özet"
+msgstr ""
+
+#: inc/seo-editor.php:42
+msgid "Yazının ana tezini 2–4 cümlede açık ve doğrudan özetleyin."
+msgstr ""
+
+#: inc/seo-editor.php:46
+msgid "Bu yazıda"
+msgstr ""
+
+#: inc/seo-editor.php:48
+msgid "Her satıra bir ana başlık / çıkarım yazın."
+msgstr ""
+
+#: inc/seo-editor.php:52
+msgid "Ana konular / entity’ler"
+msgstr ""
+
+#: inc/seo-editor.php:54
+msgid "Her satıra bir kişi, kurum, kavram, kitap veya temel konu yazın."
+msgstr ""
+
+#: inc/seo-editor.php:58
+msgid "Kaynak URL’leri"
+msgstr ""
+
+#: inc/seo-editor.php:60
+msgid "Her satıra bir kaynak URL’si yazın. Yazı altında Kaynaklar olarak gösterilebilir ve schema citation alanına eklenir."
+msgstr ""
+
+#: inc/seo-settings.php:16
+msgid "SEO / GEO"
+msgstr ""
+
+#: inc/seo-settings.php:32
+msgid "Tema SEO çıktısı"
+msgstr ""
+
+#: inc/seo-settings.php:33
+msgid "Otomatik mod, bilinen büyük SEO eklentileri aktifse tema meta/schema çıktısını devre dışı bırakır."
+msgstr ""
+
+#: inc/seo-settings.php:37
+msgid "Otomatik"
+msgstr ""
+
+#: inc/seo-settings.php:38
+msgid "Her zaman tema"
+msgstr ""
+
+#: inc/seo-settings.php:55
+msgid "Yayıncı adı"
+msgstr ""
+
+#: inc/seo-settings.php:72
+msgid "Yayıncı açıklaması"
+msgstr ""
+
+#: inc/seo-settings.php:89
+msgid "Yayıncı sosyal / profil URL’leri"
+msgstr ""
+
+#: inc/seo-settings.php:90
+msgid "Her satıra bir tam URL girin."
+msgstr ""
+
+#: inc/seo-settings.php:109
+msgid "Varsayılan sosyal paylaşım görseli"
+msgstr ""
+
+#: inc/seo-settings.php:110
+msgid "Yazıda öne çıkan veya içerik görseli yoksa kullanılır."
+msgstr ""
+
+#: inc/seo-settings.php:119
+msgid "Uzun yazılarda otomatik İçindekiler oluştur"
+msgstr ""
+
+#: inc/seo-settings.php:120
+msgid "SEO/GEO özet ve “Bu yazıda” kutusunu göster"
+msgstr ""
+
+#: inc/seo-settings.php:121
+msgid "Kaynaklar bölümünü yazı sonunda göster"
+msgstr ""
+
+#: inc/seo-settings.php:122
+msgid "IndexNow bildirimlerini etkinleştir"
+msgstr ""
+
+#: inc/seo-settings.php:153
+msgid "IndexNow anahtarı"
+msgstr ""
+
+#: inc/seo-settings.php:154
+msgid "IndexNow etkinse kullanılır. Tema anahtar doğrulama dosyasını sanal olarak sunar."
 msgstr ""
 
 #: inc/seo.php:13
