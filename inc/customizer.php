@@ -329,6 +329,50 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'aso_logo_width',
+		array(
+			'default'           => 620,
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_logo_width',
+		array(
+			'label'       => __( 'Logo maksimum genişliği (masaüstü)', 'asosyoloji' ),
+			'section'     => 'aso_header',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 180,
+				'max'  => 900,
+				'step' => 10,
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_logo_width_mobile',
+		array(
+			'default'           => 280,
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_logo_width_mobile',
+		array(
+			'label'       => __( 'Logo maksimum genişliği (mobil)', 'asosyoloji' ),
+			'section'     => 'aso_header',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 120,
+				'max'  => 420,
+				'step' => 10,
+			),
+		)
+	);
+
 
 	$wp_customize->add_section(
 		'aso_footer',
