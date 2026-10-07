@@ -115,7 +115,6 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 		)
 	);
 
-
 	$dark_colors = array(
 		'aso_dark_muted' => array(
 			'label'   => __( 'Karanlık tema ikincil metin', 'asosyoloji' ),
