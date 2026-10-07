@@ -175,12 +175,109 @@ function asosyoloji_render_post_collection( $args = array() ) {
 	return (string) ob_get_clean();
 }
 
+
+/**
+ * Render announcement posts with a notice-board presentation.
+ *
+ * @param array $args Announcement options.
+ * @return string
+ */
+function asosyoloji_render_announcements( $args = array() ) {
+	$defaults = array(
+		'title'        => __( 'Duyurular', 'asosyoloji' ),
+		'category'     => 0,
+		'count'        => 5,
+		'show_excerpt' => true,
+		'show_date'    => true,
+		'show_button'  => true,
+		'compact'      => false,
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	$category = absint( $args['category'] );
+	if ( ! $category ) {
+		$default_term = get_category_by_slug( 'duyurular' );
+		if ( $default_term ) {
+			$category = (int) $default_term->term_id;
+		}
+	}
+
+	$query_args = array(
+		'posts_per_page'      => min( 12, max( 1, absint( $args['count'] ) ) ),
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => false,
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+	);
+
+	if ( $category ) {
+		$query_args['cat'] = $category;
+	}
+
+	$query = new WP_Query( $query_args );
+
+	if ( ! $query->have_posts() ) {
+		return '';
+	}
+
+	ob_start();
+	?>
+	<section class="aso-announcements<?php echo $args['compact'] ? ' aso-announcements--compact' : ''; ?>">
+		<?php if ( $args['title'] ) : ?>
+			<div class="aso-announcements__header">
+				<span class="aso-announcements__marker" aria-hidden="true"></span>
+				<h2 class="aso-announcements__heading"><?php echo esc_html( $args['title'] ); ?></h2>
+			</div>
+		<?php endif; ?>
+
+		<div class="aso-announcements__list">
+			<?php
+			while ( $query->have_posts() ) :
+				$query->the_post();
+				?>
+				<article class="aso-announcement">
+					<?php if ( $args['show_date'] ) : ?>
+						<time class="aso-announcement__date" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+							<span class="aso-announcement__day"><?php echo esc_html( get_the_date( 'd' ) ); ?></span>
+							<span class="aso-announcement__month"><?php echo esc_html( get_the_date( 'M' ) ); ?></span>
+						</time>
+					<?php endif; ?>
+
+					<div class="aso-announcement__content">
+						<div class="aso-announcement__label"><?php esc_html_e( 'Duyuru', 'asosyoloji' ); ?></div>
+						<h3 class="aso-announcement__title">
+							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</h3>
+
+						<?php if ( $args['show_excerpt'] ) : ?>
+							<div class="aso-announcement__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 24 ) ); ?></div>
+						<?php endif; ?>
+
+						<?php if ( $args['show_button'] ) : ?>
+							<a class="aso-announcement__link" href="<?php the_permalink(); ?>">
+								<?php esc_html_e( 'Duyuru detayları', 'asosyoloji' ); ?>
+							</a>
+						<?php endif; ?>
+					</div>
+				</article>
+			<?php endwhile; ?>
+		</div>
+	</section>
+	<?php
+	wp_reset_postdata();
+
+	return (string) ob_get_clean();
+}
+
 /**
  * Register theme widgets.
  */
 function asosyoloji_register_theme_widgets() {
 	require_once get_template_directory() . '/inc/class-asosyoloji-post-list-widget.php';
+	require_once get_template_directory() . '/inc/class-asosyoloji-announcements-widget.php';
 	register_widget( 'Asosyoloji_Post_List_Widget' );
+	register_widget( 'Asosyoloji_Announcements_Widget' );
 }
 add_action( 'widgets_init', 'asosyoloji_register_theme_widgets' );
 
@@ -240,3 +337,41 @@ function asosyoloji_posts_shortcode( $atts ) {
 	);
 }
 add_shortcode( 'asosyoloji_posts', 'asosyoloji_posts_shortcode' );
+
+
+/**
+ * Announcement shortcode.
+ *
+ * @param array $atts Shortcode attributes.
+ * @return string
+ */
+function asosyoloji_announcements_shortcode( $atts ) {
+	$atts = shortcode_atts(
+		array(
+			'title'   => __( 'Duyurular', 'asosyoloji' ),
+			'category'=> 'duyurular',
+			'count'   => 5,
+			'excerpt' => '1',
+			'date'    => '1',
+			'button'  => '1',
+			'compact' => '0',
+		),
+		$atts,
+		'asosyoloji_duyurular'
+	);
+
+	$category_ids = asosyoloji_resolve_category_ids( $atts['category'] );
+
+	return asosyoloji_render_announcements(
+		array(
+			'title'        => sanitize_text_field( $atts['title'] ),
+			'category'     => $category_ids ? $category_ids[0] : 0,
+			'count'        => absint( $atts['count'] ),
+			'show_excerpt' => '1' === (string) $atts['excerpt'],
+			'show_date'    => '1' === (string) $atts['date'],
+			'show_button'  => '1' === (string) $atts['button'],
+			'compact'      => '1' === (string) $atts['compact'],
+		)
+	);
+}
+add_shortcode( 'asosyoloji_duyurular', 'asosyoloji_announcements_shortcode' );
