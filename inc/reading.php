@@ -70,7 +70,7 @@ add_action( 'customize_register', 'asosyoloji_reading_customize_register', 70 );
 function asosyoloji_reading_time( $post_id = 0 ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
 	$content = wp_strip_all_tags( get_post_field( 'post_content', $post_id ) );
-	$words   = str_word_count( wp_strip_all_tags( $content ) );
+	$words   = function_exists( 'asosyoloji_unicode_word_count' ) ? asosyoloji_unicode_word_count( $content ) : str_word_count( $content );
 	$minutes = max( 1, (int) ceil( $words / 220 ) );
 
 	return sprintf(
