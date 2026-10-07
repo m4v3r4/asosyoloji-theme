@@ -16,8 +16,8 @@ if ( post_password_required() ) {
 				<div class="section-kicker"><?php esc_html_e( 'Tartışma', 'asosyoloji' ); ?></div>
 				<h2 class="section-title">
 					<?php
-					/* translators: %1$s: Number of comments. */
 					printf(
+						/* translators: %1$s: Number of comments. */
 						esc_html( _nx( '%1$s yorum', '%1$s yorum', get_comments_number(), 'yorum sayısı', 'asosyoloji' ) ),
 						esc_html( number_format_i18n( get_comments_number() ) )
 					);
