@@ -55,6 +55,23 @@ for (const viewport of viewports) {
     failed = true;
   }
 
+  if (viewport.name === 'desktop') {
+    const loadMoreButton = page.locator('[data-home-latest-button]');
+    if (await loadMoreButton.count()) {
+      const before = await page.locator('[data-home-latest-grid] > *').count();
+      await loadMoreButton.click();
+      await page.waitForFunction(
+        (count) => document.querySelectorAll('[data-home-latest-grid] > *').length > count,
+        before
+      );
+      const after = await page.locator('[data-home-latest-grid] > *').count();
+      if (after <= before) {
+        console.error('desktop: load more did not append posts');
+        failed = true;
+      }
+    }
+  }
+
   const toggle = page.locator('.theme-toggle');
   if (await toggle.count()) {
     await toggle.click();
