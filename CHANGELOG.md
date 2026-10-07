@@ -2,6 +2,19 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.7 - 2026-10-07
+
+### Added
+- Enhanced printed issues PDF widget with Media Library PDF selection.
+- PDF attachment IDs are stored so WordPress-generated first-page previews can be used automatically as issue covers.
+- Issue titles are auto-filled from the selected PDF attachment and remain editable.
+- Manual cover selection remains available as a fallback when PDF preview generation is unavailable.
+
+### Changed
+- Printed issues widget defaults to a list layout with cover, issue title and **Oku** action.
+- PDF cover cards now use a consistent 3:4 cover ratio in list and grid views.
+
+
 ## 0.7.6 - 2026-10-07
 
 ### Added
