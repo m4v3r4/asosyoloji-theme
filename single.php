@@ -20,11 +20,18 @@ while ( have_posts() ) :
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 
 			<div class="entry-meta">
-				<?php echo esc_html( get_the_author() ); ?> ·
+				<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+					<?php echo esc_html( get_the_author() ); ?>
+				</a>
+				<span aria-hidden="true"> · </span>
 				<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
 					<?php echo esc_html( get_the_date() ); ?>
 				</time>
 			</div>
+
+			<?php if ( has_excerpt() ) : ?>
+				<div class="entry-deck"><?php echo esc_html( get_the_excerpt() ); ?></div>
+			<?php endif; ?>
 		</header>
 
 		<?php if ( has_post_thumbnail() ) : ?>
