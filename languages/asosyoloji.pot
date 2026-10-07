@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Asosyoloji 0.6.0\n"
+"Project-Id-Version: Asosyoloji 0.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/asosyoloji-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T08:19:28+00:00\n"
+"POT-Creation-Date: 2026-10-07T08:20:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -239,10 +239,12 @@ msgstr ""
 #: inc/class-asosyoloji-announcements-widget.php:79
 #: inc/widgets.php:187
 #: inc/widgets.php:351
+#: assets/js/announcements-block.js:102
 msgid "Duyurular"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:23
+#: assets/js/announcements-block.js:18
 msgid "Asosyoloji: Duyurular"
 msgstr ""
 
@@ -254,36 +256,44 @@ msgstr ""
 #: inc/class-asosyoloji-post-list-widget.php:122
 #: inc/class-asosyoloji-post-list-widget.php:176
 #: inc/customizer.php:643
+#: assets/js/announcements-block.js:45
 #: assets/js/post-list-block.js:57
 #: assets/js/post-list-block.js:107
 msgid "Başlık"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:94
+#: assets/js/announcements-block.js:52
 msgid "Duyuru kategorisi"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:96
+#: assets/js/announcements-block.js:14
 msgid "Varsayılan: duyurular"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:104
+#: assets/js/announcements-block.js:60
 msgid "Duyuru sayısı"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:109
+#: assets/js/announcements-block.js:69
 msgid "Tarih rozetini göster"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:110
+#: assets/js/announcements-block.js:76
 msgid "Kısa açıklamayı göster"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:111
+#: assets/js/announcements-block.js:83
 msgid "Detay bağlantısını göster"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:112
+#: assets/js/announcements-block.js:90
 msgid "Kompakt görünüm"
 msgstr ""
 
@@ -1067,6 +1077,22 @@ msgstr ""
 #: template-parts/home-slider.php:127
 #, php-format
 msgid "%d. slayta git"
+msgstr ""
+
+#: assets/js/announcements-block.js:21
+msgid "Duyuru kategorisindeki yazıları ilan/pano görünümünde gösterir."
+msgstr ""
+
+#: assets/js/announcements-block.js:43
+msgid "Duyuru ayarları"
+msgstr ""
+
+#: assets/js/announcements-block.js:101
+msgid "ASOSYOLOJİ DUYURULAR"
+msgstr ""
+
+#: assets/js/announcements-block.js:106
+msgid "Ön yüzde tarih rozetli, duyuru etiketi ve ilan/pano görünümüyle dinamik olarak render edilir."
 msgstr ""
 
 #: assets/js/post-list-block.js:27
