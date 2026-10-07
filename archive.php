@@ -23,7 +23,12 @@ get_header();
 <div class="aso-container archive-layout">
 	<?php if ( have_posts() ) : ?>
 		<div class="archive-results-meta">
-			<span><?php echo esc_html( sprintf( __( '%s içerik', 'asosyoloji' ), number_format_i18n( $GLOBALS['wp_query']->found_posts ) ) ); ?></span>
+			<span>
+				<?php
+				/* translators: %s: Number of archive items. */
+				echo esc_html( sprintf( __( '%s içerik', 'asosyoloji' ), number_format_i18n( $GLOBALS['wp_query']->found_posts ) ) );
+				?>
+			</span>
 		</div>
 
 		<div class="article-grid archive-grid">
