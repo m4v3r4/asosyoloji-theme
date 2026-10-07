@@ -78,6 +78,10 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 						<a class="aso-slider__media" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
 							<?php echo wp_kses_post( $image ); ?>
 						</a>
+					<?php else : ?>
+						<a class="aso-slider__media aso-slider__placeholder" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+							<span><?php bloginfo( 'name' ); ?></span>
+						</a>
 					<?php endif; ?>
 
 					<div class="aso-slider__content">
@@ -115,14 +119,21 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 		</div>
 	</div>
 
-	<?php if ( $slider_arrows ) : ?>
+	<?php if ( $slider_arrows || $slider_autoplay ) : ?>
 		<div class="aso-slider__arrows">
-			<button class="aso-slider__arrow aso-slider__arrow--prev" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Önceki slayt', 'asosyoloji' ); ?>">
-				<span aria-hidden="true">←</span>
-			</button>
-			<button class="aso-slider__arrow aso-slider__arrow--next" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Sonraki slayt', 'asosyoloji' ); ?>">
-				<span aria-hidden="true">→</span>
-			</button>
+			<?php if ( $slider_arrows ) : ?>
+				<button class="aso-slider__arrow aso-slider__arrow--prev" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Önceki slayt', 'asosyoloji' ); ?>">
+					<span aria-hidden="true">←</span>
+				</button>
+				<button class="aso-slider__arrow aso-slider__arrow--next" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Sonraki slayt', 'asosyoloji' ); ?>">
+					<span aria-hidden="true">→</span>
+				</button>
+			<?php endif; ?>
+			<?php if ( $slider_autoplay ) : ?>
+				<button class="aso-slider__pause" type="button" data-slider-pause aria-pressed="false">
+					<span data-slider-pause-label><?php esc_html_e( 'Durdur', 'asosyoloji' ); ?></span>
+				</button>
+			<?php endif; ?>
 		</div>
 	<?php endif; ?>
 

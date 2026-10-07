@@ -8,6 +8,10 @@
 $footer_columns = (int) get_theme_mod( 'aso_footer_columns', '3' );
 $footer_columns = max( 1, min( 4, $footer_columns ) );
 $repo_url       = get_theme_mod( 'aso_footer_repo_url', 'https://github.com/m4v3r4/asosyoloji-theme' );
+$has_footer_widgets = has_nav_menu( 'footer' );
+for ( $column = 1; $column <= $footer_columns; $column++ ) {
+	$has_footer_widgets = $has_footer_widgets || is_active_sidebar( 'footer-' . $column );
+}
 ?>
 </main>
 
@@ -29,6 +33,7 @@ $repo_url       = get_theme_mod( 'aso_footer_repo_url', 'https://github.com/m4v3
 			</div>
 		<?php endif; ?>
 
+		<?php if ( $has_footer_widgets ) : ?>
 		<div class="footer-widgets footer-widgets--<?php echo esc_attr( $footer_columns ); ?>">
 			<?php for ( $column = 1; $column <= $footer_columns; $column++ ) : ?>
 				<div class="footer-widgets__column footer-widgets__column--<?php echo esc_attr( $column ); ?>">
@@ -49,6 +54,7 @@ $repo_url       = get_theme_mod( 'aso_footer_repo_url', 'https://github.com/m4v3
 				</div>
 			<?php endfor; ?>
 		</div>
+		<?php endif; ?>
 
 		<div class="site-footer__bottom">
 			<div class="site-footer__copyright">

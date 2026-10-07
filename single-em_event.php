@@ -19,6 +19,11 @@ while ( have_posts() ) :
 	$price      = get_post_meta( $post_id, 'em_fixed_event_price', true );
 	$types      = taxonomy_exists( 'em_event_type' ) ? wp_get_post_terms( $post_id, 'em_event_type', array( 'fields' => 'names' ) ) : array();
 	$venues     = taxonomy_exists( 'em_venue' ) ? wp_get_post_terms( $post_id, 'em_venue', array( 'fields' => 'names' ) ) : array();
+	$event_data = function_exists( 'asosyoloji_weekly_event_data' ) ? asosyoloji_weekly_event_data( $post_id ) : array();
+	$city       = sanitize_text_field( $event_data['city'] ?? '' );
+	$organizer  = sanitize_text_field( $event_data['organizer'] ?? '' );
+	$event_url  = esc_url( $event_data['event_url'] ?? '' );
+	$is_free    = ! empty( $event_data['free'] );
 
 	$start_date = $start_ts ? gmdate( 'Y-m-d', $start_ts ) : '';
 	$end_date   = $end_ts ? gmdate( 'Y-m-d', $end_ts ) : $start_date;
@@ -87,11 +92,38 @@ while ( have_posts() ) :
 								<strong><?php echo esc_html( $price ); ?></strong>
 							</div>
 						<?php endif; ?>
+
+						<?php if ( $city ) : ?>
+							<div class="event-detail__fact">
+								<span class="event-detail__fact-label"><?php esc_html_e( 'Şehir', 'asosyoloji' ); ?></span>
+								<strong><?php echo esc_html( $city ); ?></strong>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( $organizer ) : ?>
+							<div class="event-detail__fact">
+								<span class="event-detail__fact-label"><?php esc_html_e( 'Organizatör', 'asosyoloji' ); ?></span>
+								<strong><?php echo esc_html( $organizer ); ?></strong>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( $is_free ) : ?>
+							<div class="event-detail__fact">
+								<span class="event-detail__fact-label"><?php esc_html_e( 'Katılım', 'asosyoloji' ); ?></span>
+								<strong><?php esc_html_e( 'Ücretsiz', 'asosyoloji' ); ?></strong>
+							</div>
+						<?php endif; ?>
 					</div>
 
 					<div class="event-detail__actions">
 						<?php if ( function_exists( 'asosyoloji_weekly_ics_url' ) ) : ?>
 							<a class="aso-button" href="<?php echo esc_url( asosyoloji_weekly_ics_url( $post_id ) ); ?>"><?php esc_html_e( 'Takvime Ekle', 'asosyoloji' ); ?></a>
+						<?php endif; ?>
+						<?php if ( function_exists( 'asosyoloji_weekly_google_calendar_url' ) ) : ?>
+							<a class="aso-button aso-button--secondary" href="<?php echo esc_url( asosyoloji_weekly_google_calendar_url( $post_id ) ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Google Calendar', 'asosyoloji' ); ?></a>
+						<?php endif; ?>
+						<?php if ( $event_url ) : ?>
+							<a class="aso-button aso-button--secondary" href="<?php echo esc_url( $event_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Etkinlik Sayfası', 'asosyoloji' ); ?></a>
 						<?php endif; ?>
 
 						<?php if ( $share_links ) : ?>
@@ -134,6 +166,14 @@ while ( have_posts() ) :
 
 					<?php if ( ! is_wp_error( $types ) && ! empty( $types ) ) : ?>
 						<p><strong><?php esc_html_e( 'Tür', 'asosyoloji' ); ?></strong><br><?php echo esc_html( implode( ', ', $types ) ); ?></p>
+					<?php endif; ?>
+
+					<?php if ( $city ) : ?>
+						<p><strong><?php esc_html_e( 'Şehir', 'asosyoloji' ); ?></strong><br><?php echo esc_html( $city ); ?></p>
+					<?php endif; ?>
+
+					<?php if ( $organizer ) : ?>
+						<p><strong><?php esc_html_e( 'Organizatör', 'asosyoloji' ); ?></strong><br><?php echo esc_html( $organizer ); ?></p>
 					<?php endif; ?>
 				</div>
 			</aside>

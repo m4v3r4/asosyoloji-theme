@@ -7,6 +7,14 @@
 
 get_header();
 
+$front_page_heading = get_bloginfo( 'name' );
+if ( get_bloginfo( 'description' ) ) {
+	$front_page_heading .= ' — ' . get_bloginfo( 'description' );
+}
+?>
+<h1 class="screen-reader-text"><?php echo esc_html( $front_page_heading ); ?></h1>
+<?php
+
 $GLOBALS['asosyoloji_home_hero_post_id'] = 0;
 $GLOBALS['asosyoloji_home_used_post_ids'] = array();
 

@@ -26,9 +26,25 @@ if ( get_theme_mod( 'aso_menu_uppercase', true ) ) {
 }
 
 $social_links = array();
+$social_hosts = array(
+	'instagram' => array( 'instagram.com' ),
+	'x'         => array( 'x.com', 'twitter.com' ),
+	'facebook'  => array( 'facebook.com', 'fb.com' ),
+	'youtube'   => array( 'youtube.com', 'youtu.be' ),
+	'linkedin'  => array( 'linkedin.com' ),
+	'telegram'  => array( 't.me', 'telegram.me' ),
+);
 foreach ( array( 'instagram', 'x', 'facebook', 'youtube', 'linkedin', 'mastodon', 'telegram' ) as $network ) {
 	$url = esc_url( get_theme_mod( 'aso_social_' . $network, '' ) );
-	if ( $url ) {
+	$host = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
+	$path = trim( (string) wp_parse_url( $url, PHP_URL_PATH ), '/' );
+	$allowed = ! isset( $social_hosts[ $network ] ) || array_filter(
+		$social_hosts[ $network ],
+		static function ( $expected_host ) use ( $host ) {
+			return $host === $expected_host || str_ends_with( $host, '.' . $expected_host );
+		}
+	);
+	if ( $url && $path && $allowed ) {
 		$social_links[ $network ] = $url;
 	}
 }

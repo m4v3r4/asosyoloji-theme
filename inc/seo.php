@@ -28,6 +28,40 @@ function asosyoloji_theme_seo_enabled() {
 	return ! $known_plugin;
 }
 
+function asosyoloji_site_description() {
+	$description = trim( (string) get_theme_mod( 'aso_publisher_description', get_bloginfo( 'description' ) ) );
+
+	return $description ? $description : __( 'Bağımsız düşünce, kültür ve toplum dergisi.', 'asosyoloji' );
+}
+
+function asosyoloji_is_nonproduction_host() {
+	$host = strtolower( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) );
+
+	return 'localhost' === $host
+		|| str_ends_with( $host, '.local' )
+		|| str_starts_with( $host, 'test.' )
+		|| str_starts_with( $host, 'staging.' )
+		|| str_starts_with( $host, 'dev.' );
+}
+
+function asosyoloji_nonproduction_robots( $robots ) {
+	if ( asosyoloji_is_nonproduction_host() ) {
+		$robots['noindex']  = true;
+		$robots['nofollow'] = true;
+		unset( $robots['index'], $robots['follow'] );
+	}
+
+	return $robots;
+}
+add_filter( 'wp_robots', 'asosyoloji_nonproduction_robots', 50 );
+
+function asosyoloji_nonproduction_headers() {
+	if ( asosyoloji_is_nonproduction_host() && ! headers_sent() ) {
+		header( 'X-Robots-Tag: noindex, nofollow', true );
+	}
+}
+add_action( 'send_headers', 'asosyoloji_nonproduction_headers' );
+
 function asosyoloji_user_contact_methods( $methods ) {
 	$methods['mastodon'] = __( 'Mastodon URL', 'asosyoloji' );
 	$methods['bluesky']  = __( 'Bluesky URL', 'asosyoloji' );
@@ -41,7 +75,9 @@ function asosyoloji_author_social_links( $user_id ) {
 	$links   = array();
 	$website = get_the_author_meta( 'user_url', $user_id );
 
-	if ( $website ) {
+	$website_host = strtolower( (string) wp_parse_url( $website, PHP_URL_HOST ) );
+	$site_host    = strtolower( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) );
+	if ( $website && $website_host && $website_host !== $site_host ) {
 		$links['website'] = array(
 			'label' => __( 'Web sitesi', 'asosyoloji' ),
 			'url'   => $website,
@@ -265,7 +301,7 @@ function asosyoloji_social_meta() {
 
 	$title = wp_get_document_title();
 	$url   = asosyoloji_current_url();
-	$desc  = get_bloginfo( 'description' );
+	$desc  = asosyoloji_site_description();
 	$image = asosyoloji_default_social_image_url();
 	$type  = 'website';
 
@@ -281,7 +317,7 @@ function asosyoloji_social_meta() {
 	}
 
 	if ( ! $desc ) {
-		$desc = asosyoloji_trim_description( get_bloginfo( 'description' ) );
+		$desc = asosyoloji_trim_description( asosyoloji_site_description() );
 	}
 	?>
 	<meta name="description" content="<?php echo esc_attr( $desc ); ?>">
@@ -313,7 +349,7 @@ function asosyoloji_schema_graph() {
 	$website_id    = $home_url . '#website';
 	$webpage_id    = $current_url . '#webpage';
 	$publisher     = trim( (string) get_theme_mod( 'aso_publisher_name', get_bloginfo( 'name' ) ) );
-	$publisher_desc = trim( (string) get_theme_mod( 'aso_publisher_description', get_bloginfo( 'description' ) ) );
+	$publisher_desc = asosyoloji_site_description();
 	$logo_url      = asosyoloji_publisher_logo_url();
 	$graph         = array();
 
@@ -348,7 +384,7 @@ function asosyoloji_schema_graph() {
 		'@id'        => $website_id,
 		'url'        => $home_url,
 		'name'       => get_bloginfo( 'name' ),
-		'description' => get_bloginfo( 'description' ),
+		'description' => asosyoloji_site_description(),
 		'inLanguage' => 'tr-TR',
 		'publisher'  => array( '@id' => $publisher_id ),
 	);

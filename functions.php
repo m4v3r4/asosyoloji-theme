@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.7.8' );
+define( 'ASOSYOLOJI_VERSION', '0.7.9' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -82,6 +82,15 @@ function asosyoloji_content_width() {
 }
 add_action( 'after_setup_theme', 'asosyoloji_content_width', 0 );
 
+function asosyoloji_public_author_name( $name ) {
+	if ( in_array( strtolower( trim( (string) $name ) ), array( 'admin', 'administrator' ), true ) ) {
+		return (string) get_theme_mod( 'aso_editorial_author_name', __( 'Asosyoloji Editoryası', 'asosyoloji' ) );
+	}
+
+	return $name;
+}
+add_filter( 'the_author', 'asosyoloji_public_author_name' );
+
 function asosyoloji_enqueue_assets() {
 	wp_enqueue_style(
 		'asosyoloji-style',
@@ -116,6 +125,21 @@ function asosyoloji_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
+
+function asosyoloji_security_headers() {
+	if ( headers_sent() ) {
+		return;
+	}
+
+	header( 'X-Content-Type-Options: nosniff' );
+	header( 'X-Frame-Options: SAMEORIGIN' );
+	header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+	header( 'Permissions-Policy: camera=(), microphone=(), geolocation=()' );
+	if ( is_ssl() ) {
+		header( 'Strict-Transport-Security: max-age=15552000' );
+	}
+}
+add_action( 'send_headers', 'asosyoloji_security_headers' );
 
 
 function asosyoloji_home_excluded_categories( $specific = array() ) {
@@ -160,15 +184,6 @@ function asosyoloji_clear_fallback_image_cache( $post_id ) {
 add_action( 'save_post', 'asosyoloji_clear_fallback_image_cache' );
 
 function asosyoloji_get_default_card_image_url() {
-	$custom_logo_id = absint( get_theme_mod( 'custom_logo', 0 ) );
-
-	if ( $custom_logo_id ) {
-		$logo_url = wp_get_attachment_image_url( $custom_logo_id, 'large' );
-		if ( $logo_url ) {
-			return $logo_url;
-		}
-	}
-
 	return get_template_directory_uri() . '/assets/images/card-fallback.svg';
 }
 

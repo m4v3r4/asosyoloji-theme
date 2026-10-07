@@ -2,6 +2,18 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.9 - 2026-10-07
+
+### Changed
+- Ana sayfaya semantik H1 ve boş site açıklamaları için SEO varsayılanı eklendi.
+- Test/staging alan adları otomatik olarak `noindex, nofollow` işaretlenir.
+- Slider için kalıcı durdur/oynat kontrolü ve görselsiz içerik yer tutucusu eklendi.
+- Eksik kart görselleri için tutarlı editoryal SVG kullanımı sağlandı.
+- Tekil etkinlik şablonuna şehir, organizatör, ücretsiz katılım ve takvim bağlantıları eklendi.
+- Mobil menü kaydırmayı kilitleyen çekmece görünümüne geçirildi.
+- Boş footer sütunları, geçersiz sosyal profil bağlantıları ve eski llms.txt sayfaları temizlendi.
+- Temel güvenlik başlıkları ve GitHub Actions PHP/JavaScript kalite kontrolü eklendi.
+
 ## 0.7.8 - 2026-10-07
 
 ### Changed

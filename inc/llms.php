@@ -22,7 +22,7 @@ function asosyoloji_llms_txt() {
 	}
 
 	$publisher = trim( (string) get_theme_mod( 'aso_publisher_name', get_bloginfo( 'name' ) ) );
-	$desc      = trim( (string) get_theme_mod( 'aso_publisher_description', get_bloginfo( 'description' ) ) );
+	$desc      = function_exists( 'asosyoloji_site_description' ) ? asosyoloji_site_description() : trim( (string) get_bloginfo( 'description' ) );
 	$posts     = get_posts(
 		array(
 			'numberposts' => 20,
@@ -46,6 +46,9 @@ function asosyoloji_llms_txt() {
 	$lines[] = '';
 	$lines[] = '## Temel Sayfalar';
 
+	$excluded_slugs = array( 'booking', 'booking-details', 'event-organizers', 'event-types', 'all-events' );
+	$front_page_id  = absint( get_option( 'page_on_front' ) );
+
 	foreach (
 		get_pages(
 			array(
@@ -54,6 +57,9 @@ function asosyoloji_llms_txt() {
 			)
 		) as $page
 	) {
+		if ( in_array( $page->post_name, $excluded_slugs, true ) || ( 'home' === $page->post_name && $front_page_id !== (int) $page->ID ) ) {
+			continue;
+		}
 		$lines[] = '- ' . sanitize_text_field( get_the_title( $page ) ) . ': ' . esc_url_raw( get_permalink( $page ) );
 	}
 

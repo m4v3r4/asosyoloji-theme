@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.7.8
+Version: 0.7.9
 Text Domain: asosyoloji
 Domain Path: /languages
 Requires at least: 6.0
@@ -1184,6 +1184,34 @@ img {
   }
 }
 
+/* Mobile navigation drawer */
+@media (max-width: 900px) {
+  body.has-open-menu {
+    overflow: hidden;
+  }
+
+  .site-menu-bar .site-navigation {
+    position: fixed;
+    top: var(--aso-mobile-menu-top, 0);
+    right: 0;
+    bottom: 0;
+    left: auto;
+    z-index: 999;
+    width: min(88vw, 390px);
+    max-height: 100dvh;
+    padding: 18px;
+    overflow-y: auto;
+    box-shadow: -18px 0 50px rgba(0, 0, 0, .24);
+  }
+
+  .site-navigation.is-open::before {
+    content: "";
+    position: fixed;
+    inset: var(--aso-mobile-menu-top, 0) min(88vw, 390px) 0 0;
+    background: rgba(0, 0, 0, .42);
+  }
+}
+
 
 /* Masthead header closer to original Asosyoloji */
 .site-header {
@@ -1857,6 +1885,20 @@ html[data-theme="dark"] .custom-logo {
   object-fit: cover;
 }
 
+.aso-slider__placeholder {
+  display: grid;
+  place-items: center;
+  padding: clamp(30px, 8vw, 100px);
+  color: var(--aso-primary);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--aso-primary) 10%, var(--aso-surface)), var(--aso-surface));
+  font-family: var(--aso-heading-font);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  text-decoration: none;
+}
+
 .aso-slider--split .aso-slider__content {
   display: flex;
   flex-direction: column;
@@ -1981,6 +2023,28 @@ html[data-theme="dark"] .custom-logo {
   border-color: var(--aso-primary);
   background: var(--aso-primary);
   color: #fff;
+}
+
+.aso-slider__pause {
+  min-width: 72px;
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid var(--aso-border);
+  background: var(--aso-bg);
+  color: var(--aso-text);
+  font-family: var(--aso-heading-font);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.aso-slider__pause:hover,
+.aso-slider__pause:focus-visible,
+.aso-slider__pause[aria-pressed="true"] {
+  border-color: var(--aso-primary);
+  color: var(--aso-primary);
 }
 
 .aso-slider__dots {
