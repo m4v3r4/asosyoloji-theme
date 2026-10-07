@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:24:11+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:25:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:231
+#: functions.php:235
 #: home.php:13
 #: page.php:20
 msgid "Asosyoloji"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: author.php:24
 #: inc/class-asosyoloji-post-list-widget.php:162
-#: single.php:97
+#: single.php:101
 #: assets/js/post-list-block.js:94
 msgid "Yazar"
 msgstr ""
@@ -101,38 +101,38 @@ msgstr ""
 msgid "Tema kaynak kodu"
 msgstr ""
 
-#: functions.php:66
+#: functions.php:70
 msgid "Ana Menü"
 msgstr ""
 
-#: functions.php:67
+#: functions.php:71
 msgid "Alt Menü"
 msgstr ""
 
-#: functions.php:103
+#: functions.php:107
 msgid "Yazılar yükleniyor…"
 msgstr ""
 
-#: functions.php:104
+#: functions.php:108
 #: template-parts/home-latest.php:84
 msgid "Daha fazla yükle"
 msgstr ""
 
-#: functions.php:105
+#: functions.php:109
 msgid "Tüm yazılar yüklendi."
 msgstr ""
 
-#: functions.php:106
+#: functions.php:110
 msgid "Yazılar yüklenemedi. Tekrar deneyin."
 msgstr ""
 
 #. translators: %d: Footer column number.
-#: functions.php:186
+#: functions.php:190
 #, php-format
 msgid "Footer Sütun %d"
 msgstr ""
 
-#: functions.php:188
+#: functions.php:192
 msgid "Footer sütununa blok veya bileşen ekleyin."
 msgstr ""
 
@@ -1109,47 +1109,47 @@ msgstr ""
 msgid "IndexNow etkinse kullanılır. Tema anahtar doğrulama dosyasını sanal olarak sunar."
 msgstr ""
 
-#: inc/seo.php:13
+#: inc/seo.php:32
 msgid "Mastodon URL"
 msgstr ""
 
-#: inc/seo.php:14
+#: inc/seo.php:33
 msgid "Bluesky URL"
 msgstr ""
 
-#: inc/seo.php:15
+#: inc/seo.php:34
 msgid "LinkedIn URL"
 msgstr ""
 
-#: inc/seo.php:16
+#: inc/seo.php:35
 msgid "İkinci web sitesi"
 msgstr ""
 
-#: inc/seo.php:27
+#: inc/seo.php:46
 msgid "Web sitesi"
 msgstr ""
 
-#: inc/seo.php:34
+#: inc/seo.php:53
 msgid "Mastodon"
 msgstr ""
 
-#: inc/seo.php:35
+#: inc/seo.php:54
 msgid "Bluesky"
 msgstr ""
 
-#: inc/seo.php:36
+#: inc/seo.php:55
 msgid "LinkedIn"
 msgstr ""
 
-#: inc/seo.php:37
+#: inc/seo.php:56
 msgid "Web sitesi 2"
 msgstr ""
 
-#: inc/seo.php:65
+#: inc/seo.php:163
 msgid "Ana Sayfa"
 msgstr ""
 
-#: inc/seo.php:123
+#: inc/seo.php:221
 msgid "İçerik yolu"
 msgstr ""
 
@@ -1283,15 +1283,15 @@ msgstr ""
 msgid "Bağlantıyı kopyala"
 msgstr ""
 
-#: single.php:81
+#: single.php:83
 msgid "Sayfalar:"
 msgstr ""
 
-#: single.php:139
+#: single.php:143
 msgid "Devam Et"
 msgstr ""
 
-#: single.php:140
+#: single.php:144
 msgid "Benzer Yazılar"
 msgstr ""
 
