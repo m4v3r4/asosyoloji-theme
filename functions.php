@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.4.1' );
+define( 'ASOSYOLOJI_VERSION', '0.4.2' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -31,6 +31,7 @@ function asosyoloji_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
+	add_editor_style( 'editor-style.css' );
 
 	add_theme_support(
 		'custom-logo',
