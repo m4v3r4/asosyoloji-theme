@@ -18,6 +18,40 @@
       $widget.on('click', '[data-magazine-remove]', function () {
         $(this).closest('[data-magazine-row]').remove();
       });
+
+      $widget.on('click', '[data-magazine-select-pdf]', function () {
+        const $row = $(this).closest('[data-magazine-row]');
+        const frame = wp.media({
+          title: 'PDF seç',
+          button: { text: 'PDF kullan' },
+          library: { type: 'application/pdf' },
+          multiple: false
+        });
+
+        frame.on('select', function () {
+          const attachment = frame.state().get('selection').first().toJSON();
+          $row.find('[data-magazine-pdf-url]').val(attachment.url).trigger('change');
+        });
+
+        frame.open();
+      });
+
+      $widget.on('click', '[data-magazine-select-cover]', function () {
+        const $row = $(this).closest('[data-magazine-row]');
+        const frame = wp.media({
+          title: 'Kapak görseli seç',
+          button: { text: 'Görseli kullan' },
+          library: { type: 'image' },
+          multiple: false
+        });
+
+        frame.on('select', function () {
+          const attachment = frame.state().get('selection').first().toJSON();
+          $row.find('[data-magazine-cover-url]').val(attachment.url).trigger('change');
+        });
+
+        frame.open();
+      });
     });
   }
 
