@@ -444,7 +444,7 @@ function asosyoloji_announcements_shortcode( $atts ) {
 	$atts = shortcode_atts(
 		array(
 			'title'   => __( 'Duyurular', 'asosyoloji' ),
-			'category'=> 'duyurular',
+			'category' => 'duyurular',
 			'count'   => 5,
 			'excerpt' => '1',
 			'date'    => '1',
