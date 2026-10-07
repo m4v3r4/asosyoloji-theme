@@ -32,6 +32,7 @@ $category = get_queried_object();
 				<?php
 				echo esc_html(
 					sprintf(
+						/* translators: %s: Number of archive items. */
 						__( '%s içerik', 'asosyoloji' ),
 						number_format_i18n( $GLOBALS['wp_query']->found_posts )
 					)
