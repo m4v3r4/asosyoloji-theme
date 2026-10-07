@@ -46,40 +46,20 @@ Footer altında kompakt **GPL-3.0-or-later · Tema kaynak kodu** bilgisi göster
 
 ## Lisans
 
-Tema **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır. Ayrıntılar için `LICENSE.md` dosyasına bakın.
+Tema **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır. Tam GNU GPL v3 metni kökteki `LICENSE` dosyasındadır.
 
+## GitHub sürümleri ve WordPress güncellemesi
 
-## Geliştirme ve kalite kontrol
+Tema GitHub Release sürümlerini WordPress'in yerleşik tema güncelleme sistemi üzerinden kontrol eder.
 
-PHP/JS syntax kontrolleri her push ve pull request'te GitHub Actions ile çalışır.
+Yeni sürüm yayınlamak için:
 
-Yerel geliştirme araçları:
+1. `style.css` içindeki `Version` ve `ASOSYOLOJI_VERSION` aynı sürüm olmalıdır.
+2. Aynı sürümle bir tag oluşturulur: örneğin `v0.7.1`.
+3. GitHub'daki tek release workflow'u kurulabilir `asosyoloji-theme.zip` paketini üretip Release'e ekler.
+4. WordPress yeni Release'i gördüğünde **Görünüm → Temalar** ekranında normal güncelleme bildirimi gösterir.
 
-```bash
-composer install
-composer lint:php
-composer phpcs
-```
-
-Çeviri şablonu üretmek için WP-CLI ile:
-
-```bash
-bash bin/make-pot.sh
-```
-
-Kurulabilir WordPress tema ZIP'i üretmek için:
-
-```bash
-bash bin/package-theme.sh
-```
-
-Çıktı:
-
-```text
-build/asosyoloji-theme.zip
-```
-
-GitHub Actions artifact depolama alanı gerekmeden CI, oluşturulan ZIP'in bütünlüğünü de doğrular.
+Repo public olduğunda token veya ek WordPress yapılandırması gerekmez.
 
 
 ## Ana sayfa kategori hariç tutma
