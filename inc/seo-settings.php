@@ -120,12 +120,13 @@ function asosyoloji_seo_customize_register( $wp_customize ) {
 			'aso_show_geo_summary' => __( 'SEO/GEO özet ve “Bu yazıda” kutusunu göster', 'asosyoloji' ),
 			'aso_show_citations'   => __( 'Kaynaklar bölümünü yazı sonunda göster', 'asosyoloji' ),
 			'aso_indexnow_enabled' => __( 'IndexNow bildirimlerini etkinleştir', 'asosyoloji' ),
+			'aso_llms_enabled'     => __( 'llms.txt çıktısını etkinleştir', 'asosyoloji' ),
 		) as $id => $label
 	) {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => 'aso_indexnow_enabled' === $id ? false : true,
+				'default'           => in_array( $id, array( 'aso_indexnow_enabled' ), true ) ? false : true,
 				'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
 			)
 		);
