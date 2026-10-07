@@ -16,7 +16,6 @@
 	</rule>
 
 	<rule ref="WordPress-Extra"/>
-	<rule ref="WordPress-Docs"/>
 
 	<config name="minimum_supported_wp_version" value="6.0"/>
 </ruleset>
