@@ -1,0 +1,1073 @@
+# Copyright (C) 2026 Asosyoloji
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Asosyoloji 0.5.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/asosyoloji-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-07T08:03:08+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: asosyoloji\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+#: style.css
+#: home.php:13
+#: page.php:20
+msgid "Asosyoloji"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://asosyoloji.com/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması."
+msgstr ""
+
+#: 404.php:14
+msgid "Sayfa bulunamadı."
+msgstr ""
+
+#: 404.php:15
+msgid "Aradığınız içerik taşınmış veya kaldırılmış olabilir."
+msgstr ""
+
+#: archive.php:16
+#: author.php:58
+#: inc/section-order.php:65
+msgid "Arşiv"
+msgstr ""
+
+#. translators: %s: Number of archive items.
+#: archive.php:29
+#: category.php:36
+#, php-format
+msgid "%s içerik"
+msgstr ""
+
+#: author.php:24
+#: inc/widgets.php:323
+#: single.php:97
+#: assets/js/post-list-block.js:94
+msgid "Yazar"
+msgstr ""
+
+#. translators: %s: Number of posts by the author.
+#: author.php:46
+#, php-format
+msgid "%s yazı"
+msgid_plural "%s yazı"
+msgstr[0] ""
+msgstr[1] ""
+
+#: author.php:59
+msgid "Yazıları"
+msgstr ""
+
+#: category.php:18
+#: inc/widgets.php:288
+#: assets/js/post-list-block.js:64
+msgid "Kategori"
+msgstr ""
+
+#: comments.php:16
+msgid "Tartışma"
+msgstr ""
+
+#. translators: %1$s: Number of comments.
+#: comments.php:21
+#, php-format
+msgctxt "yorum sayısı"
+msgid "%1$s yorum"
+msgid_plural "%1$s yorum"
+msgstr[0] ""
+msgstr[1] ""
+
+#: footer.php:27
+#: inc/customizer.php:395
+msgid "Bağımsız düşünce, kültür ve toplum dergisi."
+msgstr ""
+
+#: footer.php:64
+msgid "Tema kaynak kodu"
+msgstr ""
+
+#: functions.php:66
+msgid "Ana Menü"
+msgstr ""
+
+#: functions.php:67
+msgid "Alt Menü"
+msgstr ""
+
+#. translators: %d: Footer column number.
+#: functions.php:171
+#, php-format
+msgid "Footer Sütun %d"
+msgstr ""
+
+#: functions.php:173
+msgid "Footer sütununa blok veya bileşen ekleyin."
+msgstr ""
+
+#: header.php:18
+msgid "İçeriğe geç"
+msgstr ""
+
+#: header.php:41
+msgid "Tema değiştir"
+msgstr ""
+
+#: header.php:41
+msgid "Aydınlık / karanlık tema"
+msgstr ""
+
+#: header.php:48
+#: searchform.php:20
+msgid "Ara"
+msgstr ""
+
+#: header.php:56
+msgid "Menü"
+msgstr ""
+
+#: header.php:64
+msgid "Ana menü"
+msgstr ""
+
+#: inc/appearance.php:16
+msgid "Aydınlık / Karanlık Tema"
+msgstr ""
+
+#: inc/appearance.php:32
+msgid "Varsayılan görünüm"
+msgstr ""
+
+#: inc/appearance.php:33
+msgid "Sistem seçeneği ziyaretçinin cihaz tercihine uyar."
+msgstr ""
+
+#: inc/appearance.php:37
+msgid "Sistem tercihi"
+msgstr ""
+
+#: inc/appearance.php:38
+msgid "Aydınlık"
+msgstr ""
+
+#: inc/appearance.php:39
+msgid "Karanlık"
+msgstr ""
+
+#: inc/appearance.php:55
+msgid "Ziyaretçiye tema değiştirme düğmesi göster"
+msgstr ""
+
+#: inc/appearance.php:74
+msgid "Karanlık tema arka planı"
+msgstr ""
+
+#: inc/appearance.php:93
+msgid "Karanlık tema ikincil zemin"
+msgstr ""
+
+#: inc/appearance.php:112
+msgid "Karanlık tema metin rengi"
+msgstr ""
+
+#: inc/appearance.php:120
+msgid "Karanlık tema ikincil metin"
+msgstr ""
+
+#: inc/appearance.php:124
+msgid "Karanlık tema çizgi/kenarlık"
+msgstr ""
+
+#: inc/appearance.php:128
+msgid "Karanlık tema bağlantı/vurgu"
+msgstr ""
+
+#: inc/appearance.php:132
+msgid "Karanlık tema footer zemini"
+msgstr ""
+
+#: inc/archive-tools.php:16
+msgid "Arşiv / PDF Araçları"
+msgstr ""
+
+#: inc/archive-tools.php:23
+msgid "Arşiv içi aramayı göster"
+msgstr ""
+
+#: inc/archive-tools.php:24
+msgid "Otomatik yıl filtrelerini göster"
+msgstr ""
+
+#: inc/archive-tools.php:47
+#: page.php:36
+msgid "Arşivde ara…"
+msgstr ""
+
+#: inc/archive-tools.php:55
+msgid "Arama alanı metni"
+msgstr ""
+
+#: inc/blocks.php:26
+#: inc/customizer.php:71
+#: inc/widgets.php:290
+#: assets/js/post-list-block.js:15
+msgid "Tüm kategoriler"
+msgstr ""
+
+#: inc/blocks.php:40
+#: inc/widgets.php:325
+#: assets/js/post-list-block.js:20
+msgid "Tüm yazarlar"
+msgstr ""
+
+#: inc/customizer.php:46
+msgid "Otomatik: en güncel yazı"
+msgstr ""
+
+#: inc/customizer.php:91
+msgid "Asosyoloji Tema Ayarları"
+msgstr ""
+
+#: inc/customizer.php:92
+msgid "Tema görünümünü ve ana sayfa yayın akışını kod değiştirmeden yönetin."
+msgstr ""
+
+#: inc/customizer.php:100
+msgid "Renkler"
+msgstr ""
+
+#: inc/customizer.php:107
+msgid "Vurgu rengi"
+msgstr ""
+
+#: inc/customizer.php:111
+msgid "Metin rengi"
+msgstr ""
+
+#: inc/customizer.php:115
+msgid "İkincil metin rengi"
+msgstr ""
+
+#: inc/customizer.php:119
+msgid "Çizgi ve kenarlık rengi"
+msgstr ""
+
+#: inc/customizer.php:123
+msgid "Arka plan rengi"
+msgstr ""
+
+#: inc/customizer.php:127
+msgid "İkincil arka plan rengi"
+msgstr ""
+
+#: inc/customizer.php:157
+msgid "Tipografi"
+msgstr ""
+
+#: inc/customizer.php:173
+msgid "Başlık yazı tipi"
+msgstr ""
+
+#: inc/customizer.php:177
+#: inc/customizer.php:200
+msgid "Modern Sans Serif"
+msgstr ""
+
+#: inc/customizer.php:178
+#: inc/customizer.php:201
+msgid "Sistem Sans Serif"
+msgstr ""
+
+#: inc/customizer.php:179
+#: inc/customizer.php:199
+msgid "Serif"
+msgstr ""
+
+#: inc/customizer.php:195
+msgid "Yazı gövdesi yazı tipi"
+msgstr ""
+
+#: inc/customizer.php:217
+msgid "Yazı boyutu"
+msgstr ""
+
+#: inc/customizer.php:218
+msgid "Piksel cinsinden genel metin boyutu."
+msgstr ""
+
+#: inc/customizer.php:232
+msgid "Yerleşim"
+msgstr ""
+
+#: inc/customizer.php:248
+msgid "Site maksimum genişliği"
+msgstr ""
+
+#: inc/customizer.php:270
+msgid "Makale metin genişliği"
+msgstr ""
+
+#: inc/customizer.php:284
+msgid "Üst Alan"
+msgstr ""
+
+#: inc/customizer.php:300
+msgid "Menüyü sayfa kaydırılırken sabit tut"
+msgstr ""
+
+#: inc/customizer.php:317
+msgid "Site açıklamasını göster"
+msgstr ""
+
+#: inc/customizer.php:334
+msgid "Üst menüde arama bağlantısını göster"
+msgstr ""
+
+#: inc/customizer.php:351
+msgid "Logo maksimum genişliği (masaüstü)"
+msgstr ""
+
+#: inc/customizer.php:373
+msgid "Logo maksimum genişliği (mobil)"
+msgstr ""
+
+#: inc/customizer.php:387
+msgid "Alt Alan"
+msgstr ""
+
+#: inc/customizer.php:403
+msgid "Footer kısa notu"
+msgstr ""
+
+#: inc/customizer.php:412
+msgid "Ana Sayfa: Genel"
+msgstr ""
+
+#: inc/customizer.php:430
+msgid "Ana sayfada genel olarak hariç tutulacak kategoriler"
+msgstr ""
+
+#: inc/customizer.php:431
+msgid "Duyurular gibi ana sayfadaki yazı akışlarında görünmesini istemediğiniz kategorileri seçin. Bölüm bazlı hariç tutmalar ayrıca uygulanır."
+msgstr ""
+
+#: inc/customizer.php:441
+msgid "Ana Sayfa: Öne Çıkan"
+msgstr ""
+
+#: inc/customizer.php:457
+msgid "Öne çıkan alanı göster"
+msgstr ""
+
+#: inc/customizer.php:474
+msgid "Öne çıkan yazı"
+msgstr ""
+
+#: inc/customizer.php:475
+msgid "Bir yazı seçmezseniz en güncel yazı otomatik gösterilir."
+msgstr ""
+
+#: inc/customizer.php:485
+#: inc/section-order.php:62
+#: template-parts/home-hero.php:50
+msgid "Öne Çıkan"
+msgstr ""
+
+#: inc/customizer.php:493
+#: inc/section-customizer.php:97
+msgid "Üst etiket"
+msgstr ""
+
+#: inc/customizer.php:502
+msgid "Ana Sayfa: Yazı Akışı"
+msgstr ""
+
+#: inc/customizer.php:518
+msgid "Yazı akışı bölümünü göster"
+msgstr ""
+
+#: inc/customizer.php:527
+#: template-parts/home-latest.php:45
+msgid "Güncel"
+msgstr ""
+
+#: inc/customizer.php:535
+msgid "Bölüm üst etiketi"
+msgstr ""
+
+#: inc/customizer.php:544
+#: inc/section-order.php:63
+#: inc/widgets.php:264
+#: template-parts/home-latest.php:46
+msgid "Son Yazılar"
+msgstr ""
+
+#: inc/customizer.php:552
+#: inc/section-customizer.php:113
+msgid "Bölüm başlığı"
+msgstr ""
+
+#: inc/customizer.php:569
+msgid "Kategori filtresi"
+msgstr ""
+
+#: inc/customizer.php:570
+msgid "Sadece seçilen kategorideki içerikleri gösterir."
+msgstr ""
+
+#: inc/customizer.php:590
+#: inc/section-customizer.php:78
+#: inc/slider-customizer.php:88
+#: assets/js/post-list-block.js:182
+msgid "Hariç tutulacak kategoriler"
+msgstr ""
+
+#: inc/customizer.php:591
+msgid "Duyurular gibi ana yazı akışında görünmesini istemediğiniz kategorileri seçin. Ctrl/Cmd ile birden fazla seçim yapabilirsiniz."
+msgstr ""
+
+#: inc/customizer.php:609
+msgid "Gösterilecek içerik sayısı"
+msgstr ""
+
+#: inc/customizer.php:630
+#: assets/js/post-list-block.js:102
+msgid "Sıralama ölçütü"
+msgstr ""
+
+#: inc/customizer.php:634
+#: inc/widgets.php:335
+#: assets/js/post-list-block.js:105
+msgid "Yayın tarihi"
+msgstr ""
+
+#: inc/customizer.php:635
+msgid "Son güncellenme"
+msgstr ""
+
+#: inc/customizer.php:636
+#: inc/widgets.php:283
+#: inc/widgets.php:337
+#: assets/js/post-list-block.js:57
+#: assets/js/post-list-block.js:107
+msgid "Başlık"
+msgstr ""
+
+#: inc/customizer.php:637
+#: inc/widgets.php:339
+#: assets/js/post-list-block.js:109
+msgid "Rastgele"
+msgstr ""
+
+#: inc/customizer.php:638
+msgid "Menü sırası"
+msgstr ""
+
+#: inc/customizer.php:654
+#: inc/widgets.php:344
+#: assets/js/post-list-block.js:116
+msgid "Sıralama yönü"
+msgstr ""
+
+#: inc/customizer.php:658
+msgid "Azalan / en yeni önce"
+msgstr ""
+
+#: inc/customizer.php:659
+msgid "Artan / en eski önce"
+msgstr ""
+
+#: inc/customizer.php:667
+msgid "Ana Sayfa: Arşiv Alanı"
+msgstr ""
+
+#: inc/customizer.php:683
+msgid "Arşiv alanını göster"
+msgstr ""
+
+#: inc/customizer.php:692
+#: template-parts/home-archive.php:17
+msgid "Geçmişten Bugüne"
+msgstr ""
+
+#: inc/customizer.php:700
+msgid "Arşiv üst etiketi"
+msgstr ""
+
+#: inc/customizer.php:709
+#: template-parts/home-archive.php:21
+msgid "Asosyoloji Arşivi"
+msgstr ""
+
+#: inc/customizer.php:717
+msgid "Arşiv başlığı"
+msgstr ""
+
+#: inc/customizer.php:726
+#: template-parts/home-archive.php:22
+msgid "Basılı dergi sayılarına ve PDF arşivine ulaşın."
+msgstr ""
+
+#: inc/customizer.php:734
+msgid "Arşiv açıklaması"
+msgstr ""
+
+#: inc/customizer.php:751
+msgid "Arşiv sayfası"
+msgstr ""
+
+#: inc/customizer.php:752
+msgid "Mevcut basılı PDF arşiv sayfanızı seçin. İçeriğine dokunulmaz."
+msgstr ""
+
+#: inc/customizer.php:761
+#: template-parts/home-archive.php:27
+msgid "Arşivi Gör"
+msgstr ""
+
+#: inc/customizer.php:769
+msgid "Buton metni"
+msgstr ""
+
+#: inc/footer-customizer.php:16
+msgid "Footer Builder"
+msgstr ""
+
+#: inc/footer-customizer.php:32
+msgid "Footer sütun sayısı"
+msgstr ""
+
+#: inc/footer-customizer.php:33
+msgid "Sütun içeriklerini Görünüm → Bileşenler ekranından yönetebilirsiniz."
+msgstr ""
+
+#: inc/footer-customizer.php:37
+msgid "1 sütun"
+msgstr ""
+
+#: inc/footer-customizer.php:38
+msgid "2 sütun"
+msgstr ""
+
+#: inc/footer-customizer.php:39
+msgid "3 sütun"
+msgstr ""
+
+#: inc/footer-customizer.php:40
+msgid "4 sütun"
+msgstr ""
+
+#: inc/footer-customizer.php:56
+msgid "Footer marka alanını göster"
+msgstr ""
+
+#: inc/footer-customizer.php:73
+msgid "Özgür yazılım/lisans bilgisini göster"
+msgstr ""
+
+#: inc/footer-customizer.php:90
+msgid "Tema kaynak kodu / GitHub adresi"
+msgstr ""
+
+#: inc/footer-customizer.php:91
+msgid "Repo herkese açıldığında footer bağlantısı doğrudan buraya gider."
+msgstr ""
+
+#: inc/reading.php:16
+msgid "Yazı Okuma Deneyimi"
+msgstr ""
+
+#: inc/reading.php:22
+msgid "Tahmini okuma süresini göster"
+msgstr ""
+
+#: inc/reading.php:23
+msgid "Okuma ilerleme çubuğunu göster"
+msgstr ""
+
+#: inc/reading.php:24
+msgid "Yazı boyutu araçlarını göster"
+msgstr ""
+
+#: inc/reading.php:25
+msgid "Paylaşım bağlantılarını göster"
+msgstr ""
+
+#: inc/reading.php:26
+msgid "Yazar kutusunu göster"
+msgstr ""
+
+#: inc/reading.php:27
+msgid "Benzer yazıları göster"
+msgstr ""
+
+#: inc/reading.php:58
+msgid "Benzer yazı sayısı"
+msgstr ""
+
+#. translators: %s: Estimated reading time in minutes.
+#: inc/reading.php:78
+#, php-format
+msgid "%s dk okuma"
+msgid_plural "%s dk okuma"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/section-customizer.php:13
+msgid "Kategori seçin"
+msgstr ""
+
+#: inc/section-customizer.php:26
+msgid "Ana Sayfa: Kategori Bölümü"
+msgstr ""
+
+#: inc/section-customizer.php:41
+msgid "Kategori bölümünü göster"
+msgstr ""
+
+#: inc/section-customizer.php:57
+msgid "Gösterilecek kategori"
+msgstr ""
+
+#: inc/section-customizer.php:58
+msgid "Söyleşi, Çeviri, Yazı gibi istediğiniz kategoriyi seçebilirsiniz."
+msgstr ""
+
+#: inc/section-customizer.php:79
+#: inc/slider-customizer.php:89
+msgid "Bu bölümde görünmesini istemediğiniz kategorileri seçin. Ctrl/Cmd ile birden fazla seçim yapabilirsiniz."
+msgstr ""
+
+#: inc/section-customizer.php:90
+#: template-parts/home-featured.php:37
+msgid "Dosya"
+msgstr ""
+
+#: inc/section-customizer.php:106
+#: template-parts/home-featured.php:38
+msgid "Seçili Kategoriden"
+msgstr ""
+
+#: inc/section-customizer.php:129
+msgid "İçerik sayısı"
+msgstr ""
+
+#: inc/section-customizer.php:149
+msgid "Bölüm düzeni"
+msgstr ""
+
+#: inc/section-customizer.php:153
+msgid "Bir büyük + yan liste"
+msgstr ""
+
+#: inc/section-customizer.php:154
+msgid "Eşit kartlar"
+msgstr ""
+
+#: inc/section-order.php:39
+msgid "Ana Sayfa: Bölüm Sırası"
+msgstr ""
+
+#: inc/section-order.php:57
+msgid "Ana sayfa bölüm sırası"
+msgstr ""
+
+#: inc/section-order.php:58
+msgid "Bölümleri sürükleyip bırakarak sıralayın."
+msgstr ""
+
+#: inc/section-order.php:61
+msgid "Slider"
+msgstr ""
+
+#: inc/section-order.php:64
+msgid "Kategori Bölümü"
+msgstr ""
+
+#: inc/seo.php:13
+msgid "Mastodon URL"
+msgstr ""
+
+#: inc/seo.php:14
+msgid "Bluesky URL"
+msgstr ""
+
+#: inc/seo.php:15
+msgid "LinkedIn URL"
+msgstr ""
+
+#: inc/seo.php:16
+msgid "İkinci web sitesi"
+msgstr ""
+
+#: inc/seo.php:27
+msgid "Web sitesi"
+msgstr ""
+
+#: inc/seo.php:34
+msgid "Mastodon"
+msgstr ""
+
+#: inc/seo.php:35
+msgid "Bluesky"
+msgstr ""
+
+#: inc/seo.php:36
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/seo.php:37
+msgid "Web sitesi 2"
+msgstr ""
+
+#: inc/seo.php:65
+msgid "Ana Sayfa"
+msgstr ""
+
+#: inc/seo.php:123
+msgid "İçerik yolu"
+msgstr ""
+
+#: inc/slider-customizer.php:16
+msgid "Ana Sayfa: Slider"
+msgstr ""
+
+#: inc/slider-customizer.php:31
+msgid "Sliderı göster"
+msgstr ""
+
+#: inc/slider-customizer.php:47
+msgid "İçerik kaynağı"
+msgstr ""
+
+#: inc/slider-customizer.php:51
+msgid "Son yazılar"
+msgstr ""
+
+#: inc/slider-customizer.php:52
+msgid "Belirli kategori"
+msgstr ""
+
+#: inc/slider-customizer.php:67
+msgid "Slider kategorisi"
+msgstr ""
+
+#: inc/slider-customizer.php:68
+msgid "Kaynak “Belirli kategori” ise kullanılır."
+msgstr ""
+
+#: inc/slider-customizer.php:107
+msgid "Slayt sayısı"
+msgstr ""
+
+#: inc/slider-customizer.php:128
+msgid "Slider görünümü"
+msgstr ""
+
+#: inc/slider-customizer.php:132
+msgid "Metin + görsel bölünmüş"
+msgstr ""
+
+#: inc/slider-customizer.php:133
+msgid "Görsel üzerinde metin"
+msgstr ""
+
+#: inc/slider-customizer.php:148
+msgid "Otomatik geçiş"
+msgstr ""
+
+#: inc/slider-customizer.php:164
+msgid "Geçiş süresi (ms)"
+msgstr ""
+
+#: inc/slider-customizer.php:177
+msgid "Önceki / sonraki oklarını göster"
+msgstr ""
+
+#: inc/slider-customizer.php:178
+msgid "Slayt göstergelerini göster"
+msgstr ""
+
+#: inc/slider-customizer.php:179
+msgid "Özet metnini göster"
+msgstr ""
+
+#: inc/widgets.php:189
+#: assets/js/post-list-block.js:24
+msgid "Asosyoloji: Yazı Listesi"
+msgstr ""
+
+#: inc/widgets.php:191
+msgid "Son yazıları veya belirli bir kategoriyi temayla uyumlu liste, grid ya da manşet görünümünde gösterir."
+msgstr ""
+
+#: inc/widgets.php:298
+msgid "Hariç kategoriler"
+msgstr ""
+
+#: inc/widgets.php:304
+msgid "Ctrl/Cmd ile birden fazla kategori seçebilirsiniz."
+msgstr ""
+
+#: inc/widgets.php:308
+#: assets/js/post-list-block.js:72
+msgid "Yazı sayısı"
+msgstr ""
+
+#: inc/widgets.php:313
+#: assets/js/post-list-block.js:81
+msgid "Görünüm"
+msgstr ""
+
+#: inc/widgets.php:315
+#: assets/js/post-list-block.js:84
+msgid "Görselli liste"
+msgstr ""
+
+#: inc/widgets.php:316
+#: assets/js/post-list-block.js:85
+msgid "Kompakt liste"
+msgstr ""
+
+#: inc/widgets.php:317
+#: assets/js/post-list-block.js:86
+msgid "Kart grid"
+msgstr ""
+
+#: inc/widgets.php:318
+#: assets/js/post-list-block.js:87
+msgid "Bir büyük + liste"
+msgstr ""
+
+#: inc/widgets.php:333
+msgid "Sıralama"
+msgstr ""
+
+#: inc/widgets.php:336
+#: assets/js/post-list-block.js:106
+msgid "Güncellenme tarihi"
+msgstr ""
+
+#: inc/widgets.php:338
+#: assets/js/post-list-block.js:108
+msgid "Yorum sayısı"
+msgstr ""
+
+#: inc/widgets.php:346
+#: assets/js/post-list-block.js:119
+msgid "Azalan"
+msgstr ""
+
+#: inc/widgets.php:347
+#: assets/js/post-list-block.js:120
+msgid "Artan"
+msgstr ""
+
+#: inc/widgets.php:352
+msgid "Tarih aralığı"
+msgstr ""
+
+#: inc/widgets.php:358
+#: assets/js/post-list-block.js:143
+msgid "İlk N yazıyı atla (offset)"
+msgstr ""
+
+#: inc/widgets.php:363
+msgid "Sabitlenmiş yazıları normal akışa dahil et"
+msgstr ""
+
+#: inc/widgets.php:367
+#: assets/js/post-list-block.js:159
+msgid "Görselleri göster"
+msgstr ""
+
+#: inc/widgets.php:368
+#: assets/js/post-list-block.js:173
+msgid "Yazar ve tarihi göster"
+msgstr ""
+
+#: inc/widgets.php:369
+#: assets/js/post-list-block.js:166
+msgid "Özeti göster"
+msgstr ""
+
+#: page.php:32
+msgid "Arşivde ara"
+msgstr ""
+
+#: page.php:42
+msgid "Yıla göre filtrele"
+msgstr ""
+
+#: search.php:13
+msgid "Arama"
+msgstr ""
+
+#. translators: %s: Search query.
+#: search.php:17
+#, php-format
+msgid "“%s” için sonuçlar"
+msgstr ""
+
+#: searchform.php:11
+msgid "Arama:"
+msgstr ""
+
+#: searchform.php:15
+msgid "Sitede ara…"
+msgstr ""
+
+#: single.php:50
+msgid "Okuma araçları"
+msgstr ""
+
+#: single.php:51
+msgid "Yazıyı küçült"
+msgstr ""
+
+#: single.php:52
+msgid "Yazı boyutunu sıfırla"
+msgstr ""
+
+#: single.php:53
+msgid "Yazıyı büyüt"
+msgstr ""
+
+#: single.php:58
+msgid "Paylaş"
+msgstr ""
+
+#: single.php:64
+msgid "Bağlantıyı kopyala"
+msgstr ""
+
+#: single.php:81
+msgid "Sayfalar:"
+msgstr ""
+
+#: single.php:139
+msgid "Devam Et"
+msgstr ""
+
+#: single.php:140
+msgid "Benzer Yazılar"
+msgstr ""
+
+#: template-parts/content-card.php:40
+#: template-parts/home-slider.php:100
+msgid "Devamını oku"
+msgstr ""
+
+#: template-parts/content-none.php:12
+msgid "İçerik bulunamadı."
+msgstr ""
+
+#: template-parts/content-none.php:13
+msgid "Farklı bir arama yapmayı deneyebilirsiniz."
+msgstr ""
+
+#: template-parts/home-latest.php:62
+msgid "Bu bölüm için henüz içerik bulunmuyor."
+msgstr ""
+
+#: template-parts/home-slider.php:48
+msgid "carousel"
+msgstr ""
+
+#: template-parts/home-slider.php:49
+msgid "Öne çıkan yazılar"
+msgstr ""
+
+#. translators: 1: Current slide number, 2: Total slide count.
+#: template-parts/home-slider.php:62
+#, php-format
+msgid "%1$d / %2$d"
+msgstr ""
+
+#: template-parts/home-slider.php:113
+msgid "Önceki slayt"
+msgstr ""
+
+#: template-parts/home-slider.php:116
+msgid "Sonraki slayt"
+msgstr ""
+
+#: template-parts/home-slider.php:123
+msgid "Slayt seçimi"
+msgstr ""
+
+#. translators: %d: Slide number.
+#: template-parts/home-slider.php:127
+#, php-format
+msgid "%d. slayta git"
+msgstr ""
+
+#: assets/js/post-list-block.js:27
+msgid "Kategori bazlı yazıları temayla uyumlu liste, grid veya manşet görünümünde gösterir."
+msgstr ""
+
+#: assets/js/post-list-block.js:55
+msgid "Yazı listesi ayarları"
+msgstr ""
+
+#: assets/js/post-list-block.js:127
+msgid "Başlangıç tarihi"
+msgstr ""
+
+#: assets/js/post-list-block.js:135
+msgid "Bitiş tarihi"
+msgstr ""
+
+#: assets/js/post-list-block.js:152
+msgid "Sabitlenmiş yazıları dahil et"
+msgstr ""
+
+#: assets/js/post-list-block.js:211
+msgid "ASOSYOLOJİ YAZI LİSTESİ"
+msgstr ""
+
+#: assets/js/post-list-block.js:212
+msgid "Başlıksız yazı listesi"
+msgstr ""
+
+#: assets/js/post-list-block.js:216
+msgid "Ön yüzde tema kartlarıyla dinamik olarak render edilir. Kategori, görünüm ve hariç kategorileri sağ panelden ayarlayabilirsiniz."
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Asosyoloji Kırmızı"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Siyah"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Beyaz"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Kırık Beyaz"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Gri"
+msgstr ""
