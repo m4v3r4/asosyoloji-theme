@@ -2,6 +2,17 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.8 - 2026-10-07
+
+### Changed
+- Post list widgets now show images in compact mode instead of hiding them.
+- Widget images use consistent 4:3 media boxes across list, compact, grid and feature layouts.
+- Image-less widget posts use the existing site-logo/theme fallback artwork without breaking card proportions.
+- Grid widget cards use consistent title/excerpt rhythm and safer long-text wrapping.
+- Single post pages now use a dedicated editorial hero combining category, title, metadata, deck and featured image.
+- Single post reading layout, headings, wide/full media and mobile presentation were refined to match the Asosyoloji visual system.
+
+
 ## 0.7.7 - 2026-10-07
 
 ### Added
