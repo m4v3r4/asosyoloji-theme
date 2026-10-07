@@ -9,9 +9,6 @@ get_header();
 
 $category = get_queried_object();
 ?>
-
-<?php asosyoloji_breadcrumbs(); ?>
-
 <header class="archive-header category-hero">
 	<div class="aso-container archive-header__inner">
 		<div>
