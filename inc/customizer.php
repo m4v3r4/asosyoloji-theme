@@ -312,6 +312,23 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'aso_show_search',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_show_search',
+		array(
+			'label'   => __( 'Üst menüde arama bağlantısını göster', 'asosyoloji' ),
+			'section' => 'aso_header',
+			'type'    => 'checkbox',
+		)
+	);
+
 	$wp_customize->add_section(
 		'aso_home_hero',
 		array(
