@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.7.9
+Version: 0.7.10
 Text Domain: asosyoloji
 Domain Path: /languages
 Requires at least: 6.0
@@ -4996,5 +4996,97 @@ html[data-theme="dark"] .aso-magazine-card__cover {
   .single-post .entry-featured-image {
     width: calc(100% - 28px);
     aspect-ratio: 4 / 3;
+  }
+}
+
+
+/* 0.7.10 visual balance refinements */
+.aso-slider__slide {
+  min-height: clamp(420px, 42vw, 520px);
+}
+
+.aso-slider__title {
+  max-width: 15ch;
+  font-size: clamp(2.15rem, 3.4vw, 4rem);
+  line-height: .98;
+}
+
+.aso-slider--split .aso-slider__content {
+  padding: clamp(30px, 4vw, 56px);
+}
+
+.single-post .entry-hero {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+}
+
+.single-post .entry-hero__header .entry-title,
+.single-post .entry-title {
+  max-width: 16ch;
+  font-size: clamp(2.35rem, 3.8vw, 3.8rem);
+  line-height: .98;
+}
+
+.single-post .entry-featured-image.entry-hero__media {
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+}
+
+html[data-theme="dark"] .site-branding .custom-logo-link {
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, .88);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .16);
+}
+
+@media (max-width: 980px) {
+  .aso-slider__slide {
+    min-height: 0;
+  }
+
+  .aso-slider__title {
+    font-size: clamp(2rem, 7vw, 3.6rem);
+  }
+
+  .single-post .entry-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .single-post .entry-featured-image.entry-hero__media {
+    order: -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .single-post .entry-hero__header .entry-title,
+  .single-post .entry-title {
+    max-width: 18ch;
+    font-size: clamp(2.35rem, 8vw, 4rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .aso-slider--overlay .aso-slider__slide {
+    min-height: 430px;
+  }
+
+  .aso-slider--split .aso-slider__content {
+    padding: 26px 16px 96px;
+  }
+
+  .single-post .entry-featured-image.entry-hero__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .single-post .entry-hero__header .entry-title,
+  .single-post .entry-title {
+    max-width: none;
+    font-size: clamp(2.15rem, 10.5vw, 3.25rem);
+  }
+
+  html[data-theme="dark"] .site-branding .custom-logo-link {
+    padding: 6px 9px;
   }
 }

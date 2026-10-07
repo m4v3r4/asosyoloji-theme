@@ -2,6 +2,15 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.10 - 2026-10-07
+
+### Changed
+- Yazı akışı kartları öne çıkarılmış görseli kullanır; test ortamındaki bozuk medya bağlantılarında kaynak sitenin gerçek kapak görseli güvenli biçimde bulunup önbelleğe alınır.
+- Eski `http://asosyoloji.com` içerik görselleri güvenli HTTPS adresine uyarlanır ve eski negatif görsel önbelleği yenilenir.
+- Yazı detayında başlık küçültülüp görsel alanı büyütülerek masaüstü ve mobil oranları dengelenmiştir.
+- Karanlık temada logonun kaybolmaması için beyaz zemin ve ince çerçeve eklenmiştir.
+- Ana sayfa slider yüksekliği, başlık boyutu ve içerik boşlukları azaltılmıştır.
+
 ## 0.7.9 - 2026-10-07
 
 ### Changed

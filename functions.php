@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.7.9' );
+define( 'ASOSYOLOJI_VERSION', '0.7.10' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -149,27 +149,92 @@ function asosyoloji_home_excluded_categories( $specific = array() ) {
 	return array_values( array_unique( array_merge( $global, $specific ) ) );
 }
 
+function asosyoloji_normalize_internal_media_url( $url ) {
+	$url  = esc_url_raw( $url );
+	$host = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
+	$path = (string) wp_parse_url( $url, PHP_URL_PATH );
+
+	if ( $path && in_array( $host, array( 'asosyoloji.com', 'www.asosyoloji.com' ), true ) ) {
+		return esc_url_raw( set_url_scheme( $url, 'https' ) );
+	}
+
+	return $url;
+}
+
+function asosyoloji_get_legacy_featured_image_url( $post_id, $size = 'medium_large' ) {
+	$attachment_id = absint( get_post_thumbnail_id( $post_id ) );
+	if ( ! $attachment_id ) {
+		return '';
+	}
+
+	$size      = sanitize_key( $size );
+	$cache_key = 'asosyoloji_legacy_media_' . $attachment_id . '_' . $size;
+	$cached    = get_site_transient( $cache_key );
+	if ( false !== $cached ) {
+		return '__none__' === $cached ? '' : esc_url_raw( $cached );
+	}
+
+	$endpoint = add_query_arg(
+		'_fields',
+		'source_url,media_details',
+		sprintf( 'https://asosyoloji.com/wp-json/wp/v2/media/%d', $attachment_id )
+	);
+	$response = wp_safe_remote_get(
+		$endpoint,
+		array(
+			'timeout'    => 3,
+			'user-agent' => 'Asosyoloji/' . ASOSYOLOJI_VERSION,
+		)
+	);
+
+	if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+		set_site_transient( $cache_key, '__none__', HOUR_IN_SECONDS );
+		return '';
+	}
+
+	$data = json_decode( wp_remote_retrieve_body( $response ), true );
+	$url  = '';
+	if ( isset( $data['media_details']['sizes'][ $size ]['source_url'] ) ) {
+		$url = $data['media_details']['sizes'][ $size ]['source_url'];
+	} elseif ( isset( $data['media_details']['sizes']['large']['source_url'] ) ) {
+		$url = $data['media_details']['sizes']['large']['source_url'];
+	} elseif ( isset( $data['source_url'] ) ) {
+		$url = $data['source_url'];
+	}
+
+	$url  = asosyoloji_normalize_internal_media_url( $url );
+	$host = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
+	if ( ! in_array( $host, array( 'asosyoloji.com', 'www.asosyoloji.com' ), true ) ) {
+		$url = '';
+	}
+
+	set_site_transient( $cache_key, $url ? $url : '__none__', $url ? WEEK_IN_SECONDS : HOUR_IN_SECONDS );
+	return $url;
+}
+
 function asosyoloji_get_fallback_image_url( $post_id = 0 ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
 	$cache_key = '_asosyoloji_fallback_image_url';
 	$cached = get_post_meta( $post_id, $cache_key, true );
 
-	if ( '__none__' === $cached ) {
-		return '';
-	}
-
 	if ( is_string( $cached ) && '' !== $cached ) {
-		return esc_url_raw( $cached );
+		if ( '__none__' !== $cached ) {
+			return asosyoloji_normalize_internal_media_url( $cached );
+		}
 	}
 
 	$content = get_post_field( 'post_content', $post_id );
 	$url     = '';
 
 	if ( $content && preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches ) ) {
-		$url = esc_url_raw( $matches[1] );
+		$url = asosyoloji_normalize_internal_media_url( $matches[1] );
 	}
 
-	update_post_meta( $post_id, $cache_key, $url ? $url : '__none__' );
+	if ( $url ) {
+		update_post_meta( $post_id, $cache_key, $url );
+	} else {
+		delete_post_meta( $post_id, $cache_key );
+	}
 
 	return $url;
 }
@@ -194,8 +259,12 @@ function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr 
 		return get_the_post_thumbnail( $post_id, $size, $attr );
 	}
 
-	$src         = asosyoloji_get_fallback_image_url( $post_id );
+	$src         = asosyoloji_get_legacy_featured_image_url( $post_id, $size );
 	$is_fallback = false;
+
+	if ( ! $src ) {
+		$src = asosyoloji_get_fallback_image_url( $post_id );
+	}
 
 	if ( ! $src ) {
 		$src         = asosyoloji_get_default_card_image_url();
