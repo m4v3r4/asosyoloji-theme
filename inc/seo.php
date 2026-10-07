@@ -134,6 +134,11 @@ function asosyoloji_get_post_image_url( $post_id = 0 ) {
 	return $fallback ? $fallback : asosyoloji_default_social_image_url();
 }
 
+function asosyoloji_trim_description( $text ) {
+	$text = preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $text ) );
+	return trim( wp_html_excerpt( $text, 160, '…' ) );
+}
+
 function asosyoloji_get_seo_description( $post_id = 0 ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
 	$manual  = trim( (string) get_post_meta( $post_id, '_asosyoloji_seo_description', true ) );
@@ -144,18 +149,14 @@ function asosyoloji_get_seo_description( $post_id = 0 ) {
 
 	$summary = function_exists( 'asosyoloji_get_geo_summary' ) ? asosyoloji_get_geo_summary( $post_id ) : '';
 	if ( $summary ) {
-		return $summary;
+		return asosyoloji_trim_description( $summary );
 	}
 
 	if ( has_excerpt( $post_id ) ) {
-		return wp_strip_all_tags( get_the_excerpt( $post_id ) );
+		return asosyoloji_trim_description( get_the_excerpt( $post_id ) );
 	}
 
-	return wp_trim_words(
-		preg_replace( '/\s+/', ' ', wp_strip_all_tags( get_post_field( 'post_content', $post_id ) ) ),
-		32,
-		'…'
-	);
+	return asosyoloji_trim_description( get_post_field( 'post_content', $post_id ) );
 }
 
 function asosyoloji_unicode_word_count( $text ) {
@@ -274,13 +275,13 @@ function asosyoloji_social_meta() {
 		$image   = asosyoloji_get_post_image_url( $post_id );
 		$type    = is_single() ? 'article' : 'website';
 	} elseif ( is_author() ) {
-		$desc = get_the_author_meta( 'description', get_queried_object_id() );
+		$desc = asosyoloji_trim_description( get_the_author_meta( 'description', get_queried_object_id() ) );
 	} elseif ( is_category() ) {
-		$desc = wp_strip_all_tags( category_description( get_queried_object_id() ) );
+		$desc = asosyoloji_trim_description( category_description( get_queried_object_id() ) );
 	}
 
 	if ( ! $desc ) {
-		$desc = get_bloginfo( 'description' );
+		$desc = asosyoloji_trim_description( get_bloginfo( 'description' ) );
 	}
 	?>
 	<meta name="description" content="<?php echo esc_attr( $desc ); ?>">
