@@ -64,6 +64,61 @@
 
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  const motionEnabled =
+    document.body.classList.contains('aso-motion-enabled') &&
+    !reduceMotion;
+
+  if (motionEnabled) {
+    const revealSelectors = [
+      '.home-section',
+      '.article-card',
+      '.feature-list__item',
+      '.feature-list__lead',
+      '.aso-post-widget__item',
+      '.aso-announcement',
+      '.aso-magazine-card',
+      '.author-box',
+      '.archive-tools',
+      '.entry-header',
+      '.entry-featured-image'
+    ];
+
+    const revealItems = Array.from(
+      document.querySelectorAll(revealSelectors.join(','))
+    );
+
+    revealItems.forEach((element, index) => {
+      element.classList.add('aso-reveal');
+      element.style.setProperty('--aso-reveal-delay', `${Math.min(index % 6, 5) * 55}ms`);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.08
+      }
+    );
+
+    revealItems.forEach((element) => observer.observe(element));
+
+    const header = document.querySelector('.site-header');
+    if (header) {
+      const updateHeaderScroll = () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 18);
+      };
+
+      window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+      updateHeaderScroll();
+    }
+  }
+
   document.querySelectorAll('[data-slider]').forEach((slider) => {
     const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
     if (slides.length < 2) {
