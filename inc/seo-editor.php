@@ -72,21 +72,19 @@ function asosyoloji_save_seo_meta( $post_id ) {
 		return;
 	}
 
-	$fields = array(
-		'asosyoloji_seo_description' => array( '_asosyoloji_seo_description', 'sanitize_textarea_field' ),
-		'asosyoloji_geo_summary'     => array( '_asosyoloji_geo_summary', 'sanitize_textarea_field' ),
-		'asosyoloji_key_points'      => array( '_asosyoloji_key_points', 'sanitize_textarea_field' ),
-		'asosyoloji_about'           => array( '_asosyoloji_about', 'sanitize_textarea_field' ),
-		'asosyoloji_citations'       => array( '_asosyoloji_citations', 'sanitize_textarea_field' ),
+	$values = array(
+		'_asosyoloji_seo_description' => isset( $_POST['asosyoloji_seo_description'] ) ? sanitize_textarea_field( wp_unslash( $_POST['asosyoloji_seo_description'] ) ) : '',
+		'_asosyoloji_geo_summary'     => isset( $_POST['asosyoloji_geo_summary'] ) ? sanitize_textarea_field( wp_unslash( $_POST['asosyoloji_geo_summary'] ) ) : '',
+		'_asosyoloji_key_points'      => isset( $_POST['asosyoloji_key_points'] ) ? sanitize_textarea_field( wp_unslash( $_POST['asosyoloji_key_points'] ) ) : '',
+		'_asosyoloji_about'           => isset( $_POST['asosyoloji_about'] ) ? sanitize_textarea_field( wp_unslash( $_POST['asosyoloji_about'] ) ) : '',
+		'_asosyoloji_citations'       => isset( $_POST['asosyoloji_citations'] ) ? sanitize_textarea_field( wp_unslash( $_POST['asosyoloji_citations'] ) ) : '',
 	);
 
-	foreach ( $fields as $input => $config ) {
-		$value = isset( $_POST[ $input ] ) ? call_user_func( $config[1], wp_unslash( $_POST[ $input ] ) ) : '';
-
+	foreach ( $values as $meta_key => $value ) {
 		if ( '' === trim( $value ) ) {
-			delete_post_meta( $post_id, $config[0] );
+			delete_post_meta( $post_id, $meta_key );
 		} else {
-			update_post_meta( $post_id, $config[0], $value );
+			update_post_meta( $post_id, $meta_key, $value );
 		}
 	}
 }
