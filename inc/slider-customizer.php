@@ -154,7 +154,7 @@ function asosyoloji_slider_customize_register( $wp_customize ) {
 		array(
 			'aso_home_slider_arrows' => __( 'Önceki / sonraki oklarını göster', 'asosyoloji' ),
 			'aso_home_slider_dots'   => __( 'Slayt göstergelerini göster', 'asosyoloji' ),
-			'aso_home_slider_excerpt'=> __( 'Özet metnini göster', 'asosyoloji' ),
+			'aso_home_slider_excerpt' => __( 'Özet metnini göster', 'asosyoloji' ),
 		) as $setting_id => $label
 	) {
 		$wp_customize->add_setting(
