@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'ASOSYOLOJI_VERSION', '0.5.4' );
 
 require_once get_template_directory() . '/inc/customizer.php';
-require_once get_template_directory() . '/inc/class-asosyoloji-multi-select-control.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
 require_once get_template_directory() . '/inc/section-customizer.php';
 require_once get_template_directory() . '/inc/appearance.php';
