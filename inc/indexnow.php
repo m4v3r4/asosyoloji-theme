@@ -29,6 +29,8 @@ function asosyoloji_indexnow_verification() {
 		return;
 	}
 
+	status_header( 200 );
+	nocache_headers();
 	header( 'Content-Type: text/plain; charset=utf-8' );
 	echo esc_html( $key );
 	exit;
