@@ -92,6 +92,21 @@ function asosyoloji_enqueue_assets() {
 		ASOSYOLOJI_VERSION,
 		true
 	);
+
+	wp_localize_script(
+		'asosyoloji-theme',
+		'asosyolojiTheme',
+		array(
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'asosyoloji_home_latest' ),
+			'strings' => array(
+				'loading' => __( 'Yazılar yükleniyor…', 'asosyoloji' ),
+				'more'    => __( 'Daha fazla yükle', 'asosyoloji' ),
+				'done'    => __( 'Tüm yazılar yüklendi.', 'asosyoloji' ),
+				'error'   => __( 'Yazılar yüklenemedi. Tekrar deneyin.', 'asosyoloji' ),
+			),
+		)
+	);
 }
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
 
@@ -243,3 +258,70 @@ function asosyoloji_widgets_admin_assets( $hook ) {
 	);
 }
 add_action( 'admin_enqueue_scripts', 'asosyoloji_widgets_admin_assets' );
+
+
+/**
+ * AJAX: load additional homepage latest posts.
+ */
+function asosyoloji_ajax_load_latest_posts() {
+	check_ajax_referer( 'asosyoloji_home_latest', 'nonce' );
+
+	$count    = min( 12, max( 3, absint( $_POST['count'] ?? 6 ) ) );
+	$offset   = max( 0, absint( $_POST['offset'] ?? 0 ) );
+	$category = absint( $_POST['category'] ?? 0 );
+	$orderby  = sanitize_key( wp_unslash( $_POST['orderby'] ?? 'date' ) );
+	$order    = strtoupper( sanitize_key( wp_unslash( $_POST['order'] ?? 'DESC' ) ) );
+
+	if ( ! in_array( $orderby, array( 'date', 'modified', 'title', 'menu_order' ), true ) ) {
+		$orderby = 'date';
+	}
+
+	if ( ! in_array( $order, array( 'ASC', 'DESC' ), true ) ) {
+		$order = 'DESC';
+	}
+
+	$excluded_categories = isset( $_POST['excluded_categories'] )
+		? array_values( array_filter( array_map( 'absint', (array) $_POST['excluded_categories'] ) ) )
+		: array();
+
+	$excluded_posts = isset( $_POST['excluded_posts'] )
+		? array_values( array_filter( array_map( 'absint', (array) $_POST['excluded_posts'] ) ) )
+		: array();
+
+	$args = array(
+		'posts_per_page'   => $count,
+		'offset'           => $offset,
+		'post_status'      => 'publish',
+		'orderby'          => $orderby,
+		'order'            => $order,
+		'post__not_in'     => $excluded_posts,
+		'category__not_in' => $excluded_categories,
+	);
+
+	if ( $category ) {
+		$args['cat'] = $category;
+	}
+
+	$query = new WP_Query( $args );
+	ob_start();
+
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		get_template_part( 'template-parts/content', 'card' );
+	}
+
+	$html   = ob_get_clean();
+	$loaded = $query->post_count;
+	$total  = (int) $query->found_posts;
+	wp_reset_postdata();
+
+	wp_send_json_success(
+		array(
+			'html'    => $html,
+			'loaded'  => $loaded,
+			'hasMore' => ( $offset + $loaded ) < $total,
+		)
+	);
+}
+add_action( 'wp_ajax_asosyoloji_load_latest', 'asosyoloji_ajax_load_latest_posts' );
+add_action( 'wp_ajax_nopriv_asosyoloji_load_latest', 'asosyoloji_ajax_load_latest_posts' );
