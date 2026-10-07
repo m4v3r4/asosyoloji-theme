@@ -3,12 +3,14 @@ if ( ! get_theme_mod( 'aso_home_show_hero', true ) ) {
 	return;
 }
 $selected_hero = absint( get_theme_mod( 'aso_home_hero_post', 0 ) );
+$used_ids      = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array();
 $args = array(
 	'posts_per_page'      => 1,
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => false,
+	'post__not_in'        => $used_ids,
 );
-if ( $selected_hero ) {
+if ( $selected_hero && ! in_array( $selected_hero, $used_ids, true ) ) {
 	$args['p'] = $selected_hero;
 }
 $query = new WP_Query( $args );
@@ -19,7 +21,10 @@ if ( ! $query->have_posts() ) {
 <section class="home-hero">
 	<div class="aso-container">
 		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-			<?php $GLOBALS['asosyoloji_home_hero_post_id'] = get_the_ID(); ?>
+			<?php
+			$GLOBALS['asosyoloji_home_hero_post_id'] = get_the_ID();
+			$GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID();
+			?>
 			<div class="home-hero__grid">
 				<div>
 					<div class="home-hero__label"><?php echo esc_html( get_theme_mod( 'aso_home_hero_label', __( 'Öne Çıkan', 'asosyoloji' ) ) ); ?></div>
