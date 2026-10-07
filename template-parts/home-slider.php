@@ -15,10 +15,13 @@ $slider_arrows   = get_theme_mod( 'aso_home_slider_arrows', true );
 $slider_dots     = get_theme_mod( 'aso_home_slider_dots', true );
 $slider_excerpt  = get_theme_mod( 'aso_home_slider_excerpt', true );
 
+$used_ids = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array();
+
 $args = array(
 	'posts_per_page'      => $slider_count,
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => false,
+	'post__not_in'        => $used_ids,
 );
 
 if ( 'category' === $slider_source && $slider_category ) {
@@ -50,6 +53,7 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 			while ( $slider_query->have_posts() ) :
 				$slider_query->the_post();
 				$slide_index++;
+				$GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID();
 				$image      = asosyoloji_get_post_image( get_the_ID(), 'large', array( 'class' => 'aso-slider__img' ) );
 				$categories = get_the_category();
 				?>
