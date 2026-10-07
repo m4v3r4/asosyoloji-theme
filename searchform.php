@@ -4,6 +4,7 @@
  *
  * @package Asosyoloji
  */
+
 ?>
 <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<label>
