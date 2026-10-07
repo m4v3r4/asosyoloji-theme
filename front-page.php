@@ -122,6 +122,94 @@ if ( get_theme_mod( 'aso_home_show_hero', true ) ) :
 	</section>
 <?php endif; ?>
 
+
+<?php if ( get_theme_mod( 'aso_home_featured_section_show', true ) ) : ?>
+	<?php
+	$feature_category = absint( get_theme_mod( 'aso_home_featured_section_category', 0 ) );
+	$feature_count    = min( 8, max( 2, absint( get_theme_mod( 'aso_home_featured_section_count', 4 ) ) ) );
+	$feature_layout   = get_theme_mod( 'aso_home_featured_section_layout', 'feature-list' );
+
+	$feature_args = array(
+		'posts_per_page' => $feature_count,
+		'post_status'    => 'publish',
+		'post__not_in'   => $hero_post_id ? array( $hero_post_id ) : array(),
+	);
+
+	if ( $feature_category ) {
+		$feature_args['cat'] = $feature_category;
+	}
+
+	$feature_query = new WP_Query( $feature_args );
+	?>
+	<?php if ( $feature_query->have_posts() ) : ?>
+		<section class="home-section home-featured-section">
+			<div class="aso-container">
+				<div class="section-heading">
+					<div>
+						<div class="section-kicker">
+							<?php echo esc_html( get_theme_mod( 'aso_home_featured_section_kicker', __( 'Dosya', 'asosyoloji' ) ) ); ?>
+						</div>
+						<h2 class="section-title">
+							<?php echo esc_html( get_theme_mod( 'aso_home_featured_section_title', __( 'Seçili Kategoriden', 'asosyoloji' ) ) ); ?>
+						</h2>
+					</div>
+				</div>
+
+				<?php if ( 'grid' === $feature_layout ) : ?>
+					<div class="article-grid">
+						<?php
+						while ( $feature_query->have_posts() ) :
+							$feature_query->the_post();
+							get_template_part( 'template-parts/content', 'card' );
+						endwhile;
+						?>
+					</div>
+				<?php else : ?>
+					<div class="feature-list">
+						<?php
+						$feature_index = 0;
+						while ( $feature_query->have_posts() ) :
+							$feature_query->the_post();
+							$feature_index++;
+							?>
+							<article <?php post_class( 1 === $feature_index ? 'feature-list__lead' : 'feature-list__item' ); ?>>
+								<?php if ( has_post_thumbnail() ) : ?>
+									<a class="feature-list__image" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+										<?php the_post_thumbnail( 1 === $feature_index ? 'large' : 'medium_large' ); ?>
+									</a>
+								<?php endif; ?>
+
+								<div class="feature-list__content">
+									<?php $feature_categories = get_the_category(); ?>
+									<?php if ( ! empty( $feature_categories ) ) : ?>
+										<div class="entry-kicker"><?php echo esc_html( $feature_categories[0]->name ); ?></div>
+									<?php endif; ?>
+
+									<h3 class="feature-list__title">
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									</h3>
+
+									<div class="card-meta">
+										<?php echo esc_html( get_the_author() ); ?> · <?php echo esc_html( get_the_date() ); ?>
+									</div>
+
+									<?php if ( 1 === $feature_index ) : ?>
+										<div class="feature-list__excerpt"><?php the_excerpt(); ?></div>
+									<?php endif; ?>
+								</div>
+							</article>
+							<?php
+						endwhile;
+						?>
+					</div>
+				<?php endif; ?>
+
+				<?php wp_reset_postdata(); ?>
+			</div>
+		</section>
+	<?php endif; ?>
+<?php endif; ?>
+
 <?php if ( get_theme_mod( 'aso_home_show_archive', true ) ) : ?>
 	<?php
 	$archive_page_id = absint( get_theme_mod( 'aso_home_archive_page', 0 ) );
