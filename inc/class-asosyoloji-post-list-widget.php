@@ -104,7 +104,12 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 		$show_meta  = ! isset( $instance['show_meta'] ) || ! empty( $instance['show_meta'] );
 		$show_excerpt = ! empty( $instance['show_excerpt'] );
 		$categories = get_categories( array( 'hide_empty' => false ) );
-		$authors     = get_users( array( 'who' => 'authors', 'orderby' => 'display_name' ) );
+		$authors     = get_users(
+			array(
+				'who'     => 'authors',
+				'orderby' => 'display_name',
+			)
+		);
 		$author      = absint( $instance['author'] ?? 0 );
 		$orderby     = $instance['orderby'] ?? 'date';
 		$order       = $instance['order'] ?? 'DESC';
