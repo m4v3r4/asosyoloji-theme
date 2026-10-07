@@ -23,7 +23,7 @@
     apiVersion: 3,
     title: __('Asosyoloji: Yazı Listesi', 'asosyoloji'),
     icon: 'excerpt-view',
-    category: 'widgets',
+    category: 'asosyoloji',
     description: __('Kategori bazlı yazıları temayla uyumlu liste, grid veya manşet görünümünde gösterir.', 'asosyoloji'),
     attributes: {
       title: { type: 'string', default: '' },
