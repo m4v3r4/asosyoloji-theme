@@ -91,6 +91,40 @@ function asosyoloji_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
 
 
+function asosyoloji_get_fallback_image_url( $post_id = 0 ) {
+	$post_id = $post_id ?: get_the_ID();
+	$cache_key = '_asosyoloji_fallback_image_url';
+	$cached = get_post_meta( $post_id, $cache_key, true );
+
+	if ( '__none__' === $cached ) {
+		return '';
+	}
+
+	if ( is_string( $cached ) && '' !== $cached ) {
+		return esc_url_raw( $cached );
+	}
+
+	$content = get_post_field( 'post_content', $post_id );
+	$url     = '';
+
+	if ( $content && preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches ) ) {
+		$url = esc_url_raw( $matches[1] );
+	}
+
+	update_post_meta( $post_id, $cache_key, $url ? $url : '__none__' );
+
+	return $url;
+}
+
+function asosyoloji_clear_fallback_image_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) || 'post' !== get_post_type( $post_id ) ) {
+		return;
+	}
+
+	delete_post_meta( $post_id, '_asosyoloji_fallback_image_url' );
+}
+add_action( 'save_post', 'asosyoloji_clear_fallback_image_cache' );
+
 function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr = array() ) {
 	$post_id = $post_id ?: get_the_ID();
 
@@ -98,24 +132,19 @@ function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr 
 		return get_the_post_thumbnail( $post_id, $size, $attr );
 	}
 
-	$content = get_post_field( 'post_content', $post_id );
-	if ( ! $content ) {
+	$src = asosyoloji_get_fallback_image_url( $post_id );
+
+	if ( ! $src ) {
 		return '';
 	}
 
-	if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches ) ) {
-		$src = esc_url( $matches[1] );
-		if ( $src ) {
-			$alt = get_the_title( $post_id );
-			return sprintf(
-				'<img src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
-				$src,
-				esc_attr( $alt )
-			);
-		}
-	}
+	$alt = get_the_title( $post_id );
 
-	return '';
+	return sprintf(
+		'<img src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
+		esc_url( $src ),
+		esc_attr( $alt )
+	);
 }
 
 function asosyoloji_has_post_image( $post_id = 0 ) {
