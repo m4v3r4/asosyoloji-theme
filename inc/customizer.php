@@ -33,6 +33,14 @@ function asosyoloji_sanitize_page_id( $value ) {
 	return ( 0 === $value || 'page' === get_post_type( $value ) ) ? $value : 0;
 }
 
+function asosyoloji_sanitize_category_ids( $value ) {
+	if ( ! is_array( $value ) ) {
+		return array();
+	}
+
+	return array_values( array_filter( array_map( 'absint', $value ) ) );
+}
+
 function asosyoloji_post_choices() {
 	$choices = array(
 		0 => __( 'Otomatik: en güncel yazı', 'asosyoloji' ),
@@ -534,6 +542,27 @@ function asosyoloji_customize_register( $wp_customize ) {
 			'section'     => 'aso_home_latest',
 			'type'        => 'select',
 			'choices'     => asosyoloji_category_choices(),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_home_latest_exclude_categories',
+		array(
+			'default'           => array(),
+			'sanitize_callback' => 'asosyoloji_sanitize_category_ids',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Asosyoloji_Multi_Select_Control(
+			$wp_customize,
+			'aso_home_latest_exclude_categories',
+			array(
+				'label'       => __( 'Hariç tutulacak kategoriler', 'asosyoloji' ),
+				'description' => __( 'Duyurular gibi ana yazı akışında görünmesini istemediğiniz kategorileri seçin. Ctrl/Cmd ile birden fazla seçim yapabilirsiniz.', 'asosyoloji' ),
+				'section'     => 'aso_home_latest',
+				'choices'     => array_filter( asosyoloji_category_choices(), 'is_int', ARRAY_FILTER_USE_KEY ),
+			)
 		)
 	);
 
