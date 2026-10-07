@@ -373,7 +373,6 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
-
 	$wp_customize->add_section(
 		'aso_footer',
 		array(
