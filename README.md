@@ -142,9 +142,9 @@ Shortcode:
 ```
 
 
-## Asosyoloji Dergi Arşivi
+## Basılı Sayılar (PDF)
 
-**Asosyoloji: Dergi Arşivi** widget'ı basılı dergi/PDF sayılarını manuel olarak listeler.
+**Asosyoloji: Basılı Sayılar (PDF)** widget'ı yalnızca basılı dergi sayılarını temsil eden PDF dosyalarını manuel olarak listeler. WordPress yazı arşivi veya yazı kategorileriyle bağlantısı yoktur.
 
 Her sayı için:
 - Sayı / başlık
@@ -158,7 +158,7 @@ PDF ve kapak görselleri WordPress Medya Kütüphanesi üzerinden seçilebilir. 
 - Kapak grid
 - Liste
 
-Kapak veya başlığa tıklandığında PDF yeni sekmede açılır. Bu bileşen mevcut arşiv/PDF içeriklerini değiştirmez; yalnızca istenen sayıları farklı alanlarda tekrar sunmak için kullanılır.
+Kapak veya başlığa tıklandığında PDF yeni sekmede açılır. Her sayı bağımsız olarak **başlık + PDF dosyası + kapak görseli** ile tanımlanır. Kapak veya başlığa tıklandığında ilgili PDF yeni sekmede açılır.
 
 
 ## Animasyonlar
