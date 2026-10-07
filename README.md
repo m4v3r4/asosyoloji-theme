@@ -80,3 +80,39 @@ build/asosyoloji-theme.zip
 ```
 
 GitHub Actions artifact depolama alanı gerekmeden CI, oluşturulan ZIP'in bütünlüğünü de doğrular.
+
+
+## Ana sayfa kategori hariç tutma
+
+Ana sayfadaki yazı akışlarında kategori dahil etmenin yanında kategori hariç tutma da desteklenir.
+
+**Görünüm → Özelleştir → Asosyoloji Tema Ayarları → Ana Sayfa: Genel** bölümünde seçilen kategoriler slider, hero, son yazılar ve kategori bölümlerinde genel olarak gösterilmez. Duyurular gibi akış dışında tutulmak istenen kategoriler için bu ayar önerilir.
+
+Bölüm bazında ayrıca:
+- Ana Sayfa: Slider
+- Ana Sayfa: Yazı Akışı
+- Ana Sayfa: Kategori Bölümü
+
+içinde ek hariç kategori seçimleri yapılabilir.
+
+## Asosyoloji Yazı Listesi
+
+Tema, **Görünüm → Bileşenler** ekranında kullanılabilen **Asosyoloji: Yazı Listesi** widget'ını sağlar.
+
+Desteklenen görünümler:
+- Görselli liste
+- Kompakt liste
+- Kart grid
+- Bir büyük + liste
+
+Widget içinde kategori, hariç kategoriler, yazı sayısı, görsel, özet ve meta bilgileri ayarlanabilir.
+
+Sayfalarda Gutenberg editöründen **Asosyoloji: Yazı Listesi** bloğu eklenebilir. Aynı ayarlar blok sağ panelinden yönetilir.
+
+Shortcode kullanmak isteyenler için:
+
+```text
+[asosyoloji_posts title="Son Yazılar" category="yazilar" exclude="duyurular" count="6" layout="grid"]
+```
+
+`category` ve `exclude` alanlarında kategori slug veya ID kullanılabilir. `layout` değeri `list`, `compact`, `grid` veya `feature` olabilir.
