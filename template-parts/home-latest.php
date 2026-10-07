@@ -13,7 +13,7 @@ $args = array(
 	'post_status'    => 'publish',
 	'orderby'        => $orderby,
 	'order'          => $order,
-	'post__not_in'   => ! empty( $GLOBALS['asosyoloji_home_hero_post_id'] ) ? array( (int) $GLOBALS['asosyoloji_home_hero_post_id'] ) : array(),
+	'post__not_in'   => ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
 );
 if ( $category ) $args['cat'] = $category;
 $query = new WP_Query( $args );
@@ -26,7 +26,7 @@ $query = new WP_Query( $args );
 		</div></div>
 		<?php if ( $query->have_posts() ) : ?>
 			<div class="article-grid">
-				<?php while ( $query->have_posts() ) : $query->the_post(); get_template_part( 'template-parts/content', 'card' ); endwhile; ?>
+				<?php while ( $query->have_posts() ) : $query->the_post(); $GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID(); get_template_part( 'template-parts/content', 'card' ); endwhile; ?>
 			</div>
 			<?php wp_reset_postdata(); ?>
 		<?php else : ?>
