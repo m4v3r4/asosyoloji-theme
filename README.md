@@ -160,3 +160,22 @@ Shortcode:
 ```text
 [asosyoloji_duyurular title="Duyurular" category="duyurular" count="5" excerpt="1" date="1" button="1" compact="0"]
 ```
+
+
+## Asosyoloji Dergi Arşivi
+
+**Asosyoloji: Dergi Arşivi** widget'ı basılı dergi/PDF sayılarını manuel olarak listeler.
+
+Her sayı için:
+- Sayı / başlık
+- PDF dosyası
+- Kapak görseli
+
+tanımlanır.
+
+PDF ve kapak görselleri WordPress Medya Kütüphanesi üzerinden seçilebilir. Widget iki görünüm sunar:
+
+- Kapak grid
+- Liste
+
+Kapak veya başlığa tıklandığında PDF yeni sekmede açılır. Bu bileşen mevcut arşiv/PDF içeriklerini değiştirmez; yalnızca istenen sayıları farklı alanlarda tekrar sunmak için kullanılır.
