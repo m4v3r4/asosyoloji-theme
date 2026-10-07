@@ -95,6 +95,13 @@ function asosyoloji_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
 
 
+function asosyoloji_home_excluded_categories( $specific = array() ) {
+	$global   = asosyoloji_sanitize_category_ids( get_theme_mod( 'aso_home_global_exclude_categories', array() ) );
+	$specific = asosyoloji_sanitize_category_ids( $specific );
+
+	return array_values( array_unique( array_merge( $global, $specific ) ) );
+}
+
 function asosyoloji_get_fallback_image_url( $post_id = 0 ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
 	$cache_key = '_asosyoloji_fallback_image_url';
