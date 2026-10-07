@@ -56,12 +56,7 @@ function asosyoloji_get_post_image_url( $post_id = 0 ) {
 		return (string) wp_get_attachment_image_url( get_post_thumbnail_id( $post_id ), 'full' );
 	}
 
-	$content = get_post_field( 'post_content', $post_id );
-	if ( $content && preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches ) ) {
-		return esc_url_raw( $matches[1] );
-	}
-
-	return '';
+	return asosyoloji_get_fallback_image_url( $post_id );
 }
 
 function asosyoloji_breadcrumb_items() {
