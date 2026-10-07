@@ -12,7 +12,10 @@ get_header();
 	<div class="aso-container">
 		<div class="section-kicker"><?php esc_html_e( 'Arama', 'asosyoloji' ); ?></div>
 		<h1 class="archive-title">
-			<?php printf( esc_html__( '“%s” için sonuçlar', 'asosyoloji' ), esc_html( get_search_query() ) ); ?>
+			<?php
+			/* translators: %s: Search query. */
+			printf( esc_html__( '“%s” için sonuçlar', 'asosyoloji' ), esc_html( get_search_query() ) );
+			?>
 		</h1>
 	</div>
 </header>
