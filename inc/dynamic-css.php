@@ -20,12 +20,12 @@ function asosyoloji_font_stack( $choice ) {
 }
 
 function asosyoloji_dynamic_css() {
-	$primary   = sanitize_hex_color( get_theme_mod( 'aso_primary_color', '#b3212b' ) ) ?: '#b3212b';
-	$text      = sanitize_hex_color( get_theme_mod( 'aso_text_color', '#171717' ) ) ?: '#171717';
-	$muted     = sanitize_hex_color( get_theme_mod( 'aso_muted_color', '#6d6d6d' ) ) ?: '#6d6d6d';
-	$border    = sanitize_hex_color( get_theme_mod( 'aso_border_color', '#dedede' ) ) ?: '#dedede';
+	$primary   = sanitize_hex_color( get_theme_mod( 'aso_primary_color', '#8f1d2c' ) ) ?: '#8f1d2c';
+	$text      = sanitize_hex_color( get_theme_mod( 'aso_text_color', '#111111' ) ) ?: '#111111';
+	$muted     = sanitize_hex_color( get_theme_mod( 'aso_muted_color', '#666666' ) ) ?: '#666666';
+	$border    = sanitize_hex_color( get_theme_mod( 'aso_border_color', '#d8d8d8' ) ) ?: '#d8d8d8';
 	$bg        = sanitize_hex_color( get_theme_mod( 'aso_background_color', '#ffffff' ) ) ?: '#ffffff';
-	$surface   = sanitize_hex_color( get_theme_mod( 'aso_surface_color', '#f6f4f1' ) ) ?: '#f6f4f1';
+	$surface   = sanitize_hex_color( get_theme_mod( 'aso_surface_color', '#f5f3ef' ) ) ?: '#f5f3ef';
 	$container = min( 1600, max( 960, absint( get_theme_mod( 'aso_container_width', 1280 ) ) ) );
 	$article   = min( 980, max( 580, absint( get_theme_mod( 'aso_article_width', 760 ) ) ) );
 	$body_size = min( 24, max( 15, absint( get_theme_mod( 'aso_body_size', 18 ) ) ) );
