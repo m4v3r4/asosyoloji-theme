@@ -30,4 +30,6 @@
   bindVar('aso_container_width', '--aso-container', (value) => `${value}px`);
   bindVar('aso_article_width', '--aso-article', (value) => `${value}px`);
   bindVar('aso_body_size', '--aso-body-size', (value) => `${value}px`);
+  bindVar('aso_home_slider_height', '--aso-slider-height', (value) => `${value}px`);
+  bindVar('aso_home_slider_height_mobile', '--aso-slider-height-mobile', (value) => Number(value) > 0 ? `${value}px` : 'auto');
 })();

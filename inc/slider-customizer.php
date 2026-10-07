@@ -159,6 +159,50 @@ function asosyoloji_slider_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_home_slider_height',
+		array(
+			'default'           => 520,
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_home_slider_height',
+		array(
+			'label'       => __( 'Slider yüksekliği (masaüstü, px)', 'asosyoloji' ),
+			'description' => __( 'Masaüstünde slider alanının yüksekliğini belirler.', 'asosyoloji' ),
+			'section'     => 'aso_home_slider',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 460,
+				'max'  => 760,
+				'step' => 10,
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_home_slider_height_mobile',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_home_slider_height_mobile',
+		array(
+			'label'       => __( 'Slider yüksekliği (mobil, px)', 'asosyoloji' ),
+			'description' => __( '0 değeri mobil yüksekliği içeriğe göre otomatik bırakır. Sabit yükseklik için 440–800 arası bir değer girin.', 'asosyoloji' ),
+			'section'     => 'aso_home_slider',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 800,
+				'step' => 10,
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_home_slider_autoplay',
 		array(
 			'default'           => true,

@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.7.10
+Version: 0.7.11
 Text Domain: asosyoloji
 Domain Path: /languages
 Requires at least: 6.0
@@ -5002,7 +5002,8 @@ html[data-theme="dark"] .aso-magazine-card__cover {
 
 /* 0.7.10 visual balance refinements */
 .aso-slider__slide {
-  min-height: clamp(420px, 42vw, 520px);
+  height: var(--aso-slider-height, 520px);
+  min-height: 0;
 }
 
 .aso-slider__title {
@@ -5043,6 +5044,7 @@ html[data-theme="dark"] .site-branding .custom-logo-link {
 
 @media (max-width: 980px) {
   .aso-slider__slide {
+    height: var(--aso-slider-height-mobile, auto);
     min-height: 0;
   }
 
@@ -5089,4 +5091,75 @@ html[data-theme="dark"] .site-branding .custom-logo-link {
   html[data-theme="dark"] .site-branding .custom-logo-link {
     padding: 6px 9px;
   }
+}
+
+
+/* 0.7.11 unified brand surfaces */
+:root {
+  --aso-brand-purple: #540048;
+}
+
+.site-menu-bar,
+.site-menu-bar.aso-menu-bg-accent,
+.site-menu-bar.aso-menu-bg-light,
+.site-menu-bar.aso-menu-bg-dark,
+.site-menu-bar.aso-menu-bg-custom {
+  --aso-menu-current-bg: var(--aso-brand-purple);
+  --aso-menu-current-fg: #fff;
+  border-bottom-color: transparent;
+  background: var(--aso-brand-purple);
+  color: #fff;
+}
+
+.site-menu-bar .primary-menu .sub-menu,
+html[data-theme="dark"] .site-menu-bar .primary-menu .sub-menu {
+  border-color: rgba(255, 255, 255, .24);
+  background: var(--aso-brand-purple);
+  color: #fff;
+}
+
+.site-menu-bar .primary-menu .sub-menu a,
+html[data-theme="dark"] .site-menu-bar .primary-menu .sub-menu a {
+  color: #fff;
+}
+
+.site-menu-bar .primary-menu .sub-menu a:hover,
+.site-menu-bar .primary-menu .sub-menu a:focus-visible,
+html[data-theme="dark"] .site-menu-bar .primary-menu .sub-menu a:hover,
+html[data-theme="dark"] .site-menu-bar .primary-menu .sub-menu a:focus-visible {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.site-footer,
+html[data-theme="dark"] .site-footer {
+  border-top-color: var(--aso-brand-purple);
+  background: var(--aso-brand-purple);
+  color: #fff;
+}
+
+.site-footer a,
+html[data-theme="dark"] .site-footer a,
+html[data-theme="dark"] .site-footer a:hover,
+html[data-theme="dark"] .site-footer a:focus {
+  color: #fff;
+}
+
+html[data-theme="dark"] .site-footer__note,
+html[data-theme="dark"] .site-footer__bottom,
+html[data-theme="dark"] .footer-widget p {
+  color: rgba(255, 255, 255, .78);
+}
+
+.site-footer__bottom,
+.footer-widgets {
+  border-color: rgba(255, 255, 255, .24);
+}
+
+.site-footer__bottom {
+  opacity: .9;
+}
+
+.site-footer .aso-container > .site-footer__bottom:first-child {
+  margin-top: 0;
 }

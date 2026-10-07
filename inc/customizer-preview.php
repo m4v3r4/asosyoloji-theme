@@ -29,6 +29,8 @@ function asosyoloji_customize_live_transport( $wp_customize ) {
 		'aso_container_width',
 		'aso_article_width',
 		'aso_body_size',
+		'aso_home_slider_height',
+		'aso_home_slider_height_mobile',
 	);
 
 	foreach ( $settings as $setting_id ) {

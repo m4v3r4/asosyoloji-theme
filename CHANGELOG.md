@@ -2,6 +2,13 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.11 - 2026-10-07
+
+### Changed
+- Ana menü, alt menüler ve footer arka planları marka moru `#540048` altında birleştirildi.
+- Menü ve footer metinleri açık ve karanlık temada beyaz, ayraçlar ise erişilebilir yarı saydam tonda sabitlendi.
+- Özelleştiriciye masaüstü ve mobil için ayrı slider yüksekliği kontrolleri eklendi; mobil değer `0` olduğunda yükseklik içeriğe göre otomatik kalır.
+
 ## 0.7.10 - 2026-10-07
 
 ### Changed

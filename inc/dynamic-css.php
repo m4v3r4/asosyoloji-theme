@@ -45,12 +45,15 @@ function asosyoloji_dynamic_css() {
 	$logo_width  = min( 900, max( 180, absint( get_theme_mod( 'aso_logo_width', 620 ) ) ) );
 	$logo_mobile = min( 420, max( 120, absint( get_theme_mod( 'aso_logo_width_mobile', 280 ) ) ) );
 	$menu_custom = asosyoloji_theme_color( 'aso_menu_custom_color', '#8f1d2c' );
+	$slider_height = min( 760, max( 460, absint( get_theme_mod( 'aso_home_slider_height', 520 ) ) ) );
+	$slider_mobile_raw = absint( get_theme_mod( 'aso_home_slider_height_mobile', 0 ) );
+	$slider_height_mobile = $slider_mobile_raw ? min( 800, max( 440, $slider_mobile_raw ) ) . 'px' : 'auto';
 
 	$heading_font = asosyoloji_font_stack( get_theme_mod( 'aso_heading_font', 'sans' ) );
 	$body_font    = asosyoloji_font_stack( get_theme_mod( 'aso_body_font', 'serif' ) );
 
 	return sprintf(
-		':root{--aso-primary:%1$s;--aso-text:%2$s;--aso-muted:%3$s;--aso-border:%4$s;--aso-bg:%5$s;--aso-surface:%6$s;--aso-container:%7$dpx;--aso-article:%8$dpx;--aso-body-size:%9$dpx;--aso-heading-font:%10$s;--aso-body-font:%11$s;--aso-dark-bg:%12$s;--aso-dark-surface:%13$s;--aso-dark-text:%14$s;--aso-dark-muted:%15$s;--aso-dark-border:%16$s;--aso-dark-link:%17$s;--aso-dark-footer:%18$s;--aso-logo-width:%19$dpx;--aso-logo-width-mobile:%20$dpx;--aso-menu-custom:%21$s;}',
+		':root{--aso-primary:%1$s;--aso-text:%2$s;--aso-muted:%3$s;--aso-border:%4$s;--aso-bg:%5$s;--aso-surface:%6$s;--aso-container:%7$dpx;--aso-article:%8$dpx;--aso-body-size:%9$dpx;--aso-heading-font:%10$s;--aso-body-font:%11$s;--aso-dark-bg:%12$s;--aso-dark-surface:%13$s;--aso-dark-text:%14$s;--aso-dark-muted:%15$s;--aso-dark-border:%16$s;--aso-dark-link:%17$s;--aso-dark-footer:%18$s;--aso-logo-width:%19$dpx;--aso-logo-width-mobile:%20$dpx;--aso-menu-custom:%21$s;--aso-slider-height:%22$dpx;--aso-slider-height-mobile:%23$s;}',
 		$primary,
 		$text,
 		$muted,
@@ -71,6 +74,8 @@ function asosyoloji_dynamic_css() {
 		$dark_footer,
 		$logo_width,
 		$logo_mobile,
-		$menu_custom
+		$menu_custom,
+		$slider_height,
+		$slider_height_mobile
 	);
 }
