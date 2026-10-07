@@ -341,6 +341,12 @@
     const start = () => {
       stop();
       if (autoplay) {
+        const activeDot = dots[index];
+        if (activeDot && sliderMotion) {
+          activeDot.classList.remove('is-progressing');
+          void activeDot.offsetWidth;
+          activeDot.classList.add('is-progressing');
+        }
         timer = window.setInterval(() => show(index + 1), interval);
       }
     };
