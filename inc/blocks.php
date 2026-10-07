@@ -35,11 +35,26 @@ function asosyoloji_register_post_list_block() {
 		);
 	}
 
+	$authors = array(
+		array(
+			'label' => __( 'Tüm yazarlar', 'asosyoloji' ),
+			'value' => 0,
+		),
+	);
+
+	foreach ( get_users( array( 'who' => 'authors', 'orderby' => 'display_name' ) ) as $user ) {
+		$authors[] = array(
+			'label' => $user->display_name,
+			'value' => (int) $user->ID,
+		);
+	}
+
 	wp_localize_script(
 		'asosyoloji-post-list-block',
 		'asosyolojiPostListBlock',
 		array(
 			'categories' => $categories,
+			'authors'    => $authors,
 		)
 	);
 
@@ -83,6 +98,34 @@ function asosyoloji_register_post_list_block() {
 					'type'    => 'boolean',
 					'default' => true,
 				),
+				'author' => array(
+					'type'    => 'number',
+					'default' => 0,
+				),
+				'orderby' => array(
+					'type'    => 'string',
+					'default' => 'date',
+				),
+				'order' => array(
+					'type'    => 'string',
+					'default' => 'DESC',
+				),
+				'dateAfter' => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'dateBefore' => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'offset' => array(
+					'type'    => 'number',
+					'default' => 0,
+				),
+				'includeSticky' => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
 			),
 		)
 	);
@@ -106,6 +149,13 @@ function asosyoloji_render_post_list_block( $attributes ) {
 			'show_image'         => ! isset( $attributes['showImage'] ) || (bool) $attributes['showImage'],
 			'show_excerpt'       => ! empty( $attributes['showExcerpt'] ),
 			'show_meta'          => ! isset( $attributes['showMeta'] ) || (bool) $attributes['showMeta'],
+			'author'             => isset( $attributes['author'] ) ? absint( $attributes['author'] ) : 0,
+			'orderby'            => isset( $attributes['orderby'] ) ? sanitize_key( $attributes['orderby'] ) : 'date',
+			'order'              => isset( $attributes['order'] ) ? sanitize_key( strtoupper( (string) $attributes['order'] ) ) : 'DESC',
+			'date_after'         => isset( $attributes['dateAfter'] ) ? sanitize_text_field( $attributes['dateAfter'] ) : '',
+			'date_before'        => isset( $attributes['dateBefore'] ) ? sanitize_text_field( $attributes['dateBefore'] ) : '',
+			'offset'             => isset( $attributes['offset'] ) ? absint( $attributes['offset'] ) : 0,
+			'include_sticky'     => ! empty( $attributes['includeSticky'] ),
 		)
 	);
 }
