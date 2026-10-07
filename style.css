@@ -1180,3 +1180,272 @@ img {
     flex-direction: column;
   }
 }
+
+
+/* Masthead header closer to original Asosyoloji */
+.site-header {
+  border-top: 0;
+  border-bottom: 0;
+  background: var(--aso-bg);
+}
+
+.site-header.is-sticky {
+  position: sticky;
+  top: 0;
+  background: var(--aso-bg);
+}
+
+.site-masthead {
+  border-bottom: 1px solid var(--aso-border);
+  background: var(--aso-bg);
+}
+
+.site-masthead__inner {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.site-branding {
+  margin: 0;
+}
+
+.site-title {
+  font-size: clamp(3.6rem, 8vw, 8.8rem);
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .82;
+  text-transform: uppercase;
+}
+
+.site-description {
+  margin-top: 18px;
+  font-size: .74rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.custom-logo-link {
+  display: block;
+}
+
+.custom-logo {
+  max-width: min(620px, 70vw);
+  max-height: 120px;
+}
+
+.site-masthead__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+.theme-toggle,
+.header-search > summary,
+.menu-toggle {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--aso-text);
+  font-family: var(--aso-heading-font);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.theme-toggle {
+  width: 38px;
+  padding: 0;
+}
+
+.site-menu-bar {
+  border-bottom: 1px solid var(--aso-border);
+  background: var(--aso-bg);
+}
+
+.site-menu-bar__inner {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.site-navigation {
+  width: 100%;
+}
+
+.primary-menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  font-size: .74rem;
+  letter-spacing: .055em;
+}
+
+.primary-menu > li {
+  border-right: 1px solid var(--aso-border);
+}
+
+.primary-menu > li:first-child {
+  border-left: 1px solid var(--aso-border);
+}
+
+.primary-menu > li > a {
+  padding: 17px 16px 16px;
+  white-space: nowrap;
+}
+
+.primary-menu > li > a::after {
+  left: 14px;
+  right: 14px;
+  bottom: 9px;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+
+.primary-menu > li > a:hover::after,
+.primary-menu > li.current-menu-item > a::after,
+.primary-menu > li.current-menu-ancestor > a::after {
+  right: 14px;
+  transform: scaleX(1);
+}
+
+.header-search__panel {
+  top: calc(100% + 14px);
+}
+
+@media (max-width: 1100px) {
+  .site-masthead__inner {
+    min-height: 126px;
+  }
+
+  .custom-logo {
+    max-width: min(520px, 68vw);
+    max-height: 96px;
+  }
+
+  .site-title {
+    font-size: clamp(3.2rem, 8vw, 6.8rem);
+  }
+
+  .primary-menu {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+  }
+
+  .primary-menu > li {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header.is-sticky {
+    position: sticky;
+  }
+
+  .site-masthead__inner {
+    min-height: 94px;
+    gap: 16px;
+  }
+
+  .custom-logo {
+    max-width: min(330px, 62vw);
+    max-height: 72px;
+  }
+
+  .site-title {
+    font-size: clamp(2.45rem, 10vw, 4.4rem);
+  }
+
+  .site-description {
+    display: none;
+  }
+
+  .site-menu-bar__inner {
+    min-height: 0;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-menu-bar {
+    position: relative;
+  }
+
+  .site-navigation {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 140;
+    width: 100%;
+    padding: 0 14px 14px;
+    border-bottom: 1px solid var(--aso-border);
+    background: var(--aso-bg);
+  }
+
+  .site-navigation.is-open {
+    display: block;
+  }
+
+  .primary-menu {
+    display: block;
+    overflow: visible;
+    border-top: 1px solid var(--aso-border);
+  }
+
+  .primary-menu > li,
+  .primary-menu > li:first-child {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--aso-border);
+  }
+
+  .primary-menu > li > a {
+    display: block;
+    padding: 14px 2px;
+  }
+
+  .primary-menu > li > a::after {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-masthead__inner {
+    min-height: 82px;
+  }
+
+  .site-masthead__actions {
+    gap: 8px;
+  }
+
+  .theme-toggle,
+  .header-search > summary,
+  .menu-toggle {
+    font-size: .68rem;
+  }
+
+  .custom-logo {
+    max-width: min(250px, 58vw);
+    max-height: 58px;
+  }
+
+  .site-title {
+    font-size: clamp(2.15rem, 11vw, 3.6rem);
+  }
+}
