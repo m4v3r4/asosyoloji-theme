@@ -46,7 +46,14 @@ function asosyoloji_llms_txt() {
 	$lines[] = '';
 	$lines[] = '## Temel Sayfalar';
 
-	foreach ( get_pages( array( 'number' => 12, 'sort_column' => 'menu_order,post_title' ) ) as $page ) {
+	foreach (
+		get_pages(
+			array(
+				'number'      => 12,
+				'sort_column' => 'menu_order,post_title',
+			)
+		) as $page
+	) {
 		$lines[] = '- ' . sanitize_text_field( get_the_title( $page ) ) . ': ' . esc_url_raw( get_permalink( $page ) );
 	}
 
