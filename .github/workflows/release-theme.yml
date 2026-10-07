@@ -16,7 +16,7 @@ jobs:
       - name: Checkout tag
         uses: actions/checkout@v4
 
-      - name: Verify tag matches theme version
+      - name: Verify version
         shell: bash
         run: |
           set -euo pipefail
@@ -24,14 +24,10 @@ jobs:
           THEME_VERSION=$(grep -Po "^Version:\s*\K.*" style.css | tr -d '\r')
           PHP_VERSION=$(grep -Po "ASOSYOLOJI_VERSION',\s*'\K[^']+" functions.php)
 
-          echo "Tag: $TAG_VERSION"
-          echo "style.css: $THEME_VERSION"
-          echo "functions.php: $PHP_VERSION"
-
           test "$TAG_VERSION" = "$THEME_VERSION"
           test "$TAG_VERSION" = "$PHP_VERSION"
 
-      - name: Build installable ZIP
+      - name: Build theme ZIP
         shell: bash
         run: |
           set -euo pipefail
@@ -40,19 +36,13 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             --exclude 'build' \
-            --exclude '.gitignore' \
-            --exclude 'composer.json' \
-            --exclude 'composer.lock' \
-            --exclude 'phpcs.xml.dist' \
-            --exclude 'bin' \
-            --exclude 'tests' \
-            --exclude 'vendor' \
-            --exclude 'node_modules'
+            --exclude '.gitignore'
+
           cd build
           zip -qr asosyoloji-theme.zip asosyoloji
           unzip -t asosyoloji-theme.zip
 
-      - name: Create GitHub Release
+      - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: build/asosyoloji-theme.zip
