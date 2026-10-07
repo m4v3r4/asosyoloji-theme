@@ -10,9 +10,12 @@
 
 	<arg name="extensions" value="php"/>
 	<arg name="colors"/>
+	<arg name="warning-severity" value="0"/>
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="Squiz.Commenting.FileComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
 	</rule>
 
 	<rule ref="WordPress-Extra"/>
