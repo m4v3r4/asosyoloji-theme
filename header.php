@@ -51,6 +51,12 @@
 			?>
 		</nav>
 
+		<?php if ( get_theme_mod( 'aso_show_theme_toggle', true ) ) : ?>
+			<button class="theme-toggle" type="button" aria-label="<?php esc_attr_e( 'Tema değiştir', 'asosyoloji' ); ?>" title="<?php esc_attr_e( 'Aydınlık / karanlık tema', 'asosyoloji' ); ?>">
+				<span class="theme-toggle__icon" aria-hidden="true">◐</span>
+			</button>
+		<?php endif; ?>
+
 		<?php if ( get_theme_mod( 'aso_show_search', true ) ) : ?>
 			<details class="header-search">
 				<summary><?php esc_html_e( 'Ara', 'asosyoloji' ); ?></summary>
