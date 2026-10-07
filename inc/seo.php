@@ -93,6 +93,19 @@ function asosyoloji_publisher_same_as() {
 	);
 }
 
+function asosyoloji_publisher_logo_url() {
+	$custom_logo_id = absint( get_theme_mod( 'custom_logo', 0 ) );
+
+	if ( $custom_logo_id ) {
+		$url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
+		if ( $url ) {
+			return $url;
+		}
+	}
+
+	return '';
+}
+
 function asosyoloji_default_social_image_url() {
 	$attachment_id = absint( get_theme_mod( 'aso_default_social_image', 0 ) );
 
@@ -103,15 +116,8 @@ function asosyoloji_default_social_image_url() {
 		}
 	}
 
-	$custom_logo_id = absint( get_theme_mod( 'custom_logo', 0 ) );
-	if ( $custom_logo_id ) {
-		$url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
-		if ( $url ) {
-			return $url;
-		}
-	}
-
-	return '';
+	$publisher_logo = asosyoloji_publisher_logo_url();
+	return $publisher_logo ? $publisher_logo : '';
 }
 
 function asosyoloji_get_post_image_url( $post_id = 0 ) {
@@ -307,7 +313,7 @@ function asosyoloji_schema_graph() {
 	$webpage_id    = $current_url . '#webpage';
 	$publisher     = trim( (string) get_theme_mod( 'aso_publisher_name', get_bloginfo( 'name' ) ) );
 	$publisher_desc = trim( (string) get_theme_mod( 'aso_publisher_description', get_bloginfo( 'description' ) ) );
-	$logo_url      = asosyoloji_default_social_image_url();
+	$logo_url      = asosyoloji_publisher_logo_url();
 	$graph         = array();
 
 	$organization = array(
@@ -469,7 +475,15 @@ function asosyoloji_schema_graph() {
 			);
 		}
 		if ( $citations ) {
-			$article['citation'] = $citations;
+			$article['citation'] = array_map(
+				static function ( $url ) {
+					return array(
+						'@type' => 'CreativeWork',
+						'url'   => $url,
+					);
+				},
+				$citations
+			);
 		}
 
 		$graph[] = $article;
