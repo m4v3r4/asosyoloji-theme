@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.5.2
+Version: 0.5.3
 Text Domain: asosyoloji
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -2695,5 +2695,212 @@ html[data-theme="dark"] .author-social-links a {
   .header-search > summary {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+
+/* Themed post listing widget / shortcode */
+.aso-post-widget {
+  width: 100%;
+}
+
+.aso-post-widget__heading {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--aso-text);
+  font-family: var(--aso-heading-font);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.aso-post-widget__items {
+  display: grid;
+}
+
+.aso-post-widget__item {
+  min-width: 0;
+}
+
+.aso-post-widget__media {
+  display: block;
+  overflow: hidden;
+  background: var(--aso-surface);
+}
+
+.aso-post-widget__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aso-post-widget__title {
+  margin: 6px 0 8px;
+  font-family: var(--aso-heading-font);
+  font-size: 1.15rem;
+  line-height: 1.06;
+  letter-spacing: -.03em;
+}
+
+.aso-post-widget__title a {
+  text-decoration: none;
+}
+
+.aso-post-widget__excerpt {
+  margin-top: 10px;
+  color: var(--aso-muted);
+  font-size: .9em;
+  line-height: 1.55;
+}
+
+.aso-post-widget__excerpt p {
+  margin: 0;
+}
+
+/* Image + text list */
+.aso-post-widget--list .aso-post-widget__item {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--aso-border);
+}
+
+.aso-post-widget--list .aso-post-widget__media {
+  aspect-ratio: 4 / 3;
+}
+
+/* Compact */
+.aso-post-widget--compact .aso-post-widget__item {
+  padding: 14px 0;
+  border-top: 1px solid var(--aso-border);
+}
+
+.aso-post-widget--compact .aso-post-widget__media {
+  display: none;
+}
+
+.aso-post-widget--compact .aso-post-widget__title {
+  font-size: 1rem;
+}
+
+/* Grid */
+.aso-post-widget--grid .aso-post-widget__items {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.aso-post-widget--grid .aso-post-widget__media {
+  margin-bottom: 16px;
+  aspect-ratio: 16 / 10;
+}
+
+.aso-post-widget--grid .aso-post-widget__item {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--aso-border);
+}
+
+/* Feature + list */
+.aso-post-widget--feature .aso-post-widget__items {
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: 0 30px;
+}
+
+.aso-post-widget--feature .aso-post-widget__item {
+  padding: 15px 0;
+  border-top: 1px solid var(--aso-border);
+}
+
+.aso-post-widget--feature .aso-post-widget__item.is-featured {
+  grid-row: span 10;
+  padding-top: 0;
+  padding-right: 30px;
+  border-top: 0;
+  border-right: 1px solid var(--aso-border);
+}
+
+.aso-post-widget--feature .is-featured .aso-post-widget__media {
+  margin-bottom: 18px;
+  aspect-ratio: 16 / 10;
+}
+
+.aso-post-widget--feature .is-featured .aso-post-widget__title {
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  line-height: .98;
+}
+
+.aso-post-widget--feature .aso-post-widget__item:not(.is-featured) {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.aso-post-widget--feature .aso-post-widget__item:not(.is-featured) .aso-post-widget__media {
+  aspect-ratio: 1 / 1;
+}
+
+.footer-widget .aso-post-widget__heading {
+  border-color: rgba(255,255,255,.22);
+  font-size: .82rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.footer-widget .aso-post-widget--grid .aso-post-widget__items,
+.footer-widget .aso-post-widget--feature .aso-post-widget__items {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.footer-widget .aso-post-widget--feature .aso-post-widget__item.is-featured {
+  grid-row: auto;
+  padding-right: 0;
+  padding-bottom: 18px;
+  border-right: 0;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.footer-widget .aso-post-widget__item {
+  border-color: rgba(255,255,255,.18);
+}
+
+html[data-theme="dark"] .aso-post-widget__heading {
+  border-color: var(--aso-border);
+}
+
+html[data-theme="dark"] .aso-post-widget__item {
+  border-color: var(--aso-border);
+}
+
+@media (max-width: 900px) {
+  .aso-post-widget--grid .aso-post-widget__items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aso-post-widget--feature .aso-post-widget__items {
+    grid-template-columns: 1fr;
+  }
+
+  .aso-post-widget--feature .aso-post-widget__item.is-featured {
+    grid-row: auto;
+    padding-right: 0;
+    padding-bottom: 24px;
+    border-right: 0;
+    border-bottom: 1px solid var(--aso-border);
+  }
+}
+
+@media (max-width: 600px) {
+  .aso-post-widget--grid .aso-post-widget__items {
+    grid-template-columns: 1fr;
+  }
+
+  .aso-post-widget--list .aso-post-widget__item {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .aso-post-widget--feature .aso-post-widget__item:not(.is-featured) {
+    grid-template-columns: 84px minmax(0, 1fr);
   }
 }
