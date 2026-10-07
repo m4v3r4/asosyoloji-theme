@@ -2,6 +2,18 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.6 - 2026-10-07
+
+### Added
+- Dedicated `single-em_event.php` event detail template.
+- Editorial event hero with event type, date range, time, venue and ticket information.
+- Event share actions and calendar-add integration when Asosyoloji Haftalık is active.
+- Responsive event content layout with sticky event information panel on desktop.
+
+### Changed
+- Event pages now use a purpose-built Asosyoloji detail layout instead of the generic single-post presentation.
+
+
 ## 0.7.5 - 2026-10-07
 
 ### Added
