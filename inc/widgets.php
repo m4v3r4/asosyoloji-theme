@@ -271,6 +271,44 @@ function asosyoloji_render_announcements( $args = array() ) {
 }
 
 /**
+ * Resolve a printable issue cover.
+ *
+ * WordPress can generate a first-page preview image for PDF attachments when
+ * the server has PDF preview support. A manually selected cover remains a
+ * fallback for servers that cannot generate one.
+ *
+ * @param array $item Magazine item.
+ * @return string
+ */
+function asosyoloji_magazine_cover_url( $item ) {
+	$manual_cover = esc_url_raw( $item['cover_url'] ?? '' );
+	if ( $manual_cover ) {
+		return $manual_cover;
+	}
+
+	$attachment_id = absint( $item['attachment_id'] ?? 0 );
+	if ( $attachment_id && 'application/pdf' === get_post_mime_type( $attachment_id ) ) {
+		$preview = wp_get_attachment_image_url( $attachment_id, 'large' );
+		if ( $preview ) {
+			return esc_url_raw( $preview );
+		}
+
+		$metadata = wp_get_attachment_metadata( $attachment_id );
+		if ( ! empty( $metadata['sizes']['full']['file'] ) ) {
+			$upload = wp_get_upload_dir();
+			$file   = get_attached_file( $attachment_id );
+			if ( $file && ! empty( $upload['baseurl'] ) && ! empty( $upload['basedir'] ) ) {
+				$preview_path = trailingslashit( dirname( $file ) ) . $metadata['sizes']['full']['file'];
+				$preview_url  = str_replace( $upload['basedir'], $upload['baseurl'], $preview_path );
+				return esc_url_raw( $preview_url );
+			}
+		}
+	}
+
+	return '';
+}
+
+/**
  * Render magazine archive items.
  *
  * @param array $args Archive options.
@@ -313,9 +351,10 @@ function asosyoloji_render_magazine_archive( $args = array() ) {
 		<div class="aso-magazine-archive__items">
 			<?php foreach ( $items as $item ) : ?>
 				<?php
-				$title     = sanitize_text_field( $item['title'] ?? '' );
-				$pdf_url   = esc_url( $item['pdf_url'] ?? '' );
-				$cover_url = esc_url( $item['cover_url'] ?? '' );
+				$title         = sanitize_text_field( $item['title'] ?? '' );
+				$pdf_url       = esc_url( $item['pdf_url'] ?? '' );
+				$attachment_id = absint( $item['attachment_id'] ?? 0 );
+				$cover_url     = esc_url( asosyoloji_magazine_cover_url( $item ) );
 				?>
 				<article class="aso-magazine-card">
 					<a class="aso-magazine-card__cover" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener noreferrer">
@@ -334,7 +373,7 @@ function asosyoloji_render_magazine_archive( $args = array() ) {
 							</a>
 						</h3>
 						<a class="aso-magazine-card__link" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener noreferrer">
-							<?php esc_html_e( 'PDF dosyasını aç', 'asosyoloji' ); ?>
+							<?php esc_html_e( 'Oku', 'asosyoloji' ); ?>
 						</a>
 					</div>
 				</article>
