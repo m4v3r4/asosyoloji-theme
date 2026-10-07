@@ -341,6 +341,46 @@ function asosyoloji_render_magazine_archive( $args = array() ) {
 			<?php endforeach; ?>
 		</div>
 	</section>
+
+	<?php if ( function_exists( 'asosyoloji_theme_seo_enabled' ) && asosyoloji_theme_seo_enabled() ) : ?>
+		<?php
+		$publication_items = array();
+		foreach ( $items as $position => $item ) {
+			$issue = array(
+				'@type'      => 'PublicationIssue',
+				'name'       => sanitize_text_field( $item['title'] ?? '' ),
+				'url'        => esc_url_raw( $item['pdf_url'] ?? '' ),
+				'inLanguage' => 'tr-TR',
+				'isPartOf'   => array(
+					'@type' => 'Periodical',
+					'name'  => get_bloginfo( 'name' ),
+					'url'   => home_url( '/' ),
+				),
+				'publisher'  => array(
+					'@id' => home_url( '/' ) . '#organization',
+				),
+			);
+
+			if ( ! empty( $item['cover_url'] ) ) {
+				$issue['image'] = esc_url_raw( $item['cover_url'] );
+			}
+
+			$publication_items[] = array(
+				'@type'    => 'ListItem',
+				'position' => $position + 1,
+				'item'     => $issue,
+			);
+		}
+
+		$publication_schema = array(
+			'@context'        => 'https://schema.org',
+			'@type'           => 'ItemList',
+			'name'            => $args['title'],
+			'itemListElement' => $publication_items,
+		);
+		?>
+		<script type="application/ld+json"><?php echo wp_json_encode( $publication_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?></script>
+	<?php endif; ?>
 	<?php
 
 	return (string) ob_get_clean();
