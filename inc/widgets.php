@@ -271,13 +271,91 @@ function asosyoloji_render_announcements( $args = array() ) {
 }
 
 /**
+ * Render magazine archive items.
+ *
+ * @param array $args Archive options.
+ * @return string
+ */
+function asosyoloji_render_magazine_archive( $args = array() ) {
+	$defaults = array(
+		'title'  => __( 'Dergi Arşivi', 'asosyoloji' ),
+		'items'  => array(),
+		'layout' => 'grid',
+	);
+
+	$args   = wp_parse_args( $args, $defaults );
+	$layout = in_array( $args['layout'], array( 'grid', 'list' ), true ) ? $args['layout'] : 'grid';
+	$items  = is_array( $args['items'] ) ? $args['items'] : array();
+
+	$items = array_values(
+		array_filter(
+			$items,
+			static function ( $item ) {
+				return ! empty( $item['title'] ) && ! empty( $item['pdf_url'] );
+			}
+		)
+	);
+
+	if ( empty( $items ) ) {
+		return '';
+	}
+
+	ob_start();
+	?>
+	<section class="aso-magazine-archive aso-magazine-archive--<?php echo esc_attr( $layout ); ?>">
+		<?php if ( $args['title'] ) : ?>
+			<div class="aso-magazine-archive__header">
+				<div class="section-kicker"><?php esc_html_e( 'Basılı Sayılar', 'asosyoloji' ); ?></div>
+				<h2 class="aso-magazine-archive__heading"><?php echo esc_html( $args['title'] ); ?></h2>
+			</div>
+		<?php endif; ?>
+
+		<div class="aso-magazine-archive__items">
+			<?php foreach ( $items as $item ) : ?>
+				<?php
+				$title     = sanitize_text_field( $item['title'] ?? '' );
+				$pdf_url   = esc_url( $item['pdf_url'] ?? '' );
+				$cover_url = esc_url( $item['cover_url'] ?? '' );
+				?>
+				<article class="aso-magazine-card">
+					<a class="aso-magazine-card__cover" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener noreferrer">
+						<?php if ( $cover_url ) : ?>
+							<img src="<?php echo esc_url( $cover_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" loading="lazy" decoding="async">
+						<?php else : ?>
+							<span class="aso-magazine-card__placeholder" aria-hidden="true">PDF</span>
+						<?php endif; ?>
+					</a>
+
+					<div class="aso-magazine-card__content">
+						<div class="aso-magazine-card__type">PDF</div>
+						<h3 class="aso-magazine-card__title">
+							<a href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener noreferrer">
+								<?php echo esc_html( $title ); ?>
+							</a>
+						</h3>
+						<a class="aso-magazine-card__link" href="<?php echo esc_url( $pdf_url ); ?>" target="_blank" rel="noopener noreferrer">
+							<?php esc_html_e( 'PDF dosyasını aç', 'asosyoloji' ); ?>
+						</a>
+					</div>
+				</article>
+			<?php endforeach; ?>
+		</div>
+	</section>
+	<?php
+
+	return (string) ob_get_clean();
+}
+
+/**
  * Register theme widgets.
  */
 function asosyoloji_register_theme_widgets() {
 	require_once get_template_directory() . '/inc/class-asosyoloji-post-list-widget.php';
 	require_once get_template_directory() . '/inc/class-asosyoloji-announcements-widget.php';
+	require_once get_template_directory() . '/inc/class-asosyoloji-magazine-archive-widget.php';
 	register_widget( 'Asosyoloji_Post_List_Widget' );
 	register_widget( 'Asosyoloji_Announcements_Widget' );
+	register_widget( 'Asosyoloji_Magazine_Archive_Widget' );
 }
 add_action( 'widgets_init', 'asosyoloji_register_theme_widgets' );
 
