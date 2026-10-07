@@ -45,9 +45,10 @@ if ( get_theme_mod( 'aso_home_show_hero', true ) ) :
 							</div>
 						</div>
 
-						<?php if ( has_post_thumbnail() ) : ?>
+						<?php $hero_image = asosyoloji_get_post_image( get_the_ID(), 'large', array( 'class' => 'home-hero__img' ) ); ?>
+						<?php if ( $hero_image ) : ?>
 							<a href="<?php the_permalink(); ?>" class="home-hero__image" aria-hidden="true" tabindex="-1">
-								<?php the_post_thumbnail( 'large' ); ?>
+								<?php echo wp_kses_post( $hero_image ); ?>
 							</a>
 						<?php else : ?>
 							<div class="home-hero__excerpt"><?php the_excerpt(); ?></div>
@@ -173,9 +174,10 @@ if ( get_theme_mod( 'aso_home_show_hero', true ) ) :
 							$feature_index++;
 							?>
 							<article <?php post_class( 1 === $feature_index ? 'feature-list__lead' : 'feature-list__item' ); ?>>
-								<?php if ( has_post_thumbnail() ) : ?>
+								<?php $feature_image = asosyoloji_get_post_image( get_the_ID(), 1 === $feature_index ? 'large' : 'medium_large', array( 'class' => 'feature-list__img' ) ); ?>
+								<?php if ( $feature_image ) : ?>
 									<a class="feature-list__image" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-										<?php the_post_thumbnail( 1 === $feature_index ? 'large' : 'medium_large' ); ?>
+										<?php echo wp_kses_post( $feature_image ); ?>
 									</a>
 								<?php endif; ?>
 
