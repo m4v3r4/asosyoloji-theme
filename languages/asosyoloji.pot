@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:20:04+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:21:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:216
+#: functions.php:231
 #: home.php:13
 #: page.php:20
 msgid "Asosyoloji"
@@ -109,13 +109,30 @@ msgstr ""
 msgid "Alt Menü"
 msgstr ""
 
+#: functions.php:103
+msgid "Yazılar yükleniyor…"
+msgstr ""
+
+#: functions.php:104
+#: template-parts/home-latest.php:84
+msgid "Daha fazla yükle"
+msgstr ""
+
+#: functions.php:105
+msgid "Tüm yazılar yüklendi."
+msgstr ""
+
+#: functions.php:106
+msgid "Yazılar yüklenemedi. Tekrar deneyin."
+msgstr ""
+
 #. translators: %d: Footer column number.
-#: functions.php:171
+#: functions.php:186
 #, php-format
 msgid "Footer Sütun %d"
 msgstr ""
 
-#: functions.php:173
+#: functions.php:188
 msgid "Footer sütununa blok veya bileşen ekleyin."
 msgstr ""
 
@@ -392,7 +409,7 @@ msgstr ""
 #: inc/class-asosyoloji-post-list-widget.php:98
 #: inc/customizer.php:551
 #: inc/section-order.php:63
-#: template-parts/home-latest.php:46
+#: template-parts/home-latest.php:62
 msgid "Son Yazılar"
 msgstr ""
 
@@ -666,7 +683,7 @@ msgid "Yazı akışı bölümünü göster"
 msgstr ""
 
 #: inc/customizer.php:534
-#: template-parts/home-latest.php:45
+#: template-parts/home-latest.php:61
 msgid "Güncel"
 msgstr ""
 
@@ -1153,7 +1170,7 @@ msgstr ""
 msgid "Farklı bir arama yapmayı deneyebilirsiniz."
 msgstr ""
 
-#: template-parts/home-latest.php:62
+#: template-parts/home-latest.php:92
 msgid "Bu bölüm için henüz içerik bulunmuyor."
 msgstr ""
 
