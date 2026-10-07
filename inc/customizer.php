@@ -407,6 +407,35 @@ function asosyoloji_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_section(
+		'aso_home_general',
+		array(
+			'title' => __( 'Ana Sayfa: Genel', 'asosyoloji' ),
+			'panel' => 'aso_theme_options',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_home_global_exclude_categories',
+		array(
+			'default'           => array(),
+			'sanitize_callback' => 'asosyoloji_sanitize_category_ids',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Asosyoloji_Multi_Select_Control(
+			$wp_customize,
+			'aso_home_global_exclude_categories',
+			array(
+				'label'       => __( 'Ana sayfada genel olarak hariç tutulacak kategoriler', 'asosyoloji' ),
+				'description' => __( 'Duyurular gibi ana sayfadaki yazı akışlarında görünmesini istemediğiniz kategorileri seçin. Bölüm bazlı hariç tutmalar ayrıca uygulanır.', 'asosyoloji' ),
+				'section'     => 'aso_home_general',
+				'choices'     => array_filter( asosyoloji_category_choices(), 'is_int', ARRAY_FILTER_USE_KEY ),
+			)
+		)
+	);
+
+	$wp_customize->add_section(
 		'aso_home_hero',
 		array(
 			'title' => __( 'Ana Sayfa: Öne Çıkan', 'asosyoloji' ),
