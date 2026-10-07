@@ -10,7 +10,7 @@ if ( ! get_theme_mod( 'aso_home_featured_section_show', true ) ) {
 }
 
 $category            = absint( get_theme_mod( 'aso_home_featured_section_category', 0 ) );
-$excluded_categories = asosyoloji_sanitize_category_ids( get_theme_mod( 'aso_home_featured_section_exclude_categories', array() ) );
+$excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_featured_section_exclude_categories', array() ) );
 $count    = min( 8, max( 2, absint( get_theme_mod( 'aso_home_featured_section_count', 4 ) ) ) );
 $layout   = get_theme_mod( 'aso_home_featured_section_layout', 'feature-list' );
 $args     = array(
