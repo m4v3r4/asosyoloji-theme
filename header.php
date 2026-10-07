@@ -50,6 +50,15 @@
 			);
 			?>
 		</nav>
+
+		<?php if ( get_theme_mod( 'aso_show_search', true ) ) : ?>
+			<details class="header-search">
+				<summary><?php esc_html_e( 'Ara', 'asosyoloji' ); ?></summary>
+				<div class="header-search__panel">
+					<?php get_search_form(); ?>
+				</div>
+			</details>
+		<?php endif; ?>
 	</div>
 </header>
 
