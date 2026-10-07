@@ -32,26 +32,26 @@ function asosyoloji_llms_txt() {
 
 	header( 'Content-Type: text/plain; charset=utf-8' );
 
-	echo '# ' . esc_html( $publisher ? $publisher : get_bloginfo( 'name' ) ) . "
+	echo '# ' . sanitize_text_field( $publisher ? $publisher : get_bloginfo( 'name' ) ) . "
 
 ";
 
 	if ( $desc ) {
-		echo esc_html( $desc ) . "
+		echo sanitize_textarea_field( $desc ) . "
 
 ";
 	}
 
 	echo '## Site' . "
 ";
-	echo '- ' . esc_url( home_url( '/' ) ) . "
+	echo '- ' . esc_url_raw( home_url( '/' ) ) . "
 
 ";
 
 	echo '## Temel Sayfalar' . "
 ";
 	foreach ( get_pages( array( 'number' => 12, 'sort_column' => 'menu_order,post_title' ) ) as $page ) {
-		echo '- ' . esc_html( get_the_title( $page ) ) . ': ' . esc_url( get_permalink( $page ) ) . "
+		echo '- ' . sanitize_text_field( get_the_title( $page ) ) . ': ' . esc_url_raw( get_permalink( $page ) ) . "
 ";
 	}
 
@@ -59,7 +59,7 @@ function asosyoloji_llms_txt() {
 ## Son Yazılar
 ";
 	foreach ( $posts as $post ) {
-		echo '- ' . esc_html( get_the_title( $post ) ) . ': ' . esc_url( get_permalink( $post ) ) . "
+		echo '- ' . sanitize_text_field( get_the_title( $post ) ) . ': ' . esc_url_raw( get_permalink( $post ) ) . "
 ";
 	}
 
