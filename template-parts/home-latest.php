@@ -14,6 +14,8 @@ $category       = absint( get_theme_mod( 'aso_home_latest_category', 0 ) );
 $excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_latest_exclude_categories', array() ) );
 $latest_orderby = get_theme_mod( 'aso_home_latest_orderby', 'date' );
 $latest_order   = get_theme_mod( 'aso_home_latest_order', 'DESC' );
+$load_mode      = get_theme_mod( 'aso_home_latest_load_mode', 'button' );
+$load_count     = min( 12, max( 3, absint( get_theme_mod( 'aso_home_latest_load_count', 6 ) ) ) );
 
 if ( ! in_array( $latest_orderby, array( 'date', 'modified', 'title', 'rand', 'menu_order' ), true ) ) {
 	$latest_orderby = 'date';
@@ -38,7 +40,16 @@ if ( $category ) {
 
 $query = new WP_Query( $args );
 ?>
-<section class="home-section">
+<section
+	class="home-section"
+	data-home-latest
+	data-load-mode="<?php echo esc_attr( in_array( $load_mode, array( 'none', 'button', 'infinite' ), true ) ? $load_mode : 'button' ); ?>"
+	data-load-count="<?php echo esc_attr( $load_count ); ?>"
+	data-category="<?php echo esc_attr( $category ); ?>"
+	data-orderby="<?php echo esc_attr( $latest_orderby ); ?>"
+	data-order="<?php echo esc_attr( $latest_order ); ?>"
+	data-excluded-categories="<?php echo esc_attr( implode( ',', $excluded_categories ) ); ?>"
+>
 	<div class="aso-container">
 		<div class="section-heading">
 			<div>
@@ -48,7 +59,7 @@ $query = new WP_Query( $args );
 		</div>
 
 		<?php if ( $query->have_posts() ) : ?>
-			<div class="article-grid">
+			<div class="article-grid" data-home-latest-grid>
 				<?php
 				while ( $query->have_posts() ) :
 					$query->the_post();
@@ -58,6 +69,20 @@ $query = new WP_Query( $args );
 				?>
 			</div>
 			<?php wp_reset_postdata(); ?>
+			<?php
+			$initial_loaded = $query->post_count;
+			$has_more       = $initial_loaded < (int) $query->found_posts;
+			?>
+			<?php if ( 'none' !== $load_mode && $has_more ) : ?>
+				<div class="home-latest-loader" data-home-latest-controls>
+					<button class="aso-button home-latest-loader__button" type="button" data-home-latest-button>
+						<?php esc_html_e( 'Daha fazla yükle', 'asosyoloji' ); ?>
+					</button>
+					<div class="home-latest-loader__status" data-home-latest-status aria-live="polite"></div>
+					<div class="home-latest-loader__sentinel" data-home-latest-sentinel aria-hidden="true"></div>
+				</div>
+			<?php endif; ?>
+
 		<?php else : ?>
 			<p class="home-section__empty"><?php esc_html_e( 'Bu bölüm için henüz içerik bulunmuyor.', 'asosyoloji' ); ?></p>
 		<?php endif; ?>
