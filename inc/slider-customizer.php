@@ -93,7 +93,6 @@ function asosyoloji_slider_customize_register( $wp_customize ) {
 		)
 	);
 
-
 	$wp_customize->add_setting(
 		'aso_home_slider_count',
 		array(
