@@ -42,7 +42,7 @@ Tema dört ayrı footer widget alanı sağlar:
 
 Sütun sayısı **Görünüm → Özelleştir → Asosyoloji Tema Ayarları → Footer Builder** bölümünden 1–4 arasında seçilebilir. Her sütunun içeriği WordPress'in **Görünüm → Bileşenler** arayüzünden blok/widget eklenerek düzenlenebilir.
 
-Footer altında özgür yazılım lisans açıklaması ve kaynak kodu bağlantısı gösterilebilir. Bu alan da Customizer üzerinden açılıp kapatılabilir ve düzenlenebilir.
+Footer altında kompakt **GPL-3.0-or-later · Tema kaynak kodu** bilgisi gösterilebilir. Bu satır Customizer üzerinden açılıp kapatılabilir; kaynak kodu adresi değiştirilebilir.
 
 ## Lisans
 
