@@ -4,6 +4,7 @@
  *
  * @package Asosyoloji
  */
+
 ?>
 
 <section class="entry">
