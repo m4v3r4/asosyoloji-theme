@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:44:03+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:46:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -892,27 +892,13 @@ msgid "İçindekiler"
 msgstr ""
 
 #. translators: %d: GitHub API HTTP status code.
-#: inc/github-updater.php:86
+#: inc/github-updater.php:58
 #, php-format
 msgid "GitHub release bilgisi alınamadı. HTTP %d."
 msgstr ""
 
-#: inc/github-updater.php:94
+#: inc/github-updater.php:68
 msgid "GitHub release yanıtı geçersiz."
-msgstr ""
-
-#: inc/github-updater.php:221
-msgid "Private GitHub temasını güncellemek için ASOSYOLOJI_GITHUB_TOKEN wp-config.php içinde tanımlanmalıdır."
-msgstr ""
-
-#: inc/github-updater.php:227
-msgid "Tema güncellemesi için geçici dosya oluşturulamadı."
-msgstr ""
-
-#. translators: %d: GitHub release asset HTTP status code.
-#: inc/github-updater.php:253
-#, php-format
-msgid "GitHub tema paketi indirilemedi. HTTP %d."
 msgstr ""
 
 #: inc/reading.php:16
