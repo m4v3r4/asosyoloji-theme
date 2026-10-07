@@ -28,7 +28,7 @@ Başlangıç yapısı:
 
 ## Durum
 
-İlk tema iskeleti hazırlanıyor. Tasarım ve WordPress panel seçenekleri aşamalı olarak geliştirilecek.
+Tema aktif geliştirme aşamasında **0.6 beta** seviyesindedir. Ana sayfa, slider, kategori akışları, yazı sayfası, yazar sayfaları, arşiv/PDF araçları, widget/blok sistemi, light/dark tema ve WordPress Customizer seçenekleri çalışır durumdadır. 1.0 öncesinde canlı içerik QA ve son erişilebilirlik kontrolleri yürütülmektedir.
 
 
 ## Footer Builder
@@ -134,3 +134,8 @@ Shortcode örneği:
 ```text
 [asosyoloji_posts title="Arşiv Seçkisi" category="yazilar" exclude="duyurular" author="12" count="8" layout="grid" orderby="date" order="DESC" after="2026-01-01" before="2026-12-31" offset="0" sticky="0"]
 ```
+
+
+## Changelog
+
+Sürüm değişiklikleri için `CHANGELOG.md` dosyasına bakın.
