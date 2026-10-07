@@ -229,3 +229,25 @@ Tema SEO modu varsayılan olarak **Otomatik** çalışır. Yoast SEO, Rank Math,
 modlarından biri seçilebilir. Her yüklemede getirilecek yazı sayısı da panelden ayarlanır.
 
 Kategori hariç tutma ve slider/hero tekrar engelleme mantığı AJAX ile gelen yazılarda da korunur.
+
+
+## Önerilen Eklenti
+
+Tema, bağımsız **Asosyoloji Haftalık** eklentisini önerilen companion plugin olarak tanır.
+
+WordPress yönetiminde:
+
+**Görünüm → Asosyoloji Eklentileri**
+
+ekranından eklentinin durumu görülebilir.
+
+- Kurulu değilse GitHub Release paketinden tek tıkla kurulur ve etkinleştirilir.
+- Kurulu fakat pasifse etkinleştirme düğmesi gösterilir.
+- Etkinse etkinlik yönetim ekranına bağlantı gösterilir.
+- Eklenti aktif olduğunda öneri bildirimi kaybolur.
+
+Eklenti deposu:
+
+`https://github.com/m4v3r4/asosyoloji-weekly`
+
+Eklenti kendi güncellemelerini de GitHub Release sürümlerinden WordPress'in normal **Eklentiler → Güncellemeler** sistemi üzerinden alır.
