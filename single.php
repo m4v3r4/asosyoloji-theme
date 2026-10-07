@@ -34,9 +34,10 @@ while ( have_posts() ) :
 			<?php endif; ?>
 		</header>
 
-		<?php if ( has_post_thumbnail() ) : ?>
+		<?php $entry_image = asosyoloji_get_post_image( get_the_ID(), 'full', array( 'class' => 'entry-featured-image__img' ) ); ?>
+		<?php if ( $entry_image ) : ?>
 			<figure class="entry-featured-image">
-				<?php the_post_thumbnail( 'full' ); ?>
+				<?php echo wp_kses_post( $entry_image ); ?>
 			</figure>
 		<?php endif; ?>
 
