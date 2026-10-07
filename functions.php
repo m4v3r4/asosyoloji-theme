@@ -23,6 +23,7 @@ require_once get_template_directory() . '/inc/reading.php';
 require_once get_template_directory() . '/inc/archive-tools.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/customizer-preview.php';
+require_once get_template_directory() . '/inc/widgets.php';
 
 function asosyoloji_setup() {
 	load_theme_textdomain( 'asosyoloji', get_template_directory() . '/languages' );
