@@ -139,3 +139,24 @@ Shortcode örneği:
 ## Changelog
 
 Sürüm değişiklikleri için `CHANGELOG.md` dosyasına bakın.
+
+
+## Asosyoloji Duyurular
+
+Tema, normal yazı kartlarından ayrı bir görünüme sahip **Asosyoloji: Duyurular** widget ve Gutenberg bloğu içerir.
+
+Varsayılan olarak `duyurular` kategorisini kullanır. İstenirse başka bir kategori seçilebilir.
+
+Gösterim seçenekleri:
+- Tarih rozeti
+- Duyuru etiketi
+- Başlık
+- Kısa açıklama
+- Duyuru detayları bağlantısı
+- Normal / kompakt görünüm
+
+Shortcode:
+
+```text
+[asosyoloji_duyurular title="Duyurular" category="duyurular" count="5" excerpt="1" date="1" button="1" compact="0"]
+```
