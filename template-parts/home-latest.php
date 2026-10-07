@@ -11,6 +11,7 @@ if ( ! get_theme_mod( 'aso_home_show_latest', true ) ) {
 
 $count          = min( 12, max( 3, absint( get_theme_mod( 'aso_home_latest_count', 6 ) ) ) );
 $category       = absint( get_theme_mod( 'aso_home_latest_category', 0 ) );
+$excluded_categories = asosyoloji_sanitize_category_ids( get_theme_mod( 'aso_home_latest_exclude_categories', array() ) );
 $latest_orderby = get_theme_mod( 'aso_home_latest_orderby', 'date' );
 $latest_order   = get_theme_mod( 'aso_home_latest_order', 'DESC' );
 
@@ -27,7 +28,8 @@ $args = array(
 	'post_status'    => 'publish',
 	'orderby'        => $latest_orderby,
 	'order'          => $latest_order,
-	'post__not_in'   => ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
+	'post__not_in'      => ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
+	'category__not_in'   => $excluded_categories,
 );
 
 if ( $category ) {
