@@ -2654,3 +2654,46 @@ html[data-theme="dark"] .author-social-links a {
     font-size: .68rem;
   }
 }
+
+
+/* Accessibility focus treatment */
+:where(
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 3px solid var(--aso-primary);
+  outline-offset: 3px;
+}
+
+.site-navigation a:focus-visible,
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.header-search > summary:focus-visible,
+.aso-slider__arrow:focus-visible,
+.aso-slider__dot:focus-visible,
+.reading-tools button:focus-visible,
+.share-tools a:focus-visible,
+.share-tools button:focus-visible,
+.archive-tools__year:focus-visible {
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .primary-menu > li > a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-toggle,
+  .menu-toggle,
+  .header-search > summary {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
