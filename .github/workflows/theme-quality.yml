@@ -167,6 +167,13 @@ jobs:
           wp option update show_on_front page
           wp option update page_on_front "$FRONT_ID"
           wp eval "set_theme_mod( 'aso_home_global_exclude_categories', array( $NOTICE_CAT ) );"
+          wp eval "set_theme_mod( 'aso_home_slider_show', false );"
+          wp eval "set_theme_mod( 'aso_home_show_hero', false );"
+          wp eval "set_theme_mod( 'aso_home_featured_section_show', false );"
+          wp eval "set_theme_mod( 'aso_home_show_archive', false );"
+          wp eval "set_theme_mod( 'aso_home_latest_load_mode', 'button' );"
+          wp eval "set_theme_mod( 'aso_home_latest_count', 6 );"
+          wp eval "set_theme_mod( 'aso_home_latest_load_count', 3 );"
           php -S 127.0.0.1:8080 -t /tmp/wordpress >/tmp/wp-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
