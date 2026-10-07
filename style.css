@@ -1529,3 +1529,124 @@ html[data-theme="dark"] .custom-logo {
     transition: none !important;
   }
 }
+
+
+/* Footer builder */
+.site-footer__brand-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(240px, .7fr);
+  gap: clamp(30px, 5vw, 72px);
+  align-items: end;
+}
+
+.site-footer__note {
+  max-width: 34ch;
+  justify-self: end;
+  opacity: .72;
+  font-family: var(--aso-heading-font);
+  font-size: .82rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.footer-widgets {
+  display: grid;
+  gap: clamp(28px, 4vw, 58px);
+  margin-top: clamp(42px, 6vw, 72px);
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+
+.footer-widgets--1 { grid-template-columns: 1fr; }
+.footer-widgets--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.footer-widgets--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.footer-widgets--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.footer-widget + .footer-widget {
+  margin-top: 28px;
+}
+
+.footer-widget__title,
+.footer-widget .wp-block-heading {
+  margin: 0 0 14px;
+  font-family: var(--aso-heading-font);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.footer-widget ul,
+.footer-widget .wp-block-navigation__container {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-widget li + li {
+  margin-top: 8px;
+}
+
+.footer-widget a {
+  text-decoration-thickness: 1px;
+}
+
+.footer-widget p {
+  margin-top: 0;
+  opacity: .82;
+}
+
+.site-footer__bottom {
+  align-items: flex-start;
+}
+
+.site-footer__copyright {
+  flex: 0 0 auto;
+}
+
+.site-footer__license {
+  max-width: 760px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px 18px;
+  flex-wrap: wrap;
+  text-align: right;
+}
+
+.site-footer__license a {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .footer-widgets--3,
+  .footer-widgets--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer__brand-row {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__note {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .site-footer__bottom,
+  .site-footer__license {
+    text-align: left;
+  }
+
+  .site-footer__license {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-widgets--2,
+  .footer-widgets--3,
+  .footer-widgets--4 {
+    grid-template-columns: 1fr;
+  }
+}
