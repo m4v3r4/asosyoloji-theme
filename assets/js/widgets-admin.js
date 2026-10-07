@@ -30,7 +30,32 @@
 
         frame.on('select', function () {
           const attachment = frame.state().get('selection').first().toJSON();
+          const $title = $row.find('[data-magazine-title]');
+          const $cover = $row.find('[data-magazine-cover-url]');
+
           $row.find('[data-magazine-pdf-url]').val(attachment.url).trigger('change');
+          $row.find('[data-magazine-attachment-id]').val(attachment.id || 0).trigger('change');
+
+          if (!$title.val()) {
+            $title.val(attachment.title || attachment.filename || '').trigger('change');
+          }
+
+          if (!$cover.val()) {
+            let preview = '';
+            if (attachment.sizes) {
+              if (attachment.sizes.large && attachment.sizes.large.url) {
+                preview = attachment.sizes.large.url;
+              } else if (attachment.sizes.medium && attachment.sizes.medium.url) {
+                preview = attachment.sizes.medium.url;
+              } else if (attachment.sizes.full && attachment.sizes.full.url) {
+                preview = attachment.sizes.full.url;
+              }
+            }
+
+            if (preview) {
+              $cover.val(preview).trigger('change');
+            }
+          }
         });
 
         frame.open();
