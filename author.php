@@ -12,6 +12,8 @@ $avatar      = get_avatar( $author->ID, 240, '', $author->display_name, array( '
 $description = get_the_author_meta( 'description', $author->ID );
 ?>
 
+<?php asosyoloji_breadcrumbs(); ?>
+
 <header class="author-hero">
 	<div class="aso-container author-hero__grid">
 		<div class="author-hero__media">
@@ -25,6 +27,15 @@ $description = get_the_author_meta( 'description', $author->ID );
 			<?php if ( $description ) : ?>
 				<div class="author-hero__bio">
 					<?php echo wp_kses_post( wpautop( $description ) ); ?>
+				</div>
+			<?php endif; ?>
+
+			<?php $author_links = asosyoloji_author_social_links( $author->ID ); ?>
+			<?php if ( $author_links ) : ?>
+				<div class="author-social-links author-social-links--hero">
+					<?php foreach ( $author_links as $author_link ) : ?>
+						<a href="<?php echo esc_url( $author_link['url'] ); ?>" target="_blank" rel="me noopener noreferrer"><?php echo esc_html( $author_link['label'] ); ?></a>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 
