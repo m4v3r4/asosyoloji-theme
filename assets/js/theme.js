@@ -119,6 +119,131 @@
     }
   }
 
+  document.querySelectorAll('[data-home-latest]').forEach((section) => {
+    const grid = section.querySelector('[data-home-latest-grid]');
+    const button = section.querySelector('[data-home-latest-button]');
+    const status = section.querySelector('[data-home-latest-status]');
+    const sentinel = section.querySelector('[data-home-latest-sentinel]');
+    const mode = section.dataset.loadMode || 'button';
+
+    if (!grid || mode === 'none' || !window.asosyolojiTheme?.ajaxUrl) {
+      return;
+    }
+
+    const loadCount = Math.max(3, Number.parseInt(section.dataset.loadCount || '6', 10) || 6);
+    const excludedCategories = (section.dataset.excludedCategories || '')
+      .split(',')
+      .map((value) => Number.parseInt(value, 10))
+      .filter(Boolean);
+    const excludedPosts = (section.dataset.excludedPosts || '')
+      .split(',')
+      .map((value) => Number.parseInt(value, 10))
+      .filter(Boolean);
+
+    let offset = grid.children.length;
+    let loading = false;
+    let hasMore = true;
+
+    const setStatus = (message) => {
+      if (status) status.textContent = message || '';
+    };
+
+    const setButton = (disabled, label) => {
+      if (!button) return;
+      button.disabled = disabled;
+      button.textContent = label || window.asosyolojiTheme.strings.more;
+    };
+
+    const revealAppendedCards = (cards) => {
+      if (!motionEnabled) return;
+      cards.forEach((card, index) => {
+        card.classList.add('aso-reveal');
+        card.style.setProperty('--aso-reveal-delay', `${Math.min(index, 5) * 55}ms`);
+      });
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          cards.forEach((card) => card.classList.add('is-revealed'));
+        });
+      });
+    };
+
+    const loadMore = async () => {
+      if (loading || !hasMore) return;
+
+      loading = true;
+      setButton(true, window.asosyolojiTheme.strings.loading);
+      setStatus(window.asosyolojiTheme.strings.loading);
+
+      const body = new URLSearchParams();
+      body.set('action', 'asosyoloji_load_latest');
+      body.set('nonce', window.asosyolojiTheme.nonce);
+      body.set('count', String(loadCount));
+      body.set('offset', String(offset));
+      body.set('category', section.dataset.category || '0');
+      body.set('orderby', section.dataset.orderby || 'date');
+      body.set('order', section.dataset.order || 'DESC');
+      excludedCategories.forEach((id) => body.append('excluded_categories[]', String(id)));
+      excludedPosts.forEach((id) => body.append('excluded_posts[]', String(id)));
+
+      try {
+        const response = await fetch(window.asosyolojiTheme.ajaxUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          },
+          credentials: 'same-origin',
+          body: body.toString()
+        });
+
+        if (!response.ok) throw new Error('Request failed');
+
+        const payload = await response.json();
+        if (!payload.success) throw new Error('Invalid response');
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = payload.data.html || '';
+        const cards = Array.from(wrapper.children);
+
+        cards.forEach((card) => grid.appendChild(card));
+        revealAppendedCards(cards);
+
+        offset += Number(payload.data.loaded || cards.length);
+        hasMore = !!payload.data.hasMore;
+
+        if (!hasMore) {
+          setButton(true, window.asosyolojiTheme.strings.done);
+          setStatus(window.asosyolojiTheme.strings.done);
+          sentinel?.remove();
+        } else {
+          setButton(false, window.asosyolojiTheme.strings.more);
+          setStatus('');
+        }
+      } catch (error) {
+        setButton(false, window.asosyolojiTheme.strings.more);
+        setStatus(window.asosyolojiTheme.strings.error);
+      } finally {
+        loading = false;
+      }
+    };
+
+    button?.addEventListener('click', loadMore);
+
+    if (mode === 'infinite' && sentinel && 'IntersectionObserver' in window) {
+      const infiniteObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            loadMore();
+          }
+        },
+        {
+          rootMargin: '500px 0px',
+          threshold: 0
+        }
+      );
+      infiniteObserver.observe(sentinel);
+    }
+  });
+
   document.querySelectorAll('[data-slider]').forEach((slider) => {
     const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
     if (slides.length < 2) {
@@ -130,6 +255,8 @@
     const dots = Array.from(slider.querySelectorAll('[data-slider-dot]'));
     const autoplay = slider.dataset.autoplay === 'true' && !reduceMotion;
     const interval = Math.max(3000, Number.parseInt(slider.dataset.interval || '6000', 10) || 6000);
+    const sliderMotion = motionEnabled && !reduceMotion;
+    slider.style.setProperty('--aso-slider-interval', `${interval}ms`);
 
     let index = 0;
     let timer = null;
@@ -158,7 +285,24 @@
     };
 
     const show = (newIndex, focus = false) => {
-      index = (newIndex + slides.length) % slides.length;
+      const previousIndex = index;
+      const normalizedIndex = (newIndex + slides.length) % slides.length;
+      const direction = normalizedIndex === previousIndex
+        ? 'next'
+        : (
+          (previousIndex === slides.length - 1 && normalizedIndex === 0) ||
+          (normalizedIndex > previousIndex && !(previousIndex === 0 && normalizedIndex === slides.length - 1))
+            ? 'next'
+            : 'prev'
+        );
+
+      index = normalizedIndex;
+
+      if (sliderMotion) {
+        slider.classList.remove('is-direction-next', 'is-direction-prev');
+        slider.classList.add(`is-direction-${direction}`, 'is-changing');
+        window.setTimeout(() => slider.classList.remove('is-changing'), 700);
+      }
 
       slides.forEach((slide, slideIndex) => {
         const active = slideIndex === index;
@@ -170,7 +314,13 @@
       dots.forEach((dot, dotIndex) => {
         const active = dotIndex === index;
         dot.classList.toggle('is-active', active);
+        dot.classList.remove('is-progressing');
         dot.setAttribute('aria-current', active ? 'true' : 'false');
+
+        if (active && autoplay && sliderMotion) {
+          void dot.offsetWidth;
+          dot.classList.add('is-progressing');
+        }
       });
 
       if (focus) {
