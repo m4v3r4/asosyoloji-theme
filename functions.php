@@ -15,6 +15,7 @@ require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
 require_once get_template_directory() . '/inc/section-customizer.php';
 require_once get_template_directory() . '/inc/appearance.php';
+require_once get_template_directory() . '/inc/footer-customizer.php';
 
 function asosyoloji_setup() {
 	load_theme_textdomain( 'asosyoloji', get_template_directory() . '/languages' );
@@ -82,6 +83,23 @@ function asosyoloji_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
+
+function asosyoloji_register_widget_areas() {
+	for ( $i = 1; $i <= 4; $i++ ) {
+		register_sidebar(
+			array(
+				'name'          => sprintf( __( 'Footer Sütun %d', 'asosyoloji' ), $i ),
+				'id'            => 'footer-' . $i,
+				'description'   => __( 'Footer sütununa blok veya bileşen ekleyin.', 'asosyoloji' ),
+				'before_widget' => '<section id="%1$s" class="footer-widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="footer-widget__title">',
+				'after_title'   => '</h2>',
+			)
+		);
+	}
+}
+add_action( 'widgets_init', 'asosyoloji_register_widget_areas' );
 
 function asosyoloji_excerpt_length( $length ) {
 	return 28;
