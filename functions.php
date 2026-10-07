@@ -213,3 +213,24 @@ function asosyoloji_block_categories( $categories ) {
 	return $categories;
 }
 add_filter( 'block_categories_all', 'asosyoloji_block_categories' );
+
+
+/**
+ * Load admin behavior for theme widgets.
+ *
+ * @param string $hook Current admin page.
+ */
+function asosyoloji_widgets_admin_assets( $hook ) {
+	if ( 'widgets.php' !== $hook && 'customize.php' !== $hook ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'asosyoloji-widgets-admin',
+		get_template_directory_uri() . '/assets/js/widgets-admin.js',
+		array( 'jquery' ),
+		ASOSYOLOJI_VERSION,
+		true
+	);
+}
+add_action( 'admin_enqueue_scripts', 'asosyoloji_widgets_admin_assets' );
