@@ -338,3 +338,18 @@ function asosyoloji_ajax_load_latest_posts() {
 }
 add_action( 'wp_ajax_asosyoloji_load_latest', 'asosyoloji_ajax_load_latest_posts' );
 add_action( 'wp_ajax_nopriv_asosyoloji_load_latest', 'asosyoloji_ajax_load_latest_posts' );
+
+
+function asosyoloji_social_icon( $network ) {
+	$icons = array(
+		'instagram' => '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
+		'x' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"/></svg>',
+		'facebook' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h3l.5-3H14V8.3c0-.9.3-1.6 1.7-1.6H18V4.1c-.4-.1-1.6-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.6V10H8v3h3v8z"/></svg>',
+		'youtube' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.3a3 3 0 0 0-2.1-2.1C17 5.7 12 5.7 12 5.7s-5 0-6.9.5A3 3 0 0 0 3 8.3 31 31 0 0 0 2.5 12a31 31 0 0 0 .5 3.7 3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-3.7 31 31 0 0 0-.5-3.7z"/><path d="M10 9l5 3-5 3z" class="aso-social-icon__fill"/></svg>',
+		'linkedin' => '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="3" height="11"/><circle cx="5.5" cy="5.5" r="1.7"/><path d="M10 20V9h3v1.7c.8-1.2 2-2 3.8-2 3 0 4.2 2 4.2 5V20h-3v-5.6c0-1.8-.6-3-2.3-3-1.8 0-2.7 1.2-2.7 3V20z"/></svg>',
+		'mastodon' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7 7.2c-.3-2.3-2.3-3-2.3-3C16.2 3.6 14.2 3.4 12 3.4s-4.2.2-5.4.8c0 0-2 .7-2.3 3-.2 1.5-.2 3.4.1 5.4.4 2.7 2.5 3.4 4.7 3.7 1 .1 2 .1 3-.1-.1 1-.7 1.7-1.7 2-1.2.4-2.7.2-3.7-.5l-.8 1.8c1.5.8 3.2 1.1 4.9.9 2.9-.3 5.4-1.8 5.8-5.3.2-2 .2-5.8-.9-7.9z"/><path d="M8 8.3v5.4M12 8.3v5.4M16 8.3v5.4"/></svg>',
+		'telegram' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5l17-7-3 15-5-4-3 3 .5-4.5z"/><path d="M9.5 14L17 8"/></svg>',
+	);
+
+	return isset( $icons[ $network ] ) ? $icons[ $network ] : '';
+}
