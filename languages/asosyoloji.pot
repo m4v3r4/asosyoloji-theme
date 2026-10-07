@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:27:07+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:27:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -275,7 +275,7 @@ msgstr ""
 #: inc/class-asosyoloji-announcements-widget.php:41
 #: inc/class-asosyoloji-announcements-widget.php:79
 #: inc/widgets.php:187
-#: inc/widgets.php:469
+#: inc/widgets.php:446
 #: assets/js/announcements-block.js:102
 msgid "Duyurular"
 msgstr ""
@@ -346,6 +346,7 @@ msgstr ""
 #: inc/class-asosyoloji-magazine-archive-widget.php:42
 #: inc/class-asosyoloji-magazine-archive-widget.php:91
 #: inc/widgets.php:281
+#: inc/widgets.php:518
 msgid "Dergi Arşivi"
 msgstr ""
 
