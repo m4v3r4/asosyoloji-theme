@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T08:18:56+00:00\n"
+"POT-Creation-Date: 2026-10-07T08:19:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -221,17 +221,25 @@ msgstr ""
 msgid "Arama alanı metni"
 msgstr ""
 
-#: inc/blocks.php:26
+#: inc/blocks.php:34
 #: inc/class-asosyoloji-post-list-widget.php:129
 #: inc/customizer.php:78
 #: assets/js/post-list-block.js:15
 msgid "Tüm kategoriler"
 msgstr ""
 
-#: inc/blocks.php:40
+#: inc/blocks.php:48
 #: inc/class-asosyoloji-post-list-widget.php:164
 #: assets/js/post-list-block.js:20
 msgid "Tüm yazarlar"
+msgstr ""
+
+#: inc/blocks.php:233
+#: inc/class-asosyoloji-announcements-widget.php:41
+#: inc/class-asosyoloji-announcements-widget.php:79
+#: inc/widgets.php:187
+#: inc/widgets.php:351
+msgid "Duyurular"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:23
@@ -240,13 +248,6 @@ msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:25
 msgid "Duyuru kategorisindeki yazıları pano/ilan görünümünde gösterir."
-msgstr ""
-
-#: inc/class-asosyoloji-announcements-widget.php:41
-#: inc/class-asosyoloji-announcements-widget.php:79
-#: inc/widgets.php:187
-#: inc/widgets.php:351
-msgid "Duyurular"
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:89
