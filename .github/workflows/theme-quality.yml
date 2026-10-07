@@ -153,15 +153,26 @@ jobs:
         run: |
           set -euo pipefail
           cd /tmp/wordpress
-          wp post create --post_type=post --post_status=publish --post_title="Smoke Test Yazısı" --post_content="<p>Test içerik.</p>"
+          NORMAL_CAT=$(wp term create category "Yazılar" --slug=yazilar --porcelain)
+          NOTICE_CAT=$(wp term create category "Duyurular" --slug=duyurular --porcelain)
+          wp post create --post_type=post --post_status=publish --post_title="Smoke Normal Yazı" --post_content="<p>Normal test içerik.</p>" --post_category="$NORMAL_CAT"
+          wp post create --post_type=post --post_status=publish --post_title="Smoke Duyuru Gizli" --post_content="<p>Duyuru içerik.</p>" --post_category="$NOTICE_CAT"
+          FRONT_ID=$(wp post create --post_type=page --post_status=publish --post_title="Ana Sayfa" --porcelain)
           wp option update home http://127.0.0.1:8080
           wp option update siteurl http://127.0.0.1:8080
-          wp option update show_on_front posts
+          wp option update show_on_front page
+          wp option update page_on_front "$FRONT_ID"
+          wp eval "set_theme_mod( 'aso_home_global_exclude_categories', array( $NOTICE_CAT ) );"
           php -S 127.0.0.1:8080 -t /tmp/wordpress >/tmp/wp-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 3
           curl --fail --silent --show-error http://127.0.0.1:8080/ >/tmp/home.html
           grep -q "ASOSYOLOJİ\|Asosyoloji" /tmp/home.html
+          grep -q "Smoke Normal Yazı" /tmp/home.html
+          if grep -q "Smoke Duyuru Gizli" /tmp/home.html; then
+            echo "Excluded announcement category leaked into homepage."
+            exit 1
+          fi
           cd "$GITHUB_WORKSPACE"
           node tests/responsive-smoke.mjs
