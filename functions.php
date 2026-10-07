@@ -190,6 +190,13 @@ function asosyoloji_body_classes( $classes ) {
 	if ( get_theme_mod( 'aso_sticky_header', true ) ) {
 		$classes[] = 'has-sticky-header';
 	}
+
+	if ( get_theme_mod( 'aso_enable_motion', true ) ) {
+		$classes[] = 'aso-motion-enabled';
+		$level     = get_theme_mod( 'aso_motion_level', 'subtle' );
+		$classes[] = 'aso-motion-' . ( 'normal' === $level ? 'normal' : 'subtle' );
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'asosyoloji_body_classes' );
