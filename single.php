@@ -17,6 +17,8 @@ while ( have_posts() ) :
 		<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
 	<?php endif; ?>
 
+	<?php asosyoloji_breadcrumbs(); ?>
+
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> data-reading-article>
 		<header class="entry-header">
 			<?php if ( ! empty( $categories ) ) : ?>
@@ -96,6 +98,15 @@ while ( have_posts() ) :
 				<h2><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo esc_html( get_the_author() ); ?></a></h2>
 				<?php if ( get_the_author_meta( 'description' ) ) : ?>
 					<p><?php echo esc_html( get_the_author_meta( 'description' ) ); ?></p>
+				<?php endif; ?>
+
+				<?php $author_links = asosyoloji_author_social_links( get_the_author_meta( 'ID' ) ); ?>
+				<?php if ( $author_links ) : ?>
+					<div class="author-social-links">
+						<?php foreach ( $author_links as $author_link ) : ?>
+							<a href="<?php echo esc_url( $author_link['url'] ); ?>" target="_blank" rel="me noopener noreferrer"><?php echo esc_html( $author_link['label'] ); ?></a>
+						<?php endforeach; ?>
+					</div>
 				<?php endif; ?>
 			</div>
 		</section>
