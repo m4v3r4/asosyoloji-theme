@@ -79,7 +79,7 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 
 		return array(
 			'title'  => sanitize_text_field( $new_instance['title'] ?? '' ),
-			'layout' => in_array( $new_instance['layout'] ?? 'grid', array( 'grid', 'list' ), true ) ? $new_instance['layout'] : 'grid',
+			'layout' => in_array( $new_instance['layout'] ?? 'list', array( 'grid', 'list' ), true ) ? $new_instance['layout'] : 'list',
 			'items'  => $items,
 		);
 	}
