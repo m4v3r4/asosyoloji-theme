@@ -4482,3 +4482,95 @@ html[data-theme="dark"] .aso-magazine-card__cover {
     font-size: 1rem;
   }
 }
+
+
+/* Post widget image consistency */
+.aso-post-widget__item {
+  min-width: 0;
+}
+
+.aso-post-widget__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: var(--aso-surface);
+}
+
+.aso-post-widget__img,
+.aso-post-widget__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.aso-post-widget__img.is-fallback-image,
+.aso-post-widget__media img.is-fallback-image {
+  object-fit: contain;
+  padding: 12%;
+  background: var(--aso-surface);
+}
+
+.aso-post-widget--list .aso-post-widget__media,
+.aso-post-widget--compact .aso-post-widget__media,
+.aso-post-widget--feature .aso-post-widget__item:not(.is-featured) .aso-post-widget__media {
+  aspect-ratio: 4 / 3;
+}
+
+.aso-post-widget--grid .aso-post-widget__media,
+.aso-post-widget--feature .is-featured .aso-post-widget__media {
+  aspect-ratio: 4 / 3;
+}
+
+.aso-post-widget--compact .aso-post-widget__item {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.aso-post-widget--compact .aso-post-widget__media {
+  display: block;
+}
+
+.aso-post-widget--list .aso-post-widget__item,
+.aso-post-widget--feature .aso-post-widget__item:not(.is-featured) {
+  align-items: start;
+}
+
+.aso-post-widget--grid .aso-post-widget__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.aso-post-widget--grid .aso-post-widget__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.aso-post-widget__title,
+.aso-post-widget__title a,
+.aso-post-widget__excerpt,
+.aso-post-widget__excerpt p {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.aso-post-widget--grid .aso-post-widget__title {
+  min-height: 2.35em;
+}
+
+.aso-post-widget--grid .aso-post-widget__excerpt {
+  min-height: 4.7em;
+}
+
+@media (max-width: 600px) {
+  .aso-post-widget--compact .aso-post-widget__item {
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
+}
