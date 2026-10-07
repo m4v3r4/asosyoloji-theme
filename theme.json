@@ -9,11 +9,11 @@
     },
     "color": {
       "palette": [
-        { "slug": "primary", "name": "Asosyoloji Kırmızı", "color": "#b3212b" },
-        { "slug": "black", "name": "Siyah", "color": "#171717" },
+        { "slug": "primary", "name": "Asosyoloji Kırmızı", "color": "#8f1d2c" },
+        { "slug": "black", "name": "Siyah", "color": "#111111" },
         { "slug": "white", "name": "Beyaz", "color": "#ffffff" },
-        { "slug": "soft", "name": "Kırık Beyaz", "color": "#f6f4f1" },
-        { "slug": "muted", "name": "Gri", "color": "#6d6d6d" }
+        { "slug": "soft", "name": "Kırık Beyaz", "color": "#f5f3ef" },
+        { "slug": "muted", "name": "Gri", "color": "#666666" }
       ]
     },
     "spacing": {
@@ -26,7 +26,7 @@
   "styles": {
     "color": {
       "background": "#ffffff",
-      "text": "#171717"
+      "text": "#111111"
     }
   }
 }
