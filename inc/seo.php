@@ -504,8 +504,7 @@ function asosyoloji_archive_canonical() {
 		return;
 	}
 
-	echo '<link rel="canonical" href="' . esc_url( asosyoloji_current_url() ) . '">' . "
-";
+	echo '<link rel="canonical" href="' . esc_url( asosyoloji_current_url() ) . '">' . PHP_EOL;
 }
 add_action( 'wp_head', 'asosyoloji_archive_canonical', 9 );
 
@@ -514,7 +513,6 @@ function asosyoloji_sitemap_link() {
 		return;
 	}
 
-	echo '<link rel="sitemap" type="application/xml" href="' . esc_url( home_url( '/wp-sitemap.xml' ) ) . '">' . "
-";
+	echo '<link rel="sitemap" type="application/xml" href="' . esc_url( home_url( '/wp-sitemap.xml' ) ) . '">' . PHP_EOL;
 }
 add_action( 'wp_head', 'asosyoloji_sitemap_link', 8 );
