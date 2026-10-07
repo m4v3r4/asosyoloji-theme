@@ -94,21 +94,5 @@ function asosyoloji_footer_customize_register( $wp_customize ) {
 		)
 	);
 
-	$wp_customize->add_setting(
-		'aso_footer_license_text',
-		array(
-			'default'           => __( 'Asosyoloji teması özgür yazılımdır. Tema kodu GPL-3.0-or-later; dokümantasyon ve ayrı görsel materyaller CC BY-SA 4.0 lisansıyla paylaşılır.', 'asosyoloji' ),
-			'sanitize_callback' => 'sanitize_textarea_field',
-		)
-	);
-
-	$wp_customize->add_control(
-		'aso_footer_license_text',
-		array(
-			'label'   => __( 'Lisans açıklaması', 'asosyoloji' ),
-			'section' => 'aso_footer_builder',
-			'type'    => 'textarea',
-		)
-	);
 }
 add_action( 'customize_register', 'asosyoloji_footer_customize_register', 50 );
