@@ -411,6 +411,158 @@ function asosyoloji_customize_register( $wp_customize ) {
 		)
 	);
 
+
+	$wp_customize->add_section(
+		'aso_navigation',
+		array(
+			'title' => __( 'Ana Menü ve Sosyal', 'asosyoloji' ),
+			'panel' => 'aso_theme_options',
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_background', array( 'default' => 'accent', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_menu_background',
+		array(
+			'label' => __( 'Menü bar rengi', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'accent' => __( 'Vurgu rengi', 'asosyoloji' ),
+				'light'  => __( 'Açık', 'asosyoloji' ),
+				'dark'   => __( 'Koyu', 'asosyoloji' ),
+				'custom' => __( 'Özel renk', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_custom_color', array( 'default' => '#8f1d2c', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'aso_menu_custom_color',
+			array(
+				'label' => __( 'Özel menü bar rengi', 'asosyoloji' ),
+				'section' => 'aso_navigation',
+			)
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_alignment', array( 'default' => 'center', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_menu_alignment',
+		array(
+			'label' => __( 'Menü hizası', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'left'   => __( 'Sol', 'asosyoloji' ),
+				'center' => __( 'Orta', 'asosyoloji' ),
+				'right'  => __( 'Sağ', 'asosyoloji' ),
+				'spread' => __( 'Yayılmış', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_width', array( 'default' => 'container', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_menu_width',
+		array(
+			'label' => __( 'Menü iç genişliği', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'container' => __( 'Site genişliği', 'asosyoloji' ),
+				'full' => __( 'Tam ekran', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_density', array( 'default' => 'normal', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_menu_density',
+		array(
+			'label' => __( 'Menü yüksekliği', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'compact' => __( 'Kompakt', 'asosyoloji' ),
+				'normal'  => __( 'Normal', 'asosyoloji' ),
+				'large'   => __( 'Geniş', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_menu_separators', array( 'default' => true, 'sanitize_callback' => 'asosyoloji_sanitize_checkbox' ) );
+	$wp_customize->add_control( 'aso_menu_separators', array( 'label' => __( 'Menü öğeleri arasında ayırıcı göster', 'asosyoloji' ), 'section' => 'aso_navigation', 'type' => 'checkbox' ) );
+
+	$wp_customize->add_setting( 'aso_menu_uppercase', array( 'default' => true, 'sanitize_callback' => 'asosyoloji_sanitize_checkbox' ) );
+	$wp_customize->add_control( 'aso_menu_uppercase', array( 'label' => __( 'Menü metnini büyük harfle göster', 'asosyoloji' ), 'section' => 'aso_navigation', 'type' => 'checkbox' ) );
+
+	$wp_customize->add_setting( 'aso_menu_active_style', array( 'default' => 'underline', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_menu_active_style',
+		array(
+			'label' => __( 'Aktif menü stili', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'underline' => __( 'Alt çizgi', 'asosyoloji' ),
+				'fill' => __( 'Dolgu', 'asosyoloji' ),
+				'none' => __( 'Vurgu yok', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_show_social_bar', array( 'default' => true, 'sanitize_callback' => 'asosyoloji_sanitize_checkbox' ) );
+	$wp_customize->add_control(
+		'aso_show_social_bar',
+		array(
+			'label' => __( 'Üst alanda sosyal medya bağlantılarını göster', 'asosyoloji' ),
+			'description' => __( 'Bağlantısı boş bırakılan ağ gösterilmez.', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting( 'aso_social_alignment', array( 'default' => 'right', 'sanitize_callback' => 'asosyoloji_sanitize_select' ) );
+	$wp_customize->add_control(
+		'aso_social_alignment',
+		array(
+			'label' => __( 'Sosyal ikon hizası', 'asosyoloji' ),
+			'section' => 'aso_navigation',
+			'type' => 'select',
+			'choices' => array(
+				'left' => __( 'Sol', 'asosyoloji' ),
+				'center' => __( 'Orta', 'asosyoloji' ),
+				'right' => __( 'Sağ', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$social_networks = array(
+		'instagram' => 'Instagram',
+		'x' => 'X / Twitter',
+		'facebook' => 'Facebook',
+		'youtube' => 'YouTube',
+		'linkedin' => 'LinkedIn',
+		'mastodon' => 'Mastodon',
+		'telegram' => 'Telegram',
+	);
+	foreach ( $social_networks as $network => $label ) {
+		$setting_id = 'aso_social_' . $network;
+		$wp_customize->add_setting( $setting_id, array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
+		$wp_customize->add_control(
+			$setting_id,
+			array(
+				'label' => sprintf( __( '%s bağlantısı', 'asosyoloji' ), $label ),
+				'section' => 'aso_navigation',
+				'type' => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://' ),
+			)
+		);
+	}
+
 	$wp_customize->add_section(
 		'aso_footer',
 		array(
