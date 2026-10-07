@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T08:20:47+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:07:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -238,7 +238,7 @@ msgstr ""
 #: inc/class-asosyoloji-announcements-widget.php:41
 #: inc/class-asosyoloji-announcements-widget.php:79
 #: inc/widgets.php:187
-#: inc/widgets.php:351
+#: inc/widgets.php:429
 #: assets/js/announcements-block.js:102
 msgid "Duyurular"
 msgstr ""
@@ -253,6 +253,7 @@ msgid "Duyuru kategorisindeki yazıları pano/ilan görünümünde gösterir."
 msgstr ""
 
 #: inc/class-asosyoloji-announcements-widget.php:89
+#: inc/class-asosyoloji-magazine-archive-widget.php:104
 #: inc/class-asosyoloji-post-list-widget.php:122
 #: inc/class-asosyoloji-post-list-widget.php:176
 #: inc/customizer.php:643
@@ -297,6 +298,58 @@ msgstr ""
 msgid "Kompakt görünüm"
 msgstr ""
 
+#: inc/class-asosyoloji-magazine-archive-widget.php:23
+msgid "Asosyoloji: Dergi Arşivi"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:25
+msgid "Kapak görseli, sayı başlığı ve PDF bağlantısıyla dergi sayılarını listeler."
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:42
+#: inc/class-asosyoloji-magazine-archive-widget.php:91
+#: inc/widgets.php:281
+msgid "Dergi Arşivi"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:109
+#: inc/class-asosyoloji-post-list-widget.php:152
+#: assets/js/post-list-block.js:81
+msgid "Görünüm"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:111
+msgid "Kapak grid"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:112
+msgid "Liste"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:120
+#: inc/class-asosyoloji-magazine-archive-widget.php:148
+msgid "Sayı / başlık"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:125
+#: inc/class-asosyoloji-magazine-archive-widget.php:152
+msgid "PDF dosyası URL"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:130
+#: inc/class-asosyoloji-magazine-archive-widget.php:156
+msgid "Kapak resmi URL"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:135
+#: inc/class-asosyoloji-magazine-archive-widget.php:160
+msgid "Bu sayıyı kaldır"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:142
+msgid "Yeni sayı ekle"
+msgstr ""
+
 #: inc/class-asosyoloji-post-list-widget.php:23
 #: assets/js/post-list-block.js:24
 msgid "Asosyoloji: Yazı Listesi"
@@ -324,11 +377,6 @@ msgstr ""
 #: inc/class-asosyoloji-post-list-widget.php:147
 #: assets/js/post-list-block.js:72
 msgid "Yazı sayısı"
-msgstr ""
-
-#: inc/class-asosyoloji-post-list-widget.php:152
-#: assets/js/post-list-block.js:81
-msgid "Görünüm"
 msgstr ""
 
 #: inc/class-asosyoloji-post-list-widget.php:154
@@ -966,6 +1014,14 @@ msgstr ""
 
 #: inc/widgets.php:259
 msgid "Duyuru detayları"
+msgstr ""
+
+#: inc/widgets.php:308
+msgid "Basılı Sayılar"
+msgstr ""
+
+#: inc/widgets.php:337
+msgid "PDF dosyasını aç"
 msgstr ""
 
 #: page.php:32
