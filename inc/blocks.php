@@ -42,7 +42,12 @@ function asosyoloji_register_post_list_block() {
 		),
 	);
 
-	foreach ( get_users( array( 'who' => 'authors', 'orderby' => 'display_name' ) ) as $user ) {
+	foreach ( get_users(
+		array(
+			'who'     => 'authors',
+			'orderby' => 'display_name',
+		)
+	) as $user ) {
 		$authors[] = array(
 			'label' => $user->display_name,
 			'value' => (int) $user->ID,
