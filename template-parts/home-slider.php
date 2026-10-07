@@ -7,7 +7,7 @@
 
 $slider_source   = get_theme_mod( 'aso_home_slider_source', 'latest' );
 $slider_category = absint( get_theme_mod( 'aso_home_slider_category', 0 ) );
-$excluded_categories = asosyoloji_sanitize_category_ids( get_theme_mod( 'aso_home_slider_exclude_categories', array() ) );
+$excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_slider_exclude_categories', array() ) );
 $slider_count    = min( 10, max( 2, absint( get_theme_mod( 'aso_home_slider_count', 5 ) ) ) );
 $slider_layout   = get_theme_mod( 'aso_home_slider_layout', 'split' );
 $slider_autoplay = get_theme_mod( 'aso_home_slider_autoplay', true );
