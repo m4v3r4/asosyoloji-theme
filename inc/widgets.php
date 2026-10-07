@@ -57,6 +57,13 @@ function asosyoloji_render_post_collection( $args = array() ) {
 		'show_excerpt'       => false,
 		'show_meta'          => true,
 		'heading_level'      => 'h2',
+		'author'             => 0,
+		'orderby'            => 'date',
+		'order'              => 'DESC',
+		'date_after'         => '',
+		'date_before'        => '',
+		'offset'             => 0,
+		'include_sticky'     => false,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -66,16 +73,41 @@ function asosyoloji_render_post_collection( $args = array() ) {
 	$count              = min( 12, max( 1, absint( $args['count'] ) ) );
 	$layout             = in_array( $args['layout'], array( 'list', 'compact', 'grid', 'feature' ), true ) ? $args['layout'] : 'list';
 	$heading_level      = in_array( $args['heading_level'], array( 'h2', 'h3', 'h4' ), true ) ? $args['heading_level'] : 'h2';
+	$author             = absint( $args['author'] );
+	$orderby            = in_array( $args['orderby'], array( 'date', 'modified', 'title', 'comment_count', 'rand' ), true ) ? $args['orderby'] : 'date';
+	$order              = in_array( strtoupper( (string) $args['order'] ), array( 'ASC', 'DESC' ), true ) ? strtoupper( (string) $args['order'] ) : 'DESC';
+	$offset             = min( 100, max( 0, absint( $args['offset'] ) ) );
+	$date_after         = sanitize_text_field( $args['date_after'] );
+	$date_before        = sanitize_text_field( $args['date_before'] );
+	$include_sticky     = (bool) $args['include_sticky'];
 
 	$query_args = array(
 		'posts_per_page'    => $count,
 		'post_status'       => 'publish',
 		'category__not_in'  => $exclude_categories,
-		'ignore_sticky_posts' => true,
+		'ignore_sticky_posts' => ! $include_sticky,
+		'orderby'             => $orderby,
+		'order'               => $order,
+		'offset'              => $offset,
 	);
 
 	if ( $category ) {
 		$query_args['cat'] = $category;
+	}
+
+	if ( $author ) {
+		$query_args['author'] = $author;
+	}
+
+	if ( $date_after || $date_before ) {
+		$date_query = array( 'inclusive' => true );
+		if ( $date_after ) {
+			$date_query['after'] = $date_after;
+		}
+		if ( $date_before ) {
+			$date_query['before'] = $date_before;
+		}
+		$query_args['date_query'] = array( $date_query );
 	}
 
 	$query = new WP_Query( $query_args );
@@ -182,6 +214,13 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 					'show_excerpt'       => ! empty( $instance['show_excerpt'] ),
 					'show_meta'          => ! empty( $instance['show_meta'] ),
 					'heading_level'      => 'h3',
+					'author'             => isset( $instance['author'] ) ? absint( $instance['author'] ) : 0,
+					'orderby'            => isset( $instance['orderby'] ) ? $instance['orderby'] : 'date',
+					'order'              => isset( $instance['order'] ) ? $instance['order'] : 'DESC',
+					'date_after'         => isset( $instance['date_after'] ) ? $instance['date_after'] : '',
+					'date_before'        => isset( $instance['date_before'] ) ? $instance['date_before'] : '',
+					'offset'             => isset( $instance['offset'] ) ? absint( $instance['offset'] ) : 0,
+					'include_sticky'     => ! empty( $instance['include_sticky'] ),
 				)
 			)
 		);
@@ -206,6 +245,13 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 			'show_image'         => ! empty( $new_instance['show_image'] ) ? 1 : 0,
 			'show_excerpt'       => ! empty( $new_instance['show_excerpt'] ) ? 1 : 0,
 			'show_meta'          => ! empty( $new_instance['show_meta'] ) ? 1 : 0,
+			'author'             => absint( $new_instance['author'] ?? 0 ),
+			'orderby'            => in_array( $new_instance['orderby'] ?? 'date', array( 'date', 'modified', 'title', 'comment_count', 'rand' ), true ) ? $new_instance['orderby'] : 'date',
+			'order'              => in_array( strtoupper( $new_instance['order'] ?? 'DESC' ), array( 'ASC', 'DESC' ), true ) ? strtoupper( $new_instance['order'] ) : 'DESC',
+			'date_after'         => sanitize_text_field( $new_instance['date_after'] ?? '' ),
+			'date_before'        => sanitize_text_field( $new_instance['date_before'] ?? '' ),
+			'offset'             => min( 100, max( 0, absint( $new_instance['offset'] ?? 0 ) ) ),
+			'include_sticky'     => ! empty( $new_instance['include_sticky'] ) ? 1 : 0,
 		);
 	}
 
@@ -224,6 +270,14 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 		$show_meta  = ! isset( $instance['show_meta'] ) || ! empty( $instance['show_meta'] );
 		$show_excerpt = ! empty( $instance['show_excerpt'] );
 		$categories = get_categories( array( 'hide_empty' => false ) );
+		$authors     = get_users( array( 'who' => 'authors', 'orderby' => 'display_name' ) );
+		$author      = absint( $instance['author'] ?? 0 );
+		$orderby     = $instance['orderby'] ?? 'date';
+		$order       = $instance['order'] ?? 'DESC';
+		$date_after  = $instance['date_after'] ?? '';
+		$date_before = $instance['date_before'] ?? '';
+		$offset      = absint( $instance['offset'] ?? 0 );
+		$include_sticky = ! empty( $instance['include_sticky'] );
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Başlık', 'asosyoloji' ); ?></label>
@@ -266,6 +320,50 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 		</p>
 
 		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'author' ) ); ?>"><?php esc_html_e( 'Yazar', 'asosyoloji' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'author' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'author' ) ); ?>">
+				<option value="0"><?php esc_html_e( 'Tüm yazarlar', 'asosyoloji' ); ?></option>
+				<?php foreach ( $authors as $user ) : ?>
+					<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $author, $user->ID ); ?>><?php echo esc_html( $user->display_name ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Sıralama', 'asosyoloji' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'orderby' ) ); ?>">
+				<option value="date" <?php selected( $orderby, 'date' ); ?>><?php esc_html_e( 'Yayın tarihi', 'asosyoloji' ); ?></option>
+				<option value="modified" <?php selected( $orderby, 'modified' ); ?>><?php esc_html_e( 'Güncellenme tarihi', 'asosyoloji' ); ?></option>
+				<option value="title" <?php selected( $orderby, 'title' ); ?>><?php esc_html_e( 'Başlık', 'asosyoloji' ); ?></option>
+				<option value="comment_count" <?php selected( $orderby, 'comment_count' ); ?>><?php esc_html_e( 'Yorum sayısı', 'asosyoloji' ); ?></option>
+				<option value="rand" <?php selected( $orderby, 'rand' ); ?>><?php esc_html_e( 'Rastgele', 'asosyoloji' ); ?></option>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'order' ) ); ?>"><?php esc_html_e( 'Sıralama yönü', 'asosyoloji' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'order' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'order' ) ); ?>">
+				<option value="DESC" <?php selected( $order, 'DESC' ); ?>><?php esc_html_e( 'Azalan', 'asosyoloji' ); ?></option>
+				<option value="ASC" <?php selected( $order, 'ASC' ); ?>><?php esc_html_e( 'Artan', 'asosyoloji' ); ?></option>
+			</select>
+		</p>
+
+		<p>
+			<label><?php esc_html_e( 'Tarih aralığı', 'asosyoloji' ); ?></label><br>
+			<input type="date" name="<?php echo esc_attr( $this->get_field_name( 'date_after' ) ); ?>" value="<?php echo esc_attr( $date_after ); ?>"> —
+			<input type="date" name="<?php echo esc_attr( $this->get_field_name( 'date_before' ) ); ?>" value="<?php echo esc_attr( $date_before ); ?>">
+		</p>
+
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'offset' ) ); ?>"><?php esc_html_e( 'İlk N yazıyı atla (offset)', 'asosyoloji' ); ?></label>
+			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'offset' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'offset' ) ); ?>" type="number" min="0" max="100" value="<?php echo esc_attr( $offset ); ?>">
+		</p>
+
+		<p>
+			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'include_sticky' ) ); ?>" value="1" <?php checked( $include_sticky ); ?>> <?php esc_html_e( 'Sabitlenmiş yazıları normal akışa dahil et', 'asosyoloji' ); ?></label>
+		</p>
+
+		<p>
 			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_image' ) ); ?>" value="1" <?php checked( $show_image ); ?>> <?php esc_html_e( 'Görselleri göster', 'asosyoloji' ); ?></label><br>
 			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_meta' ) ); ?>" value="1" <?php checked( $show_meta ); ?>> <?php esc_html_e( 'Yazar ve tarihi göster', 'asosyoloji' ); ?></label><br>
 			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_excerpt' ) ); ?>" value="1" <?php checked( $show_excerpt ); ?>> <?php esc_html_e( 'Özeti göster', 'asosyoloji' ); ?></label>
@@ -302,6 +400,13 @@ function asosyoloji_posts_shortcode( $atts ) {
 			'image'   => '1',
 			'excerpt' => '0',
 			'meta'    => '1',
+			'author'  => '0',
+			'orderby' => 'date',
+			'order'   => 'DESC',
+			'after'   => '',
+			'before'  => '',
+			'offset'  => '0',
+			'sticky'  => '0',
 		),
 		$atts,
 		'asosyoloji_posts'
@@ -320,6 +425,13 @@ function asosyoloji_posts_shortcode( $atts ) {
 			'show_image'         => '1' === (string) $atts['image'],
 			'show_excerpt'       => '1' === (string) $atts['excerpt'],
 			'show_meta'          => '1' === (string) $atts['meta'],
+			'author'             => absint( $atts['author'] ),
+			'orderby'            => sanitize_key( $atts['orderby'] ),
+			'order'              => sanitize_key( strtoupper( (string) $atts['order'] ) ),
+			'date_after'         => sanitize_text_field( $atts['after'] ),
+			'date_before'        => sanitize_text_field( $atts['before'] ),
+			'offset'             => absint( $atts['offset'] ),
+			'include_sticky'     => '1' === (string) $atts['sticky'],
 		)
 	);
 }
