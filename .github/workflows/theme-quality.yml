@@ -137,7 +137,18 @@ jobs:
           wp theme status asosyoloji
           wp eval 'if ( "Asosyoloji" !== wp_get_theme()->get( "Name" ) ) { exit( 1 ); } echo "Theme activation OK\n";'
 
-      - name: Smoke render
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright Chromium
+        shell: bash
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Smoke render and responsive browser test
         shell: bash
         run: |
           set -euo pipefail
@@ -150,3 +161,5 @@ jobs:
           sleep 3
           curl --fail --silent --show-error http://127.0.0.1:8080/ >/tmp/home.html
           grep -q "ASOSYOLOJİ\|Asosyoloji" /tmp/home.html
+          cd "$GITHUB_WORKSPACE"
+          node tests/responsive-smoke.mjs
