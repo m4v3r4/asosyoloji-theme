@@ -47,3 +47,36 @@ Footer altında kompakt **GPL-3.0-or-later · Tema kaynak kodu** bilgisi göster
 ## Lisans
 
 Tema **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır. Ayrıntılar için `LICENSE.md` dosyasına bakın.
+
+
+## Geliştirme ve kalite kontrol
+
+PHP/JS syntax kontrolleri her push ve pull request'te GitHub Actions ile çalışır.
+
+Yerel geliştirme araçları:
+
+```bash
+composer install
+composer lint:php
+composer phpcs
+```
+
+Çeviri şablonu üretmek için WP-CLI ile:
+
+```bash
+bash bin/make-pot.sh
+```
+
+Kurulabilir WordPress tema ZIP'i üretmek için:
+
+```bash
+bash bin/package-theme.sh
+```
+
+Çıktı:
+
+```text
+build/asosyoloji-theme.zip
+```
+
+GitHub Actions artifact depolama alanı gerekmeden CI, oluşturulan ZIP'in bütünlüğünü de doğrular.
