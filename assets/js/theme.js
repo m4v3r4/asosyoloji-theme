@@ -176,4 +176,145 @@
     show(0);
     start();
   });
+
+
+  const readingContent = document.querySelector('[data-reading-content]');
+  const readingArticle = document.querySelector('[data-reading-article]');
+  const progressBar = document.querySelector('[data-reading-progress]');
+
+  if (readingContent) {
+    let readingScale = 1;
+
+    const applyReadingScale = () => {
+      readingContent.style.fontSize = `${readingScale}em`;
+      try {
+        localStorage.setItem('asosyoloji-reading-scale', String(readingScale));
+      } catch (e) {}
+    };
+
+    try {
+      const savedScale = Number.parseFloat(localStorage.getItem('asosyoloji-reading-scale') || '1');
+      if (savedScale >= 0.85 && savedScale <= 1.3) {
+        readingScale = savedScale;
+        applyReadingScale();
+      }
+    } catch (e) {}
+
+    document.querySelector('[data-font-increase]')?.addEventListener('click', () => {
+      readingScale = Math.min(1.3, Math.round((readingScale + 0.05) * 100) / 100);
+      applyReadingScale();
+    });
+
+    document.querySelector('[data-font-decrease]')?.addEventListener('click', () => {
+      readingScale = Math.max(0.85, Math.round((readingScale - 0.05) * 100) / 100);
+      applyReadingScale();
+    });
+
+    document.querySelector('[data-font-reset]')?.addEventListener('click', () => {
+      readingScale = 1;
+      applyReadingScale();
+    });
+  }
+
+  if (readingArticle && progressBar) {
+    const updateProgress = () => {
+      const rect = readingArticle.getBoundingClientRect();
+      const articleTop = window.scrollY + rect.top;
+      const articleHeight = readingArticle.offsetHeight;
+      const viewportBottom = window.scrollY + window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (viewportBottom - articleTop) / articleHeight));
+      progressBar.style.transform = `scaleX(${progress})`;
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  }
+
+  document.querySelector('[data-copy-link]')?.addEventListener('click', async (event) => {
+    const button = event.currentTarget;
+    const url = button.dataset.url || window.location.href;
+    const original = button.textContent;
+
+    try {
+      await navigator.clipboard.writeText(url);
+      button.textContent = 'Kopyalandı';
+      window.setTimeout(() => {
+        button.textContent = original;
+      }, 1600);
+    } catch (e) {
+      window.prompt('Bağlantıyı kopyalayın:', url);
+    }
+  });
+
+  const archive = document.querySelector('[data-magazine-archive]');
+  const archiveTools = document.querySelector('[data-archive-tools]');
+
+  if (archive && archiveTools) {
+    const searchInput = archiveTools.querySelector('[data-archive-search]');
+    const yearsWrap = archiveTools.querySelector('[data-archive-years]');
+    const status = archiveTools.querySelector('[data-archive-status]');
+    const candidates = Array.from(archive.children).filter((element) => {
+      return element.matches('.wp-block-file, .wp-block-image, figure, .wp-block-group, .wp-block-columns, p, div');
+    });
+
+    const items = candidates.map((element) => {
+      const text = (element.innerText || element.textContent || '').trim();
+      const yearMatch = text.match(/(?:19|20)\d{2}/);
+      return {
+        element,
+        text: text.toLocaleLowerCase('tr-TR'),
+        year: yearMatch ? yearMatch[0] : ''
+      };
+    });
+
+    const years = Array.from(new Set(items.map((item) => item.year).filter(Boolean))).sort((a, b) => Number(b) - Number(a));
+    let activeYear = '';
+
+    if (yearsWrap && years.length) {
+      const all = document.createElement('button');
+      all.type = 'button';
+      all.className = 'archive-tools__year is-active';
+      all.textContent = 'Tümü';
+      all.dataset.year = '';
+      yearsWrap.appendChild(all);
+
+      years.forEach((year) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'archive-tools__year';
+        button.textContent = year;
+        button.dataset.year = year;
+        yearsWrap.appendChild(button);
+      });
+
+      yearsWrap.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-year]');
+        if (!button) return;
+        activeYear = button.dataset.year || '';
+        yearsWrap.querySelectorAll('[data-year]').forEach((item) => item.classList.toggle('is-active', item === button));
+        filterArchive();
+      });
+    }
+
+    const filterArchive = () => {
+      const query = (searchInput?.value || '').trim().toLocaleLowerCase('tr-TR');
+      let visible = 0;
+
+      items.forEach((item) => {
+        const matchesSearch = !query || item.text.includes(query);
+        const matchesYear = !activeYear || item.year === activeYear;
+        const show = matchesSearch && matchesYear;
+        item.element.hidden = !show;
+        if (show) visible++;
+      });
+
+      if (status) {
+        status.textContent = `${visible} öğe gösteriliyor`;
+      }
+    };
+
+    searchInput?.addEventListener('input', filterArchive);
+    filterArchive();
+  }
 })();
