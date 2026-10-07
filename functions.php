@@ -84,6 +84,38 @@ function asosyoloji_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
 
+
+function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr = array() ) {
+	$post_id = $post_id ?: get_the_ID();
+
+	if ( has_post_thumbnail( $post_id ) ) {
+		return get_the_post_thumbnail( $post_id, $size, $attr );
+	}
+
+	$content = get_post_field( 'post_content', $post_id );
+	if ( ! $content ) {
+		return '';
+	}
+
+	if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches ) ) {
+		$src = esc_url( $matches[1] );
+		if ( $src ) {
+			$alt = get_the_title( $post_id );
+			return sprintf(
+				'<img src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
+				$src,
+				esc_attr( $alt )
+			);
+		}
+	}
+
+	return '';
+}
+
+function asosyoloji_has_post_image( $post_id = 0 ) {
+	return '' !== asosyoloji_get_post_image( $post_id ?: get_the_ID() );
+}
+
 function asosyoloji_register_widget_areas() {
 	for ( $i = 1; $i <= 4; $i++ ) {
 		register_sidebar(
