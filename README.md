@@ -46,8 +46,4 @@ Footer altında özgür yazılım lisans açıklaması ve kaynak kodu bağlantı
 
 ## Lisans
 
-Tema kaynak kodu **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır.
-
-Repo için üretilen dokümantasyon ve yazılımdan ayrı özgün yaratıcı materyaller, aksi belirtilmedikçe **CC BY-SA 4.0** lisansı ile paylaşılır.
-
-Creative Commons lisansları yazılım kodu için tasarlanmadığından tema kodunda GPL kullanılır. Ayrıntılar için `LICENSE.md` dosyasına bakın.
+Tema **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır. Ayrıntılar için `LICENSE.md` dosyasına bakın.
