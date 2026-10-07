@@ -380,7 +380,8 @@ function asosyoloji_schema_graph() {
 			);
 		}
 	}
-	$graph[] = $page_node;
+	$page_index = count( $graph );
+	$graph[]     = $page_node;
 
 	if ( is_author() ) {
 		$author_id  = get_queried_object_id();
@@ -398,7 +399,7 @@ function asosyoloji_schema_graph() {
 			$person['sameAs'] = $author_same_as;
 		}
 		$graph[] = $person;
-		$graph[count( $graph ) - 2]['mainEntity'] = array( '@id' => $person_id );
+		$graph[ $page_index ]['mainEntity'] = array( '@id' => $person_id );
 	}
 
 	if ( is_single() ) {
