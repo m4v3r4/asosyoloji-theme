@@ -39,16 +39,15 @@ $description = get_the_author_meta( 'description', $author->ID );
 				</div>
 			<?php endif; ?>
 
-			<div class="author-hero__count">
-				<?php
-				echo esc_html(
-					sprintf(
-						_n( '%s yazı', '%s yazı', count_user_posts( $author->ID ), 'asosyoloji' ),
-						number_format_i18n( count_user_posts( $author->ID ) )
-					)
-				);
-				?>
-			</div>
+			<?php
+			$author_post_count = count_user_posts( $author->ID );
+			/* translators: %s: Number of posts by the author. */
+			$author_post_count_label = sprintf(
+				_n( '%s yazı', '%s yazı', $author_post_count, 'asosyoloji' ),
+				number_format_i18n( $author_post_count )
+			);
+			?>
+			<div class="author-hero__count"><?php echo esc_html( $author_post_count_label ); ?></div>
 		</div>
 	</div>
 </header>
