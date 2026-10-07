@@ -4086,3 +4086,60 @@ html[data-theme="dark"] .site-menu-bar.aso-menu-bg-light {
     font-size: .94em;
   }
 }
+
+
+/* Standardized article card dimensions */
+.article-grid {
+  align-items: stretch;
+}
+
+.article-card {
+  height: 100%;
+}
+
+.article-card__image {
+  aspect-ratio: 4 / 3;
+}
+
+.article-card__img.is-fallback-image,
+.article-card__image .is-fallback-image {
+  object-fit: contain;
+  padding: clamp(26px, 4vw, 54px);
+  background: var(--aso-surface);
+}
+
+.article-card__body {
+  min-height: 100%;
+}
+
+.article-card__title {
+  min-height: 3.15em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.article-card__excerpt {
+  min-height: 5.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.article-card .card-meta {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.article-card__read-more {
+  margin-top: 10px;
+}
+
+@media (max-width: 620px) {
+  .article-card__title,
+  .article-card__excerpt {
+    min-height: 0;
+  }
+}
