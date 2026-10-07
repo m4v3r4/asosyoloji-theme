@@ -41,8 +41,8 @@ $description = get_the_author_meta( 'description', $author->ID );
 
 			<?php
 			$author_post_count = count_user_posts( $author->ID );
-			/* translators: %s: Number of posts by the author. */
 			$author_post_count_label = sprintf(
+				/* translators: %s: Number of posts by the author. */
 				_n( '%s yazı', '%s yazı', $author_post_count, 'asosyoloji' ),
 				number_format_i18n( $author_post_count )
 			);
