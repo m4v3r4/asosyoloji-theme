@@ -16,10 +16,7 @@ while ( have_posts() ) :
 	<?php if ( get_theme_mod( 'aso_show_reading_progress', true ) ) : ?>
 		<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
 	<?php endif; ?>
-
-	<?php asosyoloji_breadcrumbs(); ?>
-
-	<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> data-reading-article>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> data-reading-article>
 		<header class="entry-header">
 			<?php if ( ! empty( $categories ) ) : ?>
 				<div class="entry-kicker"><?php echo esc_html( $categories[0]->name ); ?></div>
