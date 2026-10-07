@@ -29,6 +29,12 @@ for (const viewport of viewports) {
     failed = true;
   }
 
+  const schemaScripts = await page.locator('script[type="application/ld+json"]').count();
+  if (!schemaScripts) {
+    console.error(`${viewport.name}: SEO schema graph missing`);
+    failed = true;
+  }
+
   if (result.scrollWidth > result.width + 2) {
     console.error(`${viewport.name}: horizontal overflow ${result.scrollWidth}px > ${result.width}px`);
     failed = true;
@@ -56,6 +62,8 @@ for (const viewport of viewports) {
   }
 
   if (viewport.name === 'desktop') {
+    const firstArticleUrl = await page.locator('[data-home-latest-grid] .article-card__title a').first().getAttribute('href');
+
     const loadMoreButton = page.locator('[data-home-latest-button]');
     if (await loadMoreButton.count()) {
       const before = await page.locator('[data-home-latest-grid] > *').count();
@@ -69,6 +77,24 @@ for (const viewport of viewports) {
         console.error('desktop: load more did not append posts');
         failed = true;
       }
+    }
+
+    if (firstArticleUrl) {
+      const articlePage = await context.newPage();
+      await articlePage.goto(firstArticleUrl, { waitUntil: 'networkidle' });
+
+      const articleSchema = await articlePage.locator('script[type="application/ld+json"]').allTextContents();
+      if (!articleSchema.some((value) => value.includes('"Article"') && value.includes('"Organization"'))) {
+        console.error('desktop: Article/Organization schema graph missing on post');
+        failed = true;
+      }
+
+      if (!(await articlePage.getByText('İçindekiler', { exact: true }).count())) {
+        console.error('desktop: automatic table of contents missing');
+        failed = true;
+      }
+
+      await articlePage.close();
     }
   }
 
