@@ -73,6 +73,28 @@ function asosyoloji_slider_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_home_slider_exclude_categories',
+		array(
+			'default'           => array(),
+			'sanitize_callback' => 'asosyoloji_sanitize_category_ids',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Asosyoloji_Multi_Select_Control(
+			$wp_customize,
+			'aso_home_slider_exclude_categories',
+			array(
+				'label'       => __( 'Hariç tutulacak kategoriler', 'asosyoloji' ),
+				'description' => __( 'Bu bölümde görünmesini istemediğiniz kategorileri seçin. Ctrl/Cmd ile birden fazla seçim yapabilirsiniz.', 'asosyoloji' ),
+				'section'     => 'aso_home_slider',
+				'choices'     => array_filter( asosyoloji_category_choices(), 'is_int', ARRAY_FILTER_USE_KEY ),
+			)
+		)
+	);
+
+
+	$wp_customize->add_setting(
 		'aso_home_slider_count',
 		array(
 			'default'           => 5,
