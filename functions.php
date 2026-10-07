@@ -149,7 +149,7 @@ function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr 
 }
 
 function asosyoloji_has_post_image( $post_id = 0 ) {
-	return '' !== asosyoloji_get_post_image( $post_id ?: get_the_ID() );
+	return '' !== asosyoloji_get_post_image( $post_id ? $post_id : get_the_ID() );
 }
 
 function asosyoloji_register_widget_areas() {
