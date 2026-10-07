@@ -11,9 +11,6 @@ $author      = get_queried_object();
 $avatar      = get_avatar( $author->ID, 240, '', $author->display_name, array( 'class' => 'author-hero__avatar' ) );
 $description = get_the_author_meta( 'description', $author->ID );
 ?>
-
-<?php asosyoloji_breadcrumbs(); ?>
-
 <header class="author-hero">
 	<div class="aso-container author-hero__grid">
 		<div class="author-hero__media">
