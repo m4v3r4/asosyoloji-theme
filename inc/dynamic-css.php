@@ -44,12 +44,13 @@ function asosyoloji_dynamic_css() {
 	$body_size   = min( 24, max( 15, absint( get_theme_mod( 'aso_body_size', 18 ) ) ) );
 	$logo_width  = min( 900, max( 180, absint( get_theme_mod( 'aso_logo_width', 620 ) ) ) );
 	$logo_mobile = min( 420, max( 120, absint( get_theme_mod( 'aso_logo_width_mobile', 280 ) ) ) );
+	$menu_custom = asosyoloji_theme_color( 'aso_menu_custom_color', '#8f1d2c' );
 
 	$heading_font = asosyoloji_font_stack( get_theme_mod( 'aso_heading_font', 'sans' ) );
 	$body_font    = asosyoloji_font_stack( get_theme_mod( 'aso_body_font', 'serif' ) );
 
 	return sprintf(
-		':root{--aso-primary:%1$s;--aso-text:%2$s;--aso-muted:%3$s;--aso-border:%4$s;--aso-bg:%5$s;--aso-surface:%6$s;--aso-container:%7$dpx;--aso-article:%8$dpx;--aso-body-size:%9$dpx;--aso-heading-font:%10$s;--aso-body-font:%11$s;--aso-dark-bg:%12$s;--aso-dark-surface:%13$s;--aso-dark-text:%14$s;--aso-dark-muted:%15$s;--aso-dark-border:%16$s;--aso-dark-link:%17$s;--aso-dark-footer:%18$s;--aso-logo-width:%19$dpx;--aso-logo-width-mobile:%20$dpx;}',
+		':root{--aso-primary:%1$s;--aso-text:%2$s;--aso-muted:%3$s;--aso-border:%4$s;--aso-bg:%5$s;--aso-surface:%6$s;--aso-container:%7$dpx;--aso-article:%8$dpx;--aso-body-size:%9$dpx;--aso-heading-font:%10$s;--aso-body-font:%11$s;--aso-dark-bg:%12$s;--aso-dark-surface:%13$s;--aso-dark-text:%14$s;--aso-dark-muted:%15$s;--aso-dark-border:%16$s;--aso-dark-link:%17$s;--aso-dark-footer:%18$s;--aso-logo-width:%19$dpx;--aso-logo-width-mobile:%20$dpx;--aso-menu-custom:%21$s;}',
 		$primary,
 		$text,
 		$muted,
@@ -69,6 +70,7 @@ function asosyoloji_dynamic_css() {
 		$dark_link,
 		$dark_footer,
 		$logo_width,
-		$logo_mobile
+		$logo_mobile,
+		$menu_custom
 	);
 }
