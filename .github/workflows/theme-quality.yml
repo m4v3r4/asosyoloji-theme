@@ -52,8 +52,8 @@ jobs:
           cd build
           zip -r asosyoloji-theme.zip asosyoloji
 
-      - name: Upload ZIP artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: asosyoloji-theme
-          path: build/asosyoloji-theme.zip
+      - name: Verify ZIP
+        shell: bash
+        run: |
+          test -s build/asosyoloji-theme.zip
+          unzip -t build/asosyoloji-theme.zip
