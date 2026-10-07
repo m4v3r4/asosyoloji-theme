@@ -3,9 +3,35 @@
   const navigation = document.querySelector('.site-navigation');
 
   if (menuButton && navigation) {
+    const closeMenu = () => {
+      navigation.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    };
+
     menuButton.addEventListener('click', () => {
       const isOpen = navigation.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (
+        navigation.classList.contains('is-open') &&
+        !navigation.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    navigation.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
     });
   }
 
