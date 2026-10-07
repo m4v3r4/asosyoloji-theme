@@ -1,0 +1,60 @@
+name: Release Theme
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Verify tag matches theme version
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          THEME_VERSION=$(grep -Po "^Version:\s*\K.*" style.css | tr -d '\r')
+          PHP_VERSION=$(grep -Po "ASOSYOLOJI_VERSION',\s*'\K[^']+" functions.php)
+
+          echo "Tag: $TAG_VERSION"
+          echo "style.css: $THEME_VERSION"
+          echo "functions.php: $PHP_VERSION"
+
+          test "$TAG_VERSION" = "$THEME_VERSION"
+          test "$TAG_VERSION" = "$PHP_VERSION"
+
+      - name: Build installable ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/asosyoloji
+          rsync -a ./ build/asosyoloji/ \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'build' \
+            --exclude '.gitignore' \
+            --exclude 'composer.json' \
+            --exclude 'composer.lock' \
+            --exclude 'phpcs.xml.dist' \
+            --exclude 'bin' \
+            --exclude 'tests' \
+            --exclude 'vendor' \
+            --exclude 'node_modules'
+          cd build
+          zip -qr asosyoloji-theme.zip asosyoloji
+          unzip -t asosyoloji-theme.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/asosyoloji-theme.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
