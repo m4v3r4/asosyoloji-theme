@@ -1,0 +1,32 @@
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #111111;
+  line-height: 1.7;
+}
+
+.editor-styles-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.editor-styles-wrapper .wp-block {
+  max-width: 760px;
+}
+
+.editor-styles-wrapper .wp-block[data-align="wide"] {
+  max-width: 1280px;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+
+.editor-styles-wrapper blockquote {
+  padding-left: 24px;
+  border-left: 4px solid #8f1d2c;
+}
