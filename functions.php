@@ -16,6 +16,7 @@ require_once get_template_directory() . '/inc/dynamic-css.php';
 require_once get_template_directory() . '/inc/section-customizer.php';
 require_once get_template_directory() . '/inc/appearance.php';
 require_once get_template_directory() . '/inc/footer-customizer.php';
+require_once get_template_directory() . '/inc/slider-customizer.php';
 
 function asosyoloji_setup() {
 	load_theme_textdomain( 'asosyoloji', get_template_directory() . '/languages' );
