@@ -8,6 +8,7 @@
 get_header();
 
 $GLOBALS['asosyoloji_home_hero_post_id'] = 0;
+$GLOBALS['asosyoloji_home_used_post_ids'] = array();
 
 $order = get_theme_mod( 'aso_home_section_order', 'slider,hero,latest,featured,archive' );
 $sections = array_filter( array_map( 'sanitize_key', explode( ',', $order ) ) );
