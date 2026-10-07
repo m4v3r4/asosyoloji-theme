@@ -20,9 +20,9 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'asosyoloji_magazine_archive',
-			__( 'Asosyoloji: Dergi Arşivi', 'asosyoloji' ),
+			__( 'Asosyoloji: Basılı Sayılar (PDF)', 'asosyoloji' ),
 			array(
-				'description' => __( 'Kapak görseli, sayı başlığı ve PDF bağlantısıyla dergi sayılarını listeler.', 'asosyoloji' ),
+				'description' => __( 'Basılı dergi sayılarını kapak görseli, sayı başlığı ve PDF dosyasıyla listeler. WordPress yazı arşiviyle ilişkili değildir.', 'asosyoloji' ),
 			)
 		);
 	}
@@ -39,7 +39,7 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 		echo wp_kses_post(
 			asosyoloji_render_magazine_archive(
 				array(
-					'title'  => isset( $instance['title'] ) ? $instance['title'] : __( 'Dergi Arşivi', 'asosyoloji' ),
+					'title'  => isset( $instance['title'] ) ? $instance['title'] : __( 'Basılı Sayılar', 'asosyoloji' ),
 					'items'  => isset( $instance['items'] ) && is_array( $instance['items'] ) ? $instance['items'] : array(),
 					'layout' => isset( $instance['layout'] ) ? $instance['layout'] : 'grid',
 				)
@@ -88,7 +88,7 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 	 * @param array $instance Current settings.
 	 */
 	public function form( $instance ) {
-		$title  = $instance['title'] ?? __( 'Dergi Arşivi', 'asosyoloji' );
+		$title  = $instance['title'] ?? __( 'Basılı Sayılar', 'asosyoloji' );
 		$layout = $instance['layout'] ?? 'grid';
 		$items  = isset( $instance['items'] ) && is_array( $instance['items'] ) ? $instance['items'] : array();
 
