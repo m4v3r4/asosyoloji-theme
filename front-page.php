@@ -7,6 +7,10 @@
 
 get_header();
 
+if ( get_theme_mod( 'aso_home_slider_show', true ) ) {
+	get_template_part( 'template-parts/home', 'slider' );
+}
+
 $hero_post_id = 0;
 
 if ( get_theme_mod( 'aso_home_show_hero', true ) ) :
