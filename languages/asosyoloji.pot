@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:35:21+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:43:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:236
+#: functions.php:237
 #: home.php:13
 #: page.php:20
 msgid "Asosyoloji"
@@ -101,38 +101,38 @@ msgstr ""
 msgid "Tema kaynak kodu"
 msgstr ""
 
-#: functions.php:71
+#: functions.php:72
 msgid "Ana Menü"
 msgstr ""
 
-#: functions.php:72
+#: functions.php:73
 msgid "Alt Menü"
 msgstr ""
 
-#: functions.php:108
+#: functions.php:109
 msgid "Yazılar yükleniyor…"
 msgstr ""
 
-#: functions.php:109
+#: functions.php:110
 #: template-parts/home-latest.php:84
 msgid "Daha fazla yükle"
 msgstr ""
 
-#: functions.php:110
+#: functions.php:111
 msgid "Tüm yazılar yüklendi."
 msgstr ""
 
-#: functions.php:111
+#: functions.php:112
 msgid "Yazılar yüklenemedi. Tekrar deneyin."
 msgstr ""
 
 #. translators: %d: Footer column number.
-#: functions.php:191
+#: functions.php:192
 #, php-format
 msgid "Footer Sütun %d"
 msgstr ""
 
-#: functions.php:193
+#: functions.php:194
 msgid "Footer sütununa blok veya bileşen ekleyin."
 msgstr ""
 
@@ -889,6 +889,30 @@ msgstr ""
 
 #: inc/geo-content.php:182
 msgid "İçindekiler"
+msgstr ""
+
+#. translators: %d: GitHub API HTTP status code.
+#: inc/github-updater.php:86
+#, php-format
+msgid "GitHub release bilgisi alınamadı. HTTP %d."
+msgstr ""
+
+#: inc/github-updater.php:94
+msgid "GitHub release yanıtı geçersiz."
+msgstr ""
+
+#: inc/github-updater.php:221
+msgid "Private GitHub temasını güncellemek için ASOSYOLOJI_GITHUB_TOKEN wp-config.php içinde tanımlanmalıdır."
+msgstr ""
+
+#: inc/github-updater.php:227
+msgid "Tema güncellemesi için geçici dosya oluşturulamadı."
+msgstr ""
+
+#. translators: %d: GitHub release asset HTTP status code.
+#: inc/github-updater.php:253
+#, php-format
+msgid "GitHub tema paketi indirilemedi. HTTP %d."
 msgstr ""
 
 #: inc/reading.php:16
