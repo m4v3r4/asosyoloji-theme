@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T08:04:00+00:00\n"
+"POT-Creation-Date: 2026-10-07T08:04:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -54,7 +54,7 @@ msgid "%s içerik"
 msgstr ""
 
 #: author.php:24
-#: inc/widgets.php:323
+#: inc/class-asosyoloji-post-list-widget.php:157
 #: single.php:97
 #: assets/js/post-list-block.js:94
 msgid "Yazar"
@@ -73,7 +73,7 @@ msgid "Yazıları"
 msgstr ""
 
 #: category.php:18
-#: inc/widgets.php:288
+#: inc/class-asosyoloji-post-list-widget.php:122
 #: assets/js/post-list-block.js:64
 msgid "Kategori"
 msgstr ""
@@ -92,7 +92,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: footer.php:27
-#: inc/customizer.php:395
+#: inc/customizer.php:402
 msgid "Bağımsız düşünce, kültür ve toplum dergisi."
 msgstr ""
 
@@ -100,21 +100,21 @@ msgstr ""
 msgid "Tema kaynak kodu"
 msgstr ""
 
-#: functions.php:66
+#: functions.php:65
 msgid "Ana Menü"
 msgstr ""
 
-#: functions.php:67
+#: functions.php:66
 msgid "Alt Menü"
 msgstr ""
 
 #. translators: %d: Footer column number.
-#: functions.php:171
+#: functions.php:170
 #, php-format
 msgid "Footer Sütun %d"
 msgstr ""
 
-#: functions.php:173
+#: functions.php:172
 msgid "Footer sütununa blok veya bileşen ekleyin."
 msgstr ""
 
@@ -221,324 +221,423 @@ msgid "Arama alanı metni"
 msgstr ""
 
 #: inc/blocks.php:26
-#: inc/customizer.php:71
-#: inc/widgets.php:290
+#: inc/class-asosyoloji-post-list-widget.php:124
+#: inc/customizer.php:78
 #: assets/js/post-list-block.js:15
 msgid "Tüm kategoriler"
 msgstr ""
 
 #: inc/blocks.php:40
-#: inc/widgets.php:325
+#: inc/class-asosyoloji-post-list-widget.php:159
 #: assets/js/post-list-block.js:20
 msgid "Tüm yazarlar"
 msgstr ""
 
-#: inc/customizer.php:46
+#: inc/class-asosyoloji-post-list-widget.php:23
+#: assets/js/post-list-block.js:24
+msgid "Asosyoloji: Yazı Listesi"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:25
+msgid "Son yazıları veya belirli bir kategoriyi temayla uyumlu liste, grid ya da manşet görünümünde gösterir."
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:98
+#: inc/customizer.php:551
+#: inc/section-order.php:63
+#: template-parts/home-latest.php:46
+msgid "Son Yazılar"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:117
+#: inc/class-asosyoloji-post-list-widget.php:171
+#: inc/customizer.php:643
+#: assets/js/post-list-block.js:57
+#: assets/js/post-list-block.js:107
+msgid "Başlık"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:132
+msgid "Hariç kategoriler"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:138
+msgid "Ctrl/Cmd ile birden fazla kategori seçebilirsiniz."
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:142
+#: assets/js/post-list-block.js:72
+msgid "Yazı sayısı"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:147
+#: assets/js/post-list-block.js:81
+msgid "Görünüm"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:149
+#: assets/js/post-list-block.js:84
+msgid "Görselli liste"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:150
+#: assets/js/post-list-block.js:85
+msgid "Kompakt liste"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:151
+#: assets/js/post-list-block.js:86
+msgid "Kart grid"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:152
+#: assets/js/post-list-block.js:87
+msgid "Bir büyük + liste"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:167
+msgid "Sıralama"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:169
+#: inc/customizer.php:641
+#: assets/js/post-list-block.js:105
+msgid "Yayın tarihi"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:170
+#: assets/js/post-list-block.js:106
+msgid "Güncellenme tarihi"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:172
+#: assets/js/post-list-block.js:108
+msgid "Yorum sayısı"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:173
+#: inc/customizer.php:644
+#: assets/js/post-list-block.js:109
+msgid "Rastgele"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:178
+#: inc/customizer.php:661
+#: assets/js/post-list-block.js:116
+msgid "Sıralama yönü"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:180
+#: assets/js/post-list-block.js:119
+msgid "Azalan"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:181
+#: assets/js/post-list-block.js:120
+msgid "Artan"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:186
+msgid "Tarih aralığı"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:192
+#: assets/js/post-list-block.js:143
+msgid "İlk N yazıyı atla (offset)"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:197
+msgid "Sabitlenmiş yazıları normal akışa dahil et"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:201
+#: assets/js/post-list-block.js:159
+msgid "Görselleri göster"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:202
+#: assets/js/post-list-block.js:173
+msgid "Yazar ve tarihi göster"
+msgstr ""
+
+#: inc/class-asosyoloji-post-list-widget.php:203
+#: assets/js/post-list-block.js:166
+msgid "Özeti göster"
+msgstr ""
+
+#: inc/customizer.php:53
 msgid "Otomatik: en güncel yazı"
 msgstr ""
 
-#: inc/customizer.php:91
+#: inc/customizer.php:98
 msgid "Asosyoloji Tema Ayarları"
 msgstr ""
 
-#: inc/customizer.php:92
+#: inc/customizer.php:99
 msgid "Tema görünümünü ve ana sayfa yayın akışını kod değiştirmeden yönetin."
 msgstr ""
 
-#: inc/customizer.php:100
+#: inc/customizer.php:107
 msgid "Renkler"
 msgstr ""
 
-#: inc/customizer.php:107
+#: inc/customizer.php:114
 msgid "Vurgu rengi"
 msgstr ""
 
-#: inc/customizer.php:111
+#: inc/customizer.php:118
 msgid "Metin rengi"
 msgstr ""
 
-#: inc/customizer.php:115
+#: inc/customizer.php:122
 msgid "İkincil metin rengi"
 msgstr ""
 
-#: inc/customizer.php:119
+#: inc/customizer.php:126
 msgid "Çizgi ve kenarlık rengi"
 msgstr ""
 
-#: inc/customizer.php:123
+#: inc/customizer.php:130
 msgid "Arka plan rengi"
 msgstr ""
 
-#: inc/customizer.php:127
+#: inc/customizer.php:134
 msgid "İkincil arka plan rengi"
 msgstr ""
 
-#: inc/customizer.php:157
+#: inc/customizer.php:164
 msgid "Tipografi"
 msgstr ""
 
-#: inc/customizer.php:173
+#: inc/customizer.php:180
 msgid "Başlık yazı tipi"
 msgstr ""
 
-#: inc/customizer.php:177
-#: inc/customizer.php:200
+#: inc/customizer.php:184
+#: inc/customizer.php:207
 msgid "Modern Sans Serif"
 msgstr ""
 
-#: inc/customizer.php:178
-#: inc/customizer.php:201
+#: inc/customizer.php:185
+#: inc/customizer.php:208
 msgid "Sistem Sans Serif"
 msgstr ""
 
-#: inc/customizer.php:179
-#: inc/customizer.php:199
+#: inc/customizer.php:186
+#: inc/customizer.php:206
 msgid "Serif"
 msgstr ""
 
-#: inc/customizer.php:195
+#: inc/customizer.php:202
 msgid "Yazı gövdesi yazı tipi"
 msgstr ""
 
-#: inc/customizer.php:217
+#: inc/customizer.php:224
 msgid "Yazı boyutu"
 msgstr ""
 
-#: inc/customizer.php:218
+#: inc/customizer.php:225
 msgid "Piksel cinsinden genel metin boyutu."
 msgstr ""
 
-#: inc/customizer.php:232
+#: inc/customizer.php:239
 msgid "Yerleşim"
 msgstr ""
 
-#: inc/customizer.php:248
+#: inc/customizer.php:255
 msgid "Site maksimum genişliği"
 msgstr ""
 
-#: inc/customizer.php:270
+#: inc/customizer.php:277
 msgid "Makale metin genişliği"
 msgstr ""
 
-#: inc/customizer.php:284
+#: inc/customizer.php:291
 msgid "Üst Alan"
 msgstr ""
 
-#: inc/customizer.php:300
+#: inc/customizer.php:307
 msgid "Menüyü sayfa kaydırılırken sabit tut"
 msgstr ""
 
-#: inc/customizer.php:317
+#: inc/customizer.php:324
 msgid "Site açıklamasını göster"
 msgstr ""
 
-#: inc/customizer.php:334
+#: inc/customizer.php:341
 msgid "Üst menüde arama bağlantısını göster"
 msgstr ""
 
-#: inc/customizer.php:351
+#: inc/customizer.php:358
 msgid "Logo maksimum genişliği (masaüstü)"
 msgstr ""
 
-#: inc/customizer.php:373
+#: inc/customizer.php:380
 msgid "Logo maksimum genişliği (mobil)"
 msgstr ""
 
-#: inc/customizer.php:387
+#: inc/customizer.php:394
 msgid "Alt Alan"
 msgstr ""
 
-#: inc/customizer.php:403
+#: inc/customizer.php:410
 msgid "Footer kısa notu"
 msgstr ""
 
-#: inc/customizer.php:412
+#: inc/customizer.php:419
 msgid "Ana Sayfa: Genel"
 msgstr ""
 
-#: inc/customizer.php:430
+#: inc/customizer.php:437
 msgid "Ana sayfada genel olarak hariç tutulacak kategoriler"
 msgstr ""
 
-#: inc/customizer.php:431
+#: inc/customizer.php:438
 msgid "Duyurular gibi ana sayfadaki yazı akışlarında görünmesini istemediğiniz kategorileri seçin. Bölüm bazlı hariç tutmalar ayrıca uygulanır."
 msgstr ""
 
-#: inc/customizer.php:441
+#: inc/customizer.php:448
 msgid "Ana Sayfa: Öne Çıkan"
 msgstr ""
 
-#: inc/customizer.php:457
+#: inc/customizer.php:464
 msgid "Öne çıkan alanı göster"
 msgstr ""
 
-#: inc/customizer.php:474
+#: inc/customizer.php:481
 msgid "Öne çıkan yazı"
 msgstr ""
 
-#: inc/customizer.php:475
+#: inc/customizer.php:482
 msgid "Bir yazı seçmezseniz en güncel yazı otomatik gösterilir."
 msgstr ""
 
-#: inc/customizer.php:485
+#: inc/customizer.php:492
 #: inc/section-order.php:62
 #: template-parts/home-hero.php:50
 msgid "Öne Çıkan"
 msgstr ""
 
-#: inc/customizer.php:493
+#: inc/customizer.php:500
 #: inc/section-customizer.php:97
 msgid "Üst etiket"
 msgstr ""
 
-#: inc/customizer.php:502
+#: inc/customizer.php:509
 msgid "Ana Sayfa: Yazı Akışı"
 msgstr ""
 
-#: inc/customizer.php:518
+#: inc/customizer.php:525
 msgid "Yazı akışı bölümünü göster"
 msgstr ""
 
-#: inc/customizer.php:527
+#: inc/customizer.php:534
 #: template-parts/home-latest.php:45
 msgid "Güncel"
 msgstr ""
 
-#: inc/customizer.php:535
+#: inc/customizer.php:542
 msgid "Bölüm üst etiketi"
 msgstr ""
 
-#: inc/customizer.php:544
-#: inc/section-order.php:63
-#: inc/widgets.php:264
-#: template-parts/home-latest.php:46
-msgid "Son Yazılar"
-msgstr ""
-
-#: inc/customizer.php:552
+#: inc/customizer.php:559
 #: inc/section-customizer.php:113
 msgid "Bölüm başlığı"
 msgstr ""
 
-#: inc/customizer.php:569
+#: inc/customizer.php:576
 msgid "Kategori filtresi"
 msgstr ""
 
-#: inc/customizer.php:570
+#: inc/customizer.php:577
 msgid "Sadece seçilen kategorideki içerikleri gösterir."
 msgstr ""
 
-#: inc/customizer.php:590
+#: inc/customizer.php:597
 #: inc/section-customizer.php:78
 #: inc/slider-customizer.php:88
 #: assets/js/post-list-block.js:182
 msgid "Hariç tutulacak kategoriler"
 msgstr ""
 
-#: inc/customizer.php:591
+#: inc/customizer.php:598
 msgid "Duyurular gibi ana yazı akışında görünmesini istemediğiniz kategorileri seçin. Ctrl/Cmd ile birden fazla seçim yapabilirsiniz."
 msgstr ""
 
-#: inc/customizer.php:609
+#: inc/customizer.php:616
 msgid "Gösterilecek içerik sayısı"
 msgstr ""
 
-#: inc/customizer.php:630
+#: inc/customizer.php:637
 #: assets/js/post-list-block.js:102
 msgid "Sıralama ölçütü"
 msgstr ""
 
-#: inc/customizer.php:634
-#: inc/widgets.php:335
-#: assets/js/post-list-block.js:105
-msgid "Yayın tarihi"
-msgstr ""
-
-#: inc/customizer.php:635
+#: inc/customizer.php:642
 msgid "Son güncellenme"
 msgstr ""
 
-#: inc/customizer.php:636
-#: inc/widgets.php:283
-#: inc/widgets.php:337
-#: assets/js/post-list-block.js:57
-#: assets/js/post-list-block.js:107
-msgid "Başlık"
-msgstr ""
-
-#: inc/customizer.php:637
-#: inc/widgets.php:339
-#: assets/js/post-list-block.js:109
-msgid "Rastgele"
-msgstr ""
-
-#: inc/customizer.php:638
+#: inc/customizer.php:645
 msgid "Menü sırası"
 msgstr ""
 
-#: inc/customizer.php:654
-#: inc/widgets.php:344
-#: assets/js/post-list-block.js:116
-msgid "Sıralama yönü"
-msgstr ""
-
-#: inc/customizer.php:658
+#: inc/customizer.php:665
 msgid "Azalan / en yeni önce"
 msgstr ""
 
-#: inc/customizer.php:659
+#: inc/customizer.php:666
 msgid "Artan / en eski önce"
 msgstr ""
 
-#: inc/customizer.php:667
+#: inc/customizer.php:674
 msgid "Ana Sayfa: Arşiv Alanı"
 msgstr ""
 
-#: inc/customizer.php:683
+#: inc/customizer.php:690
 msgid "Arşiv alanını göster"
 msgstr ""
 
-#: inc/customizer.php:692
+#: inc/customizer.php:699
 #: template-parts/home-archive.php:17
 msgid "Geçmişten Bugüne"
 msgstr ""
 
-#: inc/customizer.php:700
+#: inc/customizer.php:707
 msgid "Arşiv üst etiketi"
 msgstr ""
 
-#: inc/customizer.php:709
+#: inc/customizer.php:716
 #: template-parts/home-archive.php:21
 msgid "Asosyoloji Arşivi"
 msgstr ""
 
-#: inc/customizer.php:717
+#: inc/customizer.php:724
 msgid "Arşiv başlığı"
 msgstr ""
 
-#: inc/customizer.php:726
+#: inc/customizer.php:733
 #: template-parts/home-archive.php:22
 msgid "Basılı dergi sayılarına ve PDF arşivine ulaşın."
 msgstr ""
 
-#: inc/customizer.php:734
+#: inc/customizer.php:741
 msgid "Arşiv açıklaması"
 msgstr ""
 
-#: inc/customizer.php:751
+#: inc/customizer.php:758
 msgid "Arşiv sayfası"
 msgstr ""
 
-#: inc/customizer.php:752
+#: inc/customizer.php:759
 msgid "Mevcut basılı PDF arşiv sayfanızı seçin. İçeriğine dokunulmaz."
 msgstr ""
 
-#: inc/customizer.php:761
+#: inc/customizer.php:768
 #: template-parts/home-archive.php:27
 msgid "Arşivi Gör"
 msgstr ""
 
-#: inc/customizer.php:769
+#: inc/customizer.php:776
 msgid "Buton metni"
 msgstr ""
 
@@ -803,105 +902,6 @@ msgstr ""
 
 #: inc/slider-customizer.php:179
 msgid "Özet metnini göster"
-msgstr ""
-
-#: inc/widgets.php:189
-#: assets/js/post-list-block.js:24
-msgid "Asosyoloji: Yazı Listesi"
-msgstr ""
-
-#: inc/widgets.php:191
-msgid "Son yazıları veya belirli bir kategoriyi temayla uyumlu liste, grid ya da manşet görünümünde gösterir."
-msgstr ""
-
-#: inc/widgets.php:298
-msgid "Hariç kategoriler"
-msgstr ""
-
-#: inc/widgets.php:304
-msgid "Ctrl/Cmd ile birden fazla kategori seçebilirsiniz."
-msgstr ""
-
-#: inc/widgets.php:308
-#: assets/js/post-list-block.js:72
-msgid "Yazı sayısı"
-msgstr ""
-
-#: inc/widgets.php:313
-#: assets/js/post-list-block.js:81
-msgid "Görünüm"
-msgstr ""
-
-#: inc/widgets.php:315
-#: assets/js/post-list-block.js:84
-msgid "Görselli liste"
-msgstr ""
-
-#: inc/widgets.php:316
-#: assets/js/post-list-block.js:85
-msgid "Kompakt liste"
-msgstr ""
-
-#: inc/widgets.php:317
-#: assets/js/post-list-block.js:86
-msgid "Kart grid"
-msgstr ""
-
-#: inc/widgets.php:318
-#: assets/js/post-list-block.js:87
-msgid "Bir büyük + liste"
-msgstr ""
-
-#: inc/widgets.php:333
-msgid "Sıralama"
-msgstr ""
-
-#: inc/widgets.php:336
-#: assets/js/post-list-block.js:106
-msgid "Güncellenme tarihi"
-msgstr ""
-
-#: inc/widgets.php:338
-#: assets/js/post-list-block.js:108
-msgid "Yorum sayısı"
-msgstr ""
-
-#: inc/widgets.php:346
-#: assets/js/post-list-block.js:119
-msgid "Azalan"
-msgstr ""
-
-#: inc/widgets.php:347
-#: assets/js/post-list-block.js:120
-msgid "Artan"
-msgstr ""
-
-#: inc/widgets.php:352
-msgid "Tarih aralığı"
-msgstr ""
-
-#: inc/widgets.php:358
-#: assets/js/post-list-block.js:143
-msgid "İlk N yazıyı atla (offset)"
-msgstr ""
-
-#: inc/widgets.php:363
-msgid "Sabitlenmiş yazıları normal akışa dahil et"
-msgstr ""
-
-#: inc/widgets.php:367
-#: assets/js/post-list-block.js:159
-msgid "Görselleri göster"
-msgstr ""
-
-#: inc/widgets.php:368
-#: assets/js/post-list-block.js:173
-msgid "Yazar ve tarihi göster"
-msgstr ""
-
-#: inc/widgets.php:369
-#: assets/js/post-list-block.js:166
-msgid "Özeti göster"
 msgstr ""
 
 #: page.php:32
