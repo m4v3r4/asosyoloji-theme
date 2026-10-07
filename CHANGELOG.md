@@ -2,6 +2,17 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.3 - 2026-10-07
+
+### Added
+- General page content width presets: Dar, Geniş and Tam.
+- Homepage slider width control: Genel ayarı kullan, Dar, Geniş or Tam.
+
+### Changed
+- Slider can now inherit the general page width or override it independently.
+- Standard page content width follows the selected layout preset.
+
+
 ## 0.7.2 - 2026-10-07
 
 ### Added
