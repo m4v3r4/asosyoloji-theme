@@ -16,9 +16,10 @@ if ( post_password_required() ) {
 				<div class="section-kicker"><?php esc_html_e( 'Tartışma', 'asosyoloji' ); ?></div>
 				<h2 class="section-title">
 					<?php
+					/* translators: %1$s: Number of comments. */
 					printf(
 						esc_html( _nx( '%1$s yorum', '%1$s yorum', get_comments_number(), 'yorum sayısı', 'asosyoloji' ) ),
-						number_format_i18n( get_comments_number() )
+						esc_html( number_format_i18n( get_comments_number() ) )
 					);
 					?>
 				</h2>
@@ -31,7 +32,7 @@ if ( post_password_required() ) {
 				array(
 					'style'      => 'ol',
 					'short_ping' => true,
-					'avatar_size'=> 56,
+					'avatar_size' => 56,
 				)
 			);
 			?>
