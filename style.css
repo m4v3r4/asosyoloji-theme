@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.4.1
+Version: 0.4.2
 Text Domain: asosyoloji
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -2483,4 +2483,69 @@ html[data-theme="dark"] .header-search__panel .search-submit:hover {
   justify-content: flex-end;
   font-size: .68rem;
   line-height: 1.4;
+}
+
+
+/* Comments */
+.comments-area {
+  padding-top: 48px;
+  padding-bottom: 72px;
+}
+
+.comment-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comment-list .comment {
+  padding: 22px 0;
+  border-top: 1px solid var(--aso-border);
+}
+
+.comment-list .children {
+  margin-left: 28px;
+  list-style: none;
+}
+
+.comment-meta,
+.comment-metadata {
+  color: var(--aso-muted);
+  font-family: var(--aso-heading-font);
+  font-size: .76rem;
+}
+
+.comment-content {
+  margin-top: 12px;
+}
+
+.comment-respond {
+  margin-top: 42px;
+}
+
+.comment-form input:not([type="submit"]),
+.comment-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--aso-border);
+  background: var(--aso-bg);
+  color: var(--aso-text);
+  font: inherit;
+}
+
+.comment-form .submit {
+  padding: 10px 16px;
+  border: 1px solid var(--aso-text);
+  background: var(--aso-text);
+  color: var(--aso-bg);
+  font-family: var(--aso-heading-font);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .comment-form input:not([type="submit"]),
+html[data-theme="dark"] .comment-form textarea {
+  background: var(--aso-surface);
+  border-color: var(--aso-border);
+  color: var(--aso-text);
 }
