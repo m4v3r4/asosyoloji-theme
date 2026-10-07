@@ -94,6 +94,24 @@ function asosyoloji_seo_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_publishing_principles_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_publishing_principles_url',
+		array(
+			'label'       => __( 'Yayın ilkeleri / editoryal politika URL’si', 'asosyoloji' ),
+			'description' => __( 'Varsa Organization schema içindeki publishingPrinciples alanında kullanılır.', 'asosyoloji' ),
+			'section'     => 'aso_seo_geo',
+			'type'        => 'url',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_default_social_image',
 		array(
 			'default'           => 0,
