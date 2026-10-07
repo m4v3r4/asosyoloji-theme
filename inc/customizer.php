@@ -624,6 +624,51 @@ function asosyoloji_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_home_latest_load_mode',
+		array(
+			'default'           => 'button',
+			'sanitize_callback' => 'asosyoloji_sanitize_select',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_home_latest_load_mode',
+		array(
+			'label'       => __( 'Daha fazla içerik yükleme', 'asosyoloji' ),
+			'description' => __( 'Son Yazılar bölümünde ilk grup sonrasında yeni içeriklerin nasıl yükleneceğini belirler.', 'asosyoloji' ),
+			'section'     => 'aso_home_latest',
+			'type'        => 'select',
+			'choices'     => array(
+				'none'     => __( 'Kapalı', 'asosyoloji' ),
+				'button'   => __( 'Daha fazla yükle butonu', 'asosyoloji' ),
+				'infinite' => __( 'Aşağı indikçe otomatik yükle', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_home_latest_load_count',
+		array(
+			'default'           => 6,
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_home_latest_load_count',
+		array(
+			'label'       => __( 'Her yüklemede getirilecek yazı sayısı', 'asosyoloji' ),
+			'section'     => 'aso_home_latest',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 3,
+				'max'  => 12,
+				'step' => 1,
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_home_latest_orderby',
 		array(
 			'default'           => 'date',
