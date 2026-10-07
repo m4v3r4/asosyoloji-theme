@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.5.3' );
+define( 'ASOSYOLOJI_VERSION', '0.5.4' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/class-asosyoloji-multi-select-control.php';
