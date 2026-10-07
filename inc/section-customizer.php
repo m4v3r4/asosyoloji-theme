@@ -83,7 +83,6 @@ function asosyoloji_section_customize_register( $wp_customize ) {
 		)
 	);
 
-
 	$wp_customize->add_setting(
 		'aso_home_featured_section_kicker',
 		array(
