@@ -209,6 +209,12 @@ function asosyoloji_excerpt_length( $_length ) {
 add_filter( 'excerpt_length', 'asosyoloji_excerpt_length', 999 );
 
 function asosyoloji_body_classes( $classes ) {
+	$page_width = get_theme_mod( 'aso_page_content_width', 'wide' );
+	if ( ! in_array( $page_width, array( 'narrow', 'wide', 'full' ), true ) ) {
+		$page_width = 'wide';
+	}
+	$classes[] = 'aso-page-width-' . $page_width;
+
 	if ( get_theme_mod( 'aso_sticky_header', true ) ) {
 		$classes[] = 'has-sticky-header';
 	}
