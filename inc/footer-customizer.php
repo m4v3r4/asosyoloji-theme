@@ -93,6 +93,5 @@ function asosyoloji_footer_customize_register( $wp_customize ) {
 			'type'        => 'url',
 		)
 	);
-
 }
 add_action( 'customize_register', 'asosyoloji_footer_customize_register', 50 );
