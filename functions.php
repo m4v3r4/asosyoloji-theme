@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'ASOSYOLOJI_VERSION', '0.1.0' );
 
 require_once get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/homepage-customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
 
 function asosyoloji_setup() {
