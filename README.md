@@ -179,3 +179,22 @@ PDF ve kapak görselleri WordPress Medya Kütüphanesi üzerinden seçilebilir. 
 - Liste
 
 Kapak veya başlığa tıklandığında PDF yeni sekmede açılır. Bu bileşen mevcut arşiv/PDF içeriklerini değiştirmez; yalnızca istenen sayıları farklı alanlarda tekrar sunmak için kullanılır.
+
+
+## Animasyonlar
+
+**Görünüm → Özelleştir → Asosyoloji Tema Ayarları → Aydınlık / Karanlık Tema** bölümünden arayüz animasyonları açılıp kapatılabilir.
+
+Animasyon yoğunluğu:
+- Sade
+- Normal
+
+Animasyon sistemi:
+- Bölüm ve kart scroll reveal
+- Hafif stagger gecikmeleri
+- Kart hover yükselmesi
+- Görsel hover zoom
+- Sticky header scroll gölgesi
+- Buton ve bağlantı geçişleri
+
+Ziyaretçinin `prefers-reduced-motion` sistem tercihi her zaman önceliklidir; bu durumda hareketler otomatik olarak devre dışı bırakılır.
