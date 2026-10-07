@@ -9,16 +9,18 @@ if ( ! get_theme_mod( 'aso_home_show_hero', true ) ) {
 	return;
 }
 
-$selected_hero = absint( get_theme_mod( 'aso_home_hero_post', 0 ) );
+$selected_hero       = absint( get_theme_mod( 'aso_home_hero_post', 0 ) );
+$excluded_categories = asosyoloji_home_excluded_categories();
 $used_ids      = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array();
 $args          = array(
 	'posts_per_page'      => 1,
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => false,
 	'post__not_in'        => $used_ids,
+	'category__not_in'   => $excluded_categories,
 );
 
-if ( $selected_hero && ! in_array( $selected_hero, $used_ids, true ) ) {
+if ( $selected_hero && ! in_array( $selected_hero, $used_ids, true ) && ! has_category( $excluded_categories, $selected_hero ) ) {
 	$args['p'] = $selected_hero;
 }
 
