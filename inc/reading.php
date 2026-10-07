@@ -68,11 +68,12 @@ function asosyoloji_reading_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'asosyoloji_reading_customize_register', 70 );
 
 function asosyoloji_reading_time( $post_id = 0 ) {
-	$post_id = $post_id ?: get_the_ID();
+	$post_id = $post_id ? $post_id : get_the_ID();
 	$content = wp_strip_all_tags( get_post_field( 'post_content', $post_id ) );
 	$words   = str_word_count( wp_strip_all_tags( $content ) );
 	$minutes = max( 1, (int) ceil( $words / 220 ) );
 
+	/* translators: %s: Estimated reading time in minutes. */
 	return sprintf(
 		_n( '%s dk okuma', '%s dk okuma', $minutes, 'asosyoloji' ),
 		number_format_i18n( $minutes )
@@ -80,7 +81,7 @@ function asosyoloji_reading_time( $post_id = 0 ) {
 }
 
 function asosyoloji_share_links( $post_id = 0 ) {
-	$post_id = $post_id ?: get_the_ID();
+	$post_id = $post_id ? $post_id : get_the_ID();
 	$url     = rawurlencode( get_permalink( $post_id ) );
 	$title   = rawurlencode( get_the_title( $post_id ) );
 
