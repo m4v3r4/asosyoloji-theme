@@ -36,7 +36,8 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             --exclude 'build' \
-            --exclude '.gitignore'
+            --exclude '.gitignore' \
+            --exclude 'plugin'
 
           cd build
           zip -qr asosyoloji-theme.zip asosyoloji
