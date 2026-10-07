@@ -159,3 +159,76 @@ function asosyoloji_install_weekly_plugin() {
 	exit;
 }
 add_action( 'admin_post_asosyoloji_install_weekly', 'asosyoloji_install_weekly_plugin' );
+
+
+function asosyoloji_companion_plugins_menu() {
+	add_theme_page(
+		__( 'Asosyoloji Eklentileri', 'asosyoloji' ),
+		__( 'Asosyoloji Eklentileri', 'asosyoloji' ),
+		'install_plugins',
+		'asosyoloji-plugins',
+		'asosyoloji_companion_plugins_page'
+	);
+}
+add_action( 'admin_menu', 'asosyoloji_companion_plugins_menu' );
+
+function asosyoloji_companion_plugins_page() {
+	if ( ! current_user_can( 'install_plugins' ) ) {
+		return;
+	}
+
+	$active    = asosyoloji_weekly_plugin_is_active();
+	$installed = asosyoloji_weekly_plugin_is_installed();
+	$release   = asosyoloji_weekly_recommended_release();
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Asosyoloji Eklentileri', 'asosyoloji' ); ?></h1>
+		<p><?php esc_html_e( 'Temayla birlikte çalışması önerilen bağımsız Asosyoloji eklentileri.', 'asosyoloji' ); ?></p>
+
+		<div style="max-width:760px;background:#fff;border:1px solid #dcdcde;border-left:4px solid #8f1d2c;padding:24px;margin-top:24px;">
+			<h2 style="margin-top:0;"><?php esc_html_e( 'Asosyoloji Haftalık', 'asosyoloji' ); ?></h2>
+			<p><?php esc_html_e( 'Etkinlik içerik tipi, haftalık etkinlik listesi, aylık takvim, Event schema, Google Calendar ve ICS desteği sağlar.', 'asosyoloji' ); ?></p>
+
+			<p>
+				<strong><?php esc_html_e( 'Durum:', 'asosyoloji' ); ?></strong>
+				<?php
+				if ( $active ) {
+					esc_html_e( 'Etkin', 'asosyoloji' );
+				} elseif ( $installed ) {
+					esc_html_e( 'Kurulu fakat etkin değil', 'asosyoloji' );
+				} else {
+					esc_html_e( 'Kurulu değil', 'asosyoloji' );
+				}
+				?>
+			</p>
+
+			<?php if ( ! is_wp_error( $release ) && ! empty( $release['version'] ) ) : ?>
+				<p>
+					<strong><?php esc_html_e( 'GitHub sürümü:', 'asosyoloji' ); ?></strong>
+					<?php echo esc_html( $release['version'] ); ?>
+				</p>
+			<?php endif; ?>
+
+			<p>
+				<?php if ( $active ) : ?>
+					<a class="button button-primary" href="<?php echo esc_url( admin_url( 'edit.php?post_type=asosyoloji_event' ) ); ?>">
+						<?php esc_html_e( 'Etkinlikleri Yönet', 'asosyoloji' ); ?>
+					</a>
+				<?php elseif ( $installed ) : ?>
+					<a class="button button-primary" href="<?php echo esc_url( asosyoloji_weekly_activate_url() ); ?>">
+						<?php esc_html_e( 'Etkinleştir', 'asosyoloji' ); ?>
+					</a>
+				<?php elseif ( ! is_wp_error( $release ) && ! empty( $release['download_url'] ) ) : ?>
+					<a class="button button-primary" href="<?php echo esc_url( asosyoloji_weekly_install_url() ); ?>">
+						<?php esc_html_e( 'GitHub’dan Kur ve Etkinleştir', 'asosyoloji' ); ?>
+					</a>
+				<?php endif; ?>
+
+				<a class="button" href="https://github.com/m4v3r4/asosyoloji-weekly" target="_blank" rel="noopener noreferrer">
+					<?php esc_html_e( 'GitHub', 'asosyoloji' ); ?>
+				</a>
+			</p>
+		</div>
+	</div>
+	<?php
+}
