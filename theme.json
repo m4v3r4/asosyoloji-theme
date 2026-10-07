@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "palette": [
+        { "slug": "primary", "name": "Asosyoloji Kırmızı", "color": "#b3212b" },
+        { "slug": "black", "name": "Siyah", "color": "#171717" },
+        { "slug": "white", "name": "Beyaz", "color": "#ffffff" },
+        { "slug": "soft", "name": "Kırık Beyaz", "color": "#f6f4f1" },
+        { "slug": "muted", "name": "Gri", "color": "#6d6d6d" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "%", "vw"]
+    },
+    "typography": {
+      "fluid": true
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#171717"
+    }
+  }
+}
