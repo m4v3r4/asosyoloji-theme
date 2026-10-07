@@ -347,7 +347,7 @@ function asosyoloji_schema_graph() {
 		'@id'        => $website_id,
 		'url'        => $home_url,
 		'name'       => get_bloginfo( 'name' ),
-		'description'=> get_bloginfo( 'description' ),
+		'description' => get_bloginfo( 'description' ),
 		'inLanguage' => 'tr-TR',
 		'publisher'  => array( '@id' => $publisher_id ),
 	);
