@@ -50,7 +50,7 @@ function asosyoloji_author_social_links( $user_id ) {
 }
 
 function asosyoloji_get_post_image_url( $post_id = 0 ) {
-	$post_id = $post_id ?: get_the_ID();
+	$post_id = $post_id ? $post_id : get_the_ID();
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		return (string) wp_get_attachment_image_url( get_post_thumbnail_id( $post_id ), 'full' );
