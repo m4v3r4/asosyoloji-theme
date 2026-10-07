@@ -174,7 +174,16 @@ jobs:
           wp eval "set_theme_mod( 'aso_home_latest_load_mode', 'button' );"
           wp eval "set_theme_mod( 'aso_home_latest_count', 6 );"
           wp eval "set_theme_mod( 'aso_home_latest_load_count', 3 );"
-          php -S 127.0.0.1:8080 -t /tmp/wordpress >/tmp/wp-server.log 2>&1 &
+          cat > /tmp/wordpress/router.php <<'PHP'
+          <?php
+          $path = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+          $file = __DIR__ . $path;
+          if ( '/' !== $path && is_file( $file ) ) {
+              return false;
+          }
+          require __DIR__ . '/index.php';
+          PHP
+          php -S 127.0.0.1:8080 -t /tmp/wordpress /tmp/wordpress/router.php >/tmp/wp-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 3
