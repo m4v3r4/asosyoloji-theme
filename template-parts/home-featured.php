@@ -8,7 +8,7 @@ $layout   = get_theme_mod( 'aso_home_featured_section_layout', 'feature-list' );
 $args = array(
 	'posts_per_page' => $count,
 	'post_status'    => 'publish',
-	'post__not_in'   => ! empty( $GLOBALS['asosyoloji_home_hero_post_id'] ) ? array( (int) $GLOBALS['asosyoloji_home_hero_post_id'] ) : array(),
+	'post__not_in'   => ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
 );
 if ( $category ) $args['cat'] = $category;
 $query = new WP_Query( $args );
@@ -22,11 +22,11 @@ if ( ! $query->have_posts() ) return;
 		</div></div>
 		<?php if ( 'grid' === $layout ) : ?>
 			<div class="article-grid">
-				<?php while ( $query->have_posts() ) : $query->the_post(); get_template_part( 'template-parts/content', 'card' ); endwhile; ?>
+				<?php while ( $query->have_posts() ) : $query->the_post(); $GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID(); get_template_part( 'template-parts/content', 'card' ); endwhile; ?>
 			</div>
 		<?php else : ?>
 			<div class="feature-list">
-				<?php $i = 0; while ( $query->have_posts() ) : $query->the_post(); $i++; ?>
+				<?php $i = 0; while ( $query->have_posts() ) : $query->the_post(); $i++; $GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID(); ?>
 					<article <?php post_class( 1 === $i ? 'feature-list__lead' : 'feature-list__item' ); ?>>
 						<?php $image = asosyoloji_get_post_image( get_the_ID(), 1 === $i ? 'large' : 'medium_large', array( 'class' => 'feature-list__img' ) ); ?>
 						<?php if ( $image ) : ?><a class="feature-list__image" href="<?php the_permalink(); ?>"><?php echo wp_kses_post( $image ); ?></a><?php endif; ?>
