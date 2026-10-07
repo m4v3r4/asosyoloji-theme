@@ -14,6 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function asosyoloji_register_post_list_block() {
 	wp_register_script(
+		'asosyoloji-announcements-block',
+		get_template_directory_uri() . '/assets/js/announcements-block.js',
+		array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-i18n' ),
+		ASOSYOLOJI_VERSION,
+		true
+	);
+
+	wp_register_script(
 		'asosyoloji-post-list-block',
 		get_template_directory_uri() . '/assets/js/post-list-block.js',
 		array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-i18n' ),
@@ -55,11 +63,58 @@ function asosyoloji_register_post_list_block() {
 	}
 
 	wp_localize_script(
+		'asosyoloji-announcements-block',
+		'asosyolojiAnnouncementsBlock',
+		array(
+			'categories' => $categories,
+		)
+	);
+
+	wp_localize_script(
 		'asosyoloji-post-list-block',
 		'asosyolojiPostListBlock',
 		array(
 			'categories' => $categories,
 			'authors'    => $authors,
+		)
+	);
+
+	register_block_type(
+		'asosyoloji/announcements',
+		array(
+			'api_version'     => 3,
+			'editor_script'   => 'asosyoloji-announcements-block',
+			'render_callback' => 'asosyoloji_render_announcements_block',
+			'attributes'      => array(
+				'title' => array(
+					'type'    => 'string',
+					'default' => 'Duyurular',
+				),
+				'category' => array(
+					'type'    => 'number',
+					'default' => 0,
+				),
+				'count' => array(
+					'type'    => 'number',
+					'default' => 5,
+				),
+				'showExcerpt' => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showDate' => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showButton' => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'compact' => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+			),
 		)
 	);
 
@@ -161,6 +216,27 @@ function asosyoloji_render_post_list_block( $attributes ) {
 			'date_before'        => isset( $attributes['dateBefore'] ) ? sanitize_text_field( $attributes['dateBefore'] ) : '',
 			'offset'             => isset( $attributes['offset'] ) ? absint( $attributes['offset'] ) : 0,
 			'include_sticky'     => ! empty( $attributes['includeSticky'] ),
+		)
+	);
+}
+
+
+/**
+ * Render announcements block.
+ *
+ * @param array $attributes Block attributes.
+ * @return string
+ */
+function asosyoloji_render_announcements_block( $attributes ) {
+	return asosyoloji_render_announcements(
+		array(
+			'title'        => isset( $attributes['title'] ) ? sanitize_text_field( $attributes['title'] ) : __( 'Duyurular', 'asosyoloji' ),
+			'category'     => isset( $attributes['category'] ) ? absint( $attributes['category'] ) : 0,
+			'count'        => isset( $attributes['count'] ) ? absint( $attributes['count'] ) : 5,
+			'show_excerpt' => ! isset( $attributes['showExcerpt'] ) || (bool) $attributes['showExcerpt'],
+			'show_date'    => ! isset( $attributes['showDate'] ) || (bool) $attributes['showDate'],
+			'show_button'  => ! isset( $attributes['showButton'] ) || (bool) $attributes['showButton'],
+			'compact'      => ! empty( $attributes['compact'] ),
 		)
 	);
 }
