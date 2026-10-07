@@ -56,15 +56,14 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 				$GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID();
 				$image      = asosyoloji_get_post_image( get_the_ID(), 'large', array( 'class' => 'aso-slider__img' ) );
 				$categories = get_the_category();
+				/* translators: 1: Current slide number, 2: Total slide count. */
+				$slide_label = sprintf( __( '%1$d / %2$d', 'asosyoloji' ), $slide_index, $slider_query->post_count );
 				?>
 				<article
 					class="aso-slider__slide<?php echo 1 === $slide_index ? ' is-active' : ''; ?>"
 					data-slider-slide
 					aria-hidden="<?php echo 1 === $slide_index ? 'false' : 'true'; ?>"
-					aria-label="<?php
-					/* translators: 1: Current slide number, 2: Total slide count. */
-					echo esc_attr( sprintf( __( '%1$d / %2$d', 'asosyoloji' ), $slide_index, $slider_query->post_count ) );
-					?>"
+					aria-label="<?php echo esc_attr( $slide_label ); ?>"
 				>
 					<?php if ( $image ) : ?>
 						<a class="aso-slider__media" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
@@ -121,14 +120,15 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 	<?php if ( $slider_dots ) : ?>
 		<div class="aso-slider__dots" data-slider-dots aria-label="<?php esc_attr_e( 'Slayt seçimi', 'asosyoloji' ); ?>">
 			<?php for ( $dot_index = 0; $dot_index < $slider_query->post_count; $dot_index++ ) : ?>
+				<?php
+				/* translators: %d: Slide number. */
+				$dot_label = sprintf( __( '%d. slayta git', 'asosyoloji' ), $dot_index + 1 );
+				?>
 				<button
 					class="aso-slider__dot<?php echo 0 === $dot_index ? ' is-active' : ''; ?>"
 					type="button"
 					data-slider-dot="<?php echo esc_attr( $dot_index ); ?>"
-					aria-label="<?php
-					/* translators: %d: Slide number. */
-					echo esc_attr( sprintf( __( '%d. slayta git', 'asosyoloji' ), $dot_index + 1 ) );
-					?>"
+					aria-label="<?php echo esc_attr( $dot_label ); ?>"
 					aria-current="<?php echo 0 === $dot_index ? 'true' : 'false'; ?>"
 				></button>
 			<?php endfor; ?>
