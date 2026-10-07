@@ -159,6 +159,19 @@ function asosyoloji_clear_fallback_image_cache( $post_id ) {
 }
 add_action( 'save_post', 'asosyoloji_clear_fallback_image_cache' );
 
+function asosyoloji_get_default_card_image_url() {
+	$custom_logo_id = absint( get_theme_mod( 'custom_logo', 0 ) );
+
+	if ( $custom_logo_id ) {
+		$logo_url = wp_get_attachment_image_url( $custom_logo_id, 'large' );
+		if ( $logo_url ) {
+			return $logo_url;
+		}
+	}
+
+	return get_template_directory_uri() . '/assets/images/card-fallback.svg';
+}
+
 function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr = array() ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
 
@@ -166,18 +179,25 @@ function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr 
 		return get_the_post_thumbnail( $post_id, $size, $attr );
 	}
 
-	$src = asosyoloji_get_fallback_image_url( $post_id );
+	$src         = asosyoloji_get_fallback_image_url( $post_id );
+	$is_fallback = false;
 
 	if ( ! $src ) {
-		return '';
+		$src         = asosyoloji_get_default_card_image_url();
+		$is_fallback = true;
 	}
 
-	$alt = get_the_title( $post_id );
+	$alt     = get_the_title( $post_id );
+	$classes = isset( $attr['class'] ) ? sanitize_html_class( $attr['class'] ) : '';
+	if ( $is_fallback ) {
+		$classes = trim( $classes . ' is-fallback-image' );
+	}
 
 	return sprintf(
-		'<img src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
+		'<img src="%1$s" alt="%2$s" class="%3$s" loading="lazy" decoding="async">',
 		esc_url( $src ),
-		esc_attr( $alt )
+		esc_attr( $alt ),
+		esc_attr( $classes )
 	);
 }
 
