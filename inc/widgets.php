@@ -278,7 +278,7 @@ function asosyoloji_render_announcements( $args = array() ) {
  */
 function asosyoloji_render_magazine_archive( $args = array() ) {
 	$defaults = array(
-		'title'  => __( 'Dergi Arşivi', 'asosyoloji' ),
+		'title'  => __( 'Basılı Sayılar', 'asosyoloji' ),
 		'items'  => array(),
 		'layout' => 'grid',
 	);
@@ -515,7 +515,7 @@ function asosyoloji_publication_issue_schema_output() {
 	$schema = array(
 		'@context'        => 'https://schema.org',
 		'@type'           => 'ItemList',
-		'name'            => __( 'Dergi Arşivi', 'asosyoloji' ),
+		'name'            => __( 'Basılı Sayılar', 'asosyoloji' ),
 		'itemListElement' => $list_items,
 	);
 
