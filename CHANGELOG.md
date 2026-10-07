@@ -23,6 +23,7 @@ All notable changes to the Asosyoloji WordPress Theme are documented here.
 - Homepage infinite-scroll mode with accessible manual fallback.
 - AJAX progressive post loading with category exclusions and homepage post de-duplication.
 - Enhanced slider motion: staggered editorial text entrance, image motion, directional transitions and autoplay progress indicators.
+- GitHub Release based native WordPress theme updates for the public repository.
 
 ### Changed
 - Turkish reading-time word counting now uses Unicode-aware tokenization.
@@ -51,9 +52,7 @@ All notable changes to the Asosyoloji WordPress Theme are documented here.
 - [asosyoloji_posts] shortcode.
 - Editorial query filters: author, sorting, date range, offset and sticky handling.
 - Gutenberg block category for Asosyoloji components.
-- Theme screenshot and translation POT generation workflow.
-- GitHub Actions for PHP/JS syntax, PHPCS, packaging, WordPress activation and browser smoke tests.
-- Responsive and automated WCAG browser checks.
+- Theme screenshot and translation POT files.
 
 ### Changed
 - Header redesigned to match the original Asosyoloji structure: masthead/logo above, navigation bar below.
