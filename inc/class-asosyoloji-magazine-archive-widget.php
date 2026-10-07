@@ -123,12 +123,14 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 
 					<p>
 						<label><?php esc_html_e( 'PDF dosyası URL', 'asosyoloji' ); ?></label>
-						<input class="widefat" type="url" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[<?php echo esc_attr( $index ); ?>][pdf_url]" value="<?php echo esc_url( $item['pdf_url'] ?? '' ); ?>">
+						<input class="widefat" data-magazine-pdf-url type="url" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[<?php echo esc_attr( $index ); ?>][pdf_url]" value="<?php echo esc_url( $item['pdf_url'] ?? '' ); ?>">
+						<button type="button" class="button" data-magazine-select-pdf><?php esc_html_e( 'PDF seç', 'asosyoloji' ); ?></button>
 					</p>
 
 					<p>
 						<label><?php esc_html_e( 'Kapak resmi URL', 'asosyoloji' ); ?></label>
-						<input class="widefat" type="url" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[<?php echo esc_attr( $index ); ?>][cover_url]" value="<?php echo esc_url( $item['cover_url'] ?? '' ); ?>">
+						<input class="widefat" data-magazine-cover-url type="url" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>[<?php echo esc_attr( $index ); ?>][cover_url]" value="<?php echo esc_url( $item['cover_url'] ?? '' ); ?>">
+						<button type="button" class="button" data-magazine-select-cover><?php esc_html_e( 'Kapak seç', 'asosyoloji' ); ?></button>
 					</p>
 
 					<p>
@@ -150,11 +152,13 @@ class Asosyoloji_Magazine_Archive_Widget extends WP_Widget {
 					</p>
 					<p>
 						<label><?php esc_html_e( 'PDF dosyası URL', 'asosyoloji' ); ?></label>
-						<input class="widefat" type="url" name="__NAME__[__INDEX__][pdf_url]" value="">
+						<input class="widefat" data-magazine-pdf-url type="url" name="__NAME__[__INDEX__][pdf_url]" value="">
+						<button type="button" class="button" data-magazine-select-pdf><?php esc_html_e( 'PDF seç', 'asosyoloji' ); ?></button>
 					</p>
 					<p>
 						<label><?php esc_html_e( 'Kapak resmi URL', 'asosyoloji' ); ?></label>
-						<input class="widefat" type="url" name="__NAME__[__INDEX__][cover_url]" value="">
+						<input class="widefat" data-magazine-cover-url type="url" name="__NAME__[__INDEX__][cover_url]" value="">
+						<button type="button" class="button" data-magazine-select-cover><?php esc_html_e( 'Kapak seç', 'asosyoloji' ); ?></button>
 					</p>
 					<p>
 						<button type="button" class="button-link-delete" data-magazine-remove><?php esc_html_e( 'Bu sayıyı kaldır', 'asosyoloji' ); ?></button>
