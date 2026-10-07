@@ -8,6 +8,8 @@
 get_header();
 ?>
 
+<?php asosyoloji_breadcrumbs(); ?>
+
 <header class="archive-header">
 	<div class="aso-container archive-header__inner">
 		<div>
