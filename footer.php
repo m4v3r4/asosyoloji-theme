@@ -57,20 +57,11 @@ $repo_url       = get_theme_mod( 'aso_footer_repo_url', 'https://github.com/m4v3
 
 			<?php if ( get_theme_mod( 'aso_footer_show_license', true ) ) : ?>
 				<div class="site-footer__license">
-					<span>
-						<?php
-						echo esc_html(
-							get_theme_mod(
-								'aso_footer_license_text',
-								__( 'Asosyoloji teması özgür yazılımdır. Tema kodu GPL-3.0-or-later; dokümantasyon ve ayrı görsel materyaller CC BY-SA 4.0 lisansıyla paylaşılır.', 'asosyoloji' )
-							)
-						);
-						?>
-					</span>
-
+					<span>GPL-3.0-or-later</span>
 					<?php if ( $repo_url ) : ?>
+						<span aria-hidden="true"> · </span>
 						<a href="<?php echo esc_url( $repo_url ); ?>" target="_blank" rel="noopener noreferrer">
-							<?php esc_html_e( 'Kaynak kodu', 'asosyoloji' ); ?>
+							<?php esc_html_e( 'Tema kaynak kodu', 'asosyoloji' ); ?>
 						</a>
 					<?php endif; ?>
 				</div>
