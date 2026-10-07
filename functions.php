@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.4.0' );
+define( 'ASOSYOLOJI_VERSION', '0.4.1' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
