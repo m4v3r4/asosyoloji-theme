@@ -116,3 +116,21 @@ Shortcode kullanmak isteyenler için:
 ```
 
 `category` ve `exclude` alanlarında kategori slug veya ID kullanılabilir. `layout` değeri `list`, `compact`, `grid` veya `feature` olabilir.
+
+
+### Gelişmiş yazı listesi filtreleri
+
+**Asosyoloji: Yazı Listesi** widget ve Gutenberg bloğu şu ek filtreleri destekler:
+
+- Yazar seçimi
+- Sıralama: yayın tarihi, güncellenme, başlık, yorum sayısı, rastgele
+- Artan / azalan sıralama
+- Başlangıç ve bitiş tarihi
+- Offset: ilk N yazıyı atlama
+- Sabitlenmiş (sticky) yazıları dahil etme
+
+Shortcode örneği:
+
+```text
+[asosyoloji_posts title="Arşiv Seçkisi" category="yazilar" exclude="duyurular" author="12" count="8" layout="grid" orderby="date" order="DESC" after="2026-01-01" before="2026-12-31" offset="0" sticky="0"]
+```
