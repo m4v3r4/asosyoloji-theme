@@ -93,7 +93,7 @@ add_action( 'wp_enqueue_scripts', 'asosyoloji_enqueue_assets' );
 
 
 function asosyoloji_get_fallback_image_url( $post_id = 0 ) {
-	$post_id = $post_id ?: get_the_ID();
+	$post_id = $post_id ? $post_id : get_the_ID();
 	$cache_key = '_asosyoloji_fallback_image_url';
 	$cached = get_post_meta( $post_id, $cache_key, true );
 
@@ -127,7 +127,7 @@ function asosyoloji_clear_fallback_image_cache( $post_id ) {
 add_action( 'save_post', 'asosyoloji_clear_fallback_image_cache' );
 
 function asosyoloji_get_post_image( $post_id = 0, $size = 'medium_large', $attr = array() ) {
-	$post_id = $post_id ?: get_the_ID();
+	$post_id = $post_id ? $post_id : get_the_ID();
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		return get_the_post_thumbnail( $post_id, $size, $attr );
@@ -156,6 +156,7 @@ function asosyoloji_register_widget_areas() {
 	for ( $i = 1; $i <= 4; $i++ ) {
 		register_sidebar(
 			array(
+				/* translators: %d: Footer column number. */
 				'name'          => sprintf( __( 'Footer Sütun %d', 'asosyoloji' ), $i ),
 				'id'            => 'footer-' . $i,
 				'description'   => __( 'Footer sütununa blok veya bileşen ekleyin.', 'asosyoloji' ),
@@ -169,7 +170,7 @@ function asosyoloji_register_widget_areas() {
 }
 add_action( 'widgets_init', 'asosyoloji_register_widget_areas' );
 
-function asosyoloji_excerpt_length( $length ) {
+function asosyoloji_excerpt_length( $_length ) {
 	return 28;
 }
 add_filter( 'excerpt_length', 'asosyoloji_excerpt_length', 999 );
