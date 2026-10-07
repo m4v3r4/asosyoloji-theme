@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:09:10+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:11:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:209
+#: functions.php:216
 #: home.php:13
 #: page.php:20
 msgid "Asosyoloji"
@@ -172,31 +172,51 @@ msgstr ""
 msgid "Ziyaretçiye tema değiştirme düğmesi göster"
 msgstr ""
 
-#: inc/appearance.php:74
+#: inc/appearance.php:72
+msgid "Yumuşak arayüz animasyonlarını etkinleştir"
+msgstr ""
+
+#: inc/appearance.php:73
+msgid "Bölüm girişleri, kart geçişleri ve scroll efektlerini etkinleştirir. Reduced Motion tercihi her zaman önceliklidir."
+msgstr ""
+
+#: inc/appearance.php:90
+msgid "Animasyon yoğunluğu"
+msgstr ""
+
+#: inc/appearance.php:94
+msgid "Sade"
+msgstr ""
+
+#: inc/appearance.php:95
+msgid "Normal"
+msgstr ""
+
+#: inc/appearance.php:113
 msgid "Karanlık tema arka planı"
 msgstr ""
 
-#: inc/appearance.php:93
+#: inc/appearance.php:132
 msgid "Karanlık tema ikincil zemin"
 msgstr ""
 
-#: inc/appearance.php:112
+#: inc/appearance.php:151
 msgid "Karanlık tema metin rengi"
 msgstr ""
 
-#: inc/appearance.php:120
+#: inc/appearance.php:159
 msgid "Karanlık tema ikincil metin"
 msgstr ""
 
-#: inc/appearance.php:124
+#: inc/appearance.php:163
 msgid "Karanlık tema çizgi/kenarlık"
 msgstr ""
 
-#: inc/appearance.php:128
+#: inc/appearance.php:167
 msgid "Karanlık tema bağlantı/vurgu"
 msgstr ""
 
-#: inc/appearance.php:132
+#: inc/appearance.php:171
 msgid "Karanlık tema footer zemini"
 msgstr ""
 
