@@ -165,3 +165,12 @@ function asosyoloji_github_theme_information( $result, $action, $args ) {
 	);
 }
 add_filter( 'themes_api', 'asosyoloji_github_theme_information', 20, 3 );
+
+
+/**
+ * Clear cached GitHub release data when WordPress refreshes theme updates.
+ */
+function asosyoloji_github_force_refresh() {
+	delete_site_transient( 'asosyoloji_github_latest_release' );
+}
+add_action( 'wp_update_themes', 'asosyoloji_github_force_refresh', 1 );
