@@ -73,6 +73,8 @@ while ( have_posts() ) :
 			<figure class="entry-featured-image"><?php echo wp_kses_post( $entry_image ); ?></figure>
 		<?php endif; ?>
 
+		<?php echo wp_kses_post( asosyoloji_geo_summary_markup( get_the_ID() ) ); ?>
+
 		<div class="entry-content" data-reading-content>
 			<?php
 			the_content();
@@ -84,6 +86,8 @@ while ( have_posts() ) :
 			);
 			?>
 		</div>
+
+		<?php echo wp_kses_post( asosyoloji_citations_markup( get_the_ID() ) ); ?>
 
 		<footer class="entry-footer">
 			<?php the_tags( '<p>', ' · ', '</p>' ); ?>
