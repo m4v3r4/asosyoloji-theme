@@ -25,6 +25,7 @@ require_once get_template_directory() . '/inc/seo-editor.php';
 require_once get_template_directory() . '/inc/geo-content.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/indexnow.php';
+require_once get_template_directory() . '/inc/llms.php';
 require_once get_template_directory() . '/inc/customizer-preview.php';
 require_once get_template_directory() . '/inc/widgets.php';
 require_once get_template_directory() . '/inc/blocks.php';
