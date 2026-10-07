@@ -59,6 +59,45 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_enable_motion',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_enable_motion',
+		array(
+			'label'       => __( 'Yumuşak arayüz animasyonlarını etkinleştir', 'asosyoloji' ),
+			'description' => __( 'Bölüm girişleri, kart geçişleri ve scroll efektlerini etkinleştirir. Reduced Motion tercihi her zaman önceliklidir.', 'asosyoloji' ),
+			'section'     => 'aso_appearance',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_motion_level',
+		array(
+			'default'           => 'subtle',
+			'sanitize_callback' => 'asosyoloji_sanitize_select',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_motion_level',
+		array(
+			'label'   => __( 'Animasyon yoğunluğu', 'asosyoloji' ),
+			'section' => 'aso_appearance',
+			'type'    => 'select',
+			'choices' => array(
+				'subtle' => __( 'Sade', 'asosyoloji' ),
+				'normal' => __( 'Normal', 'asosyoloji' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_dark_background',
 		array(
 			'default'           => '#111111',
