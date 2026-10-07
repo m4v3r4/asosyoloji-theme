@@ -9,6 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function asosyoloji_load_multi_select_control() {
+	if ( class_exists( 'WP_Customize_Control' ) ) {
+		require_once get_template_directory() . '/inc/class-asosyoloji-multi-select-control.php';
+	}
+}
+add_action( 'customize_register', 'asosyoloji_load_multi_select_control', 1 );
+
 function asosyoloji_sanitize_checkbox( $checked ) {
 	return (bool) $checked;
 }
