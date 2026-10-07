@@ -35,6 +35,7 @@ function asosyoloji_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
+	add_theme_support( 'customize-selective-refresh-widgets' );
 	add_editor_style( 'editor-style.css' );
 
 	add_theme_support(
@@ -192,3 +193,23 @@ function asosyoloji_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'asosyoloji_body_classes' );
+
+
+/**
+ * Add an Asosyoloji block category.
+ *
+ * @param array $categories Existing block categories.
+ * @return array
+ */
+function asosyoloji_block_categories( $categories ) {
+	array_unshift(
+		$categories,
+		array(
+			'slug'  => 'asosyoloji',
+			'title' => __( 'Asosyoloji', 'asosyoloji' ),
+		)
+	);
+
+	return $categories;
+}
+add_filter( 'block_categories_all', 'asosyoloji_block_categories' );
