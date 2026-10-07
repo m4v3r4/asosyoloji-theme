@@ -7,22 +7,49 @@
 
 get_header();
 
-$author = get_queried_object();
+$author      = get_queried_object();
+$avatar      = get_avatar( $author->ID, 240, '', $author->display_name, array( 'class' => 'author-hero__avatar' ) );
+$description = get_the_author_meta( 'description', $author->ID );
 ?>
 
-<header class="archive-header">
-	<div class="aso-container">
-		<div class="section-kicker"><?php esc_html_e( 'Yazar', 'asosyoloji' ); ?></div>
-		<h1 class="archive-title"><?php echo esc_html( $author->display_name ); ?></h1>
-		<?php if ( get_the_author_meta( 'description', $author->ID ) ) : ?>
-			<div class="archive-description">
-				<?php echo wp_kses_post( wpautop( get_the_author_meta( 'description', $author->ID ) ) ); ?>
+<header class="author-hero">
+	<div class="aso-container author-hero__grid">
+		<div class="author-hero__media">
+			<?php echo wp_kses_post( $avatar ); ?>
+		</div>
+
+		<div class="author-hero__content">
+			<div class="section-kicker"><?php esc_html_e( 'Yazar', 'asosyoloji' ); ?></div>
+			<h1 class="archive-title"><?php echo esc_html( $author->display_name ); ?></h1>
+
+			<?php if ( $description ) : ?>
+				<div class="author-hero__bio">
+					<?php echo wp_kses_post( wpautop( $description ) ); ?>
+				</div>
+			<?php endif; ?>
+
+			<div class="author-hero__count">
+				<?php
+				echo esc_html(
+					sprintf(
+						_n( '%s yazı', '%s yazı', count_user_posts( $author->ID ), 'asosyoloji' ),
+						number_format_i18n( count_user_posts( $author->ID ) )
+					)
+				);
+				?>
 			</div>
-		<?php endif; ?>
+		</div>
 	</div>
 </header>
 
-<div class="aso-container posts-list">
+<section class="aso-container author-posts">
+	<div class="section-heading">
+		<div>
+			<div class="section-kicker"><?php esc_html_e( 'Arşiv', 'asosyoloji' ); ?></div>
+			<h2 class="section-title"><?php esc_html_e( 'Yazıları', 'asosyoloji' ); ?></h2>
+		</div>
+	</div>
+
 	<?php if ( have_posts() ) : ?>
 		<div class="article-grid">
 			<?php
@@ -34,7 +61,6 @@ $author = get_queried_object();
 		</div>
 		<?php the_posts_pagination(); ?>
 	<?php endif; ?>
-</div>
+</section>
 
-<?php
-get_footer();
+<?php get_footer(); ?>
