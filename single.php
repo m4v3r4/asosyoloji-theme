@@ -140,7 +140,12 @@ while ( have_posts() ) :
 						<h2 class="section-title"><?php esc_html_e( 'Benzer Yazılar', 'asosyoloji' ); ?></h2>
 					</div></div>
 					<div class="article-grid">
-						<?php while ( $related->have_posts() ) : $related->the_post(); get_template_part( 'template-parts/content', 'card' ); endwhile; ?>
+						<?php
+						while ( $related->have_posts() ) :
+							$related->the_post();
+							get_template_part( 'template-parts/content', 'card' );
+						endwhile;
+						?>
 					</div>
 					<?php wp_reset_postdata(); ?>
 				</div>
