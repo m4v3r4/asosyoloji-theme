@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:07:43+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:08:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -327,26 +327,36 @@ msgid "Liste"
 msgstr ""
 
 #: inc/class-asosyoloji-magazine-archive-widget.php:120
-#: inc/class-asosyoloji-magazine-archive-widget.php:148
+#: inc/class-asosyoloji-magazine-archive-widget.php:150
 msgid "Sayı / başlık"
 msgstr ""
 
 #: inc/class-asosyoloji-magazine-archive-widget.php:125
-#: inc/class-asosyoloji-magazine-archive-widget.php:152
+#: inc/class-asosyoloji-magazine-archive-widget.php:154
 msgid "PDF dosyası URL"
 msgstr ""
 
-#: inc/class-asosyoloji-magazine-archive-widget.php:130
+#: inc/class-asosyoloji-magazine-archive-widget.php:127
 #: inc/class-asosyoloji-magazine-archive-widget.php:156
+msgid "PDF seç"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:131
+#: inc/class-asosyoloji-magazine-archive-widget.php:159
 msgid "Kapak resmi URL"
 msgstr ""
 
-#: inc/class-asosyoloji-magazine-archive-widget.php:135
-#: inc/class-asosyoloji-magazine-archive-widget.php:160
+#: inc/class-asosyoloji-magazine-archive-widget.php:133
+#: inc/class-asosyoloji-magazine-archive-widget.php:161
+msgid "Kapak seç"
+msgstr ""
+
+#: inc/class-asosyoloji-magazine-archive-widget.php:137
+#: inc/class-asosyoloji-magazine-archive-widget.php:164
 msgid "Bu sayıyı kaldır"
 msgstr ""
 
-#: inc/class-asosyoloji-magazine-archive-widget.php:142
+#: inc/class-asosyoloji-magazine-archive-widget.php:144
 msgid "Yeni sayı ekle"
 msgstr ""
 
