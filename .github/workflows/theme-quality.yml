@@ -136,6 +136,8 @@ jobs:
           wp theme activate asosyoloji
           wp theme status asosyoloji
           wp eval 'if ( "Asosyoloji" !== wp_get_theme()->get( "Name" ) ) { exit( 1 ); } echo "Theme activation OK\n";'
+          wp eval 'require_once ABSPATH . WPINC . "/class-wp-customize-manager.php"; $manager = new WP_Customize_Manager(); do_action( "customize_register", $manager ); if ( ! $manager->get_setting( "aso_home_global_exclude_categories" ) || ! $manager->get_setting( "aso_logo_width_mobile" ) ) { fwrite( STDERR, "Customizer registration failed\n" ); exit( 1 ); } echo "Customizer registration OK\n";'
+          wp eval 'if ( ! WP_Block_Type_Registry::get_instance()->is_registered( "asosyoloji/post-list" ) ) { fwrite( STDERR, "Theme block registration failed\n" ); exit( 1 ); } echo "Block registration OK\n";'
 
       - name: Setup Node
         uses: actions/setup-node@v4
