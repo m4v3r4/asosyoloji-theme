@@ -42,7 +42,7 @@
 
 		<div class="site-footer__bottom">
 			<small>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></small>
-			<small><?php esc_html_e( 'Bağımsız düşünce, kültür ve toplum dergisi.', 'asosyoloji' ); ?></small>
+			<small><?php echo esc_html( get_theme_mod( 'aso_footer_note', __( 'Bağımsız düşünce, kültür ve toplum dergisi.', 'asosyoloji' ) ) ); ?></small>
 		</div>
 	</div>
 </footer>
