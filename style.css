@@ -3,7 +3,7 @@ Theme Name: Asosyoloji
 Theme URI: https://asosyoloji.com/
 Author: Asosyoloji
 Description: Asosyoloji için özel geliştirilen, editoryal odaklı WordPress teması.
-Version: 0.4.2
+Version: 0.5.0
 Text Domain: asosyoloji
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -2548,4 +2548,109 @@ html[data-theme="dark"] .comment-form textarea {
   background: var(--aso-surface);
   border-color: var(--aso-border);
   color: var(--aso-text);
+}
+
+
+/* Breadcrumbs */
+.breadcrumbs {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--aso-border);
+  font-family: var(--aso-heading-font);
+  font-size: .72rem;
+  line-height: 1.4;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "›";
+  color: var(--aso-muted);
+}
+
+.breadcrumbs a {
+  color: var(--aso-muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus {
+  color: var(--aso-primary);
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--aso-text);
+}
+
+/* Author social links */
+.author-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 16px;
+}
+
+.author-social-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--aso-border);
+  color: var(--aso-text);
+  font-family: var(--aso-heading-font);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.author-social-links a:hover,
+.author-social-links a:focus {
+  border-color: var(--aso-primary);
+  color: var(--aso-primary);
+}
+
+.author-social-links--hero {
+  margin-top: 24px;
+}
+
+html[data-theme="dark"] .breadcrumbs {
+  border-color: var(--aso-border);
+}
+
+html[data-theme="dark"] .breadcrumbs a {
+  color: var(--aso-muted);
+}
+
+html[data-theme="dark"] .breadcrumbs [aria-current="page"],
+html[data-theme="dark"] .author-social-links a {
+  color: var(--aso-text);
+}
+
+html[data-theme="dark"] .author-social-links a {
+  background: var(--aso-surface);
+  border-color: var(--aso-border);
+}
+
+@media (max-width: 600px) {
+  .breadcrumbs {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: .68rem;
+  }
 }
