@@ -23,7 +23,8 @@ function asosyoloji_indexnow_verification() {
 		return;
 	}
 
-	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$request_path = trim( (string) wp_parse_url( $request_uri, PHP_URL_PATH ), '/' );
 	if ( $request_path !== $key . '.txt' ) {
 		return;
 	}
