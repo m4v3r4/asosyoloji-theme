@@ -17,6 +17,10 @@ $latest_order   = get_theme_mod( 'aso_home_latest_order', 'DESC' );
 $load_mode      = get_theme_mod( 'aso_home_latest_load_mode', 'button' );
 $load_count     = min( 12, max( 3, absint( get_theme_mod( 'aso_home_latest_load_count', 6 ) ) ) );
 
+if ( 'rand' === $latest_orderby ) {
+	$load_mode = 'none';
+}
+
 if ( ! in_array( $latest_orderby, array( 'date', 'modified', 'title', 'rand', 'menu_order' ), true ) ) {
 	$latest_orderby = 'date';
 }
@@ -49,6 +53,7 @@ $query = new WP_Query( $args );
 	data-orderby="<?php echo esc_attr( $latest_orderby ); ?>"
 	data-order="<?php echo esc_attr( $latest_order ); ?>"
 	data-excluded-categories="<?php echo esc_attr( implode( ',', $excluded_categories ) ); ?>"
+	data-excluded-posts="<?php echo esc_attr( implode( ',', $args['post__not_in'] ) ); ?>"
 >
 	<div class="aso-container">
 		<div class="section-heading">
