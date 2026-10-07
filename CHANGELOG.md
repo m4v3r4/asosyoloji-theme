@@ -2,6 +2,18 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.5 - 2026-10-07
+
+### Added
+- Automatic card image fallback: featured image, first content image, site logo, then built-in Asosyoloji fallback artwork.
+- Built-in fallback card artwork for posts without any usable image.
+
+### Changed
+- Article cards now use standardized visual height, title depth and excerpt depth for cleaner grids.
+- Fallback/logo artwork uses contain mode rather than being cropped.
+- Dark theme defaults were refined toward the original Asosyoloji site's near-black, warm neutral visual language.
+
+
 ## 0.7.4 - 2026-10-07
 
 ### Added
