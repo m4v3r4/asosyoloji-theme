@@ -2904,3 +2904,42 @@ html[data-theme="dark"] .aso-post-widget__item {
     grid-template-columns: 84px minmax(0, 1fr);
   }
 }
+
+
+/* Mobile masthead overflow guard */
+.site-branding {
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .site-masthead__inner {
+    gap: 8px;
+  }
+
+  .site-branding {
+    flex: 1 1 auto;
+    max-width: calc(100% - 136px);
+  }
+
+  .site-branding .custom-logo-link {
+    width: 100%;
+  }
+
+  .site-branding .custom-logo {
+    width: auto;
+    max-width: min(var(--aso-logo-width-mobile, 280px), 100%);
+    height: auto;
+  }
+
+  .site-masthead__actions {
+    flex: 0 0 auto;
+    gap: 4px;
+  }
+
+  .theme-toggle,
+  .header-search > summary,
+  .menu-toggle {
+    min-width: 40px;
+    padding-inline: 4px;
+  }
+}
