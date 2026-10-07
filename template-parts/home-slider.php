@@ -10,6 +10,13 @@ $slider_category = absint( get_theme_mod( 'aso_home_slider_category', 0 ) );
 $excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_slider_exclude_categories', array() ) );
 $slider_count    = min( 10, max( 2, absint( get_theme_mod( 'aso_home_slider_count', 5 ) ) ) );
 $slider_layout   = get_theme_mod( 'aso_home_slider_layout', 'split' );
+$slider_width    = get_theme_mod( 'aso_home_slider_width', 'inherit' );
+if ( 'inherit' === $slider_width ) {
+	$slider_width = get_theme_mod( 'aso_page_content_width', 'wide' );
+}
+if ( ! in_array( $slider_width, array( 'narrow', 'wide', 'full' ), true ) ) {
+	$slider_width = 'wide';
+}
 $slider_autoplay = get_theme_mod( 'aso_home_slider_autoplay', true );
 $slider_interval = min( 15000, max( 3000, absint( get_theme_mod( 'aso_home_slider_interval', 6000 ) ) ) );
 $slider_arrows   = get_theme_mod( 'aso_home_slider_arrows', true );
@@ -41,7 +48,7 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 
 <section
 	id="<?php echo esc_attr( $slider_id ); ?>"
-	class="aso-slider aso-slider--<?php echo esc_attr( in_array( $slider_layout, array( 'split', 'overlay' ), true ) ? $slider_layout : 'split' ); ?>"
+	class="aso-slider aso-slider--<?php echo esc_attr( in_array( $slider_layout, array( 'split', 'overlay' ), true ) ? $slider_layout : 'split' ); ?> aso-width--<?php echo esc_attr( $slider_width ); ?>"
 	data-slider
 	data-autoplay="<?php echo $slider_autoplay ? 'true' : 'false'; ?>"
 	data-interval="<?php echo esc_attr( $slider_interval ); ?>"
