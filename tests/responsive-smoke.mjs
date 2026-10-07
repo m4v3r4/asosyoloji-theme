@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
 
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
@@ -30,6 +31,27 @@ for (const viewport of viewports) {
 
   if (result.scrollWidth > result.width + 2) {
     console.error(`${viewport.name}: horizontal overflow ${result.scrollWidth}px > ${result.width}px`);
+    failed = true;
+  }
+
+  const accessibility = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+
+  const blockingViolations = accessibility.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact)
+  );
+
+  if (blockingViolations.length) {
+    console.error(
+      `${viewport.name}: accessibility violations`,
+      blockingViolations.map((violation) => ({
+        id: violation.id,
+        impact: violation.impact,
+        description: violation.description,
+        nodes: violation.nodes.length
+      }))
+    );
     failed = true;
   }
 
