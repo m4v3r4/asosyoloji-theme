@@ -2,6 +2,35 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.0 - 2026-10-07
+
+### Added
+- Connected SEO/GEO JSON-LD graph: Organization, WebSite, WebPage, Article, ProfilePage, Person and BreadcrumbList.
+- Rich Article metadata: section, tags, word count, comments, author entity, about entities and citations.
+- SEO description fallback: manual field → GEO summary → excerpt → article content.
+- Author sameAs links and publisher sameAs settings.
+- Publisher logo, description and publishingPrinciples support.
+- Default social sharing image fallback.
+- Per-post SEO/GEO editor fields for description, summary, key points, entities and citation URLs.
+- Visible “Kısaca / Bu yazıda” summary panel.
+- Automatic H2/H3 table of contents for long articles.
+- Visible Sources / Citations section.
+- PublicationIssue schema for magazine/PDF archive widgets.
+- Optional IndexNow publishing notifications and key verification endpoint.
+- Optional /llms.txt endpoint.
+- Canonical hints for archive/author/category pages and sitemap discovery link.
+- Homepage “Daha fazla yükle” mode.
+- Homepage infinite-scroll mode with accessible manual fallback.
+- AJAX progressive post loading with category exclusions and homepage post de-duplication.
+- Enhanced slider motion: staggered editorial text entrance, image motion, directional transitions and autoplay progress indicators.
+
+### Changed
+- Turkish reading-time word counting now uses Unicode-aware tokenization.
+- Slider animation behavior now follows the theme motion setting and prefers-reduced-motion.
+- Homepage latest-post loading is configurable from the Customizer.
+- Theme SEO output automatically yields to recognized major SEO plugins unless forced.
+
+
 ## 0.6.0 - 2026-10-07
 
 ### Added
