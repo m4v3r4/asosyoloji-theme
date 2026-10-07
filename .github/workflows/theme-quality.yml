@@ -157,7 +157,9 @@ jobs:
           cd /tmp/wordpress
           NORMAL_CAT=$(wp term create category "Yazılar" --slug=yazilar --porcelain)
           NOTICE_CAT=$(wp term create category "Duyurular" --slug=duyurular --porcelain)
-          wp post create --post_type=post --post_status=publish --post_title="Smoke Normal Yazı" --post_content="<p>Normal test içerik.</p>" --post_category="$NORMAL_CAT"
+          for i in 1 2 3 4 5 6 7 8 9; do
+            wp post create --post_type=post --post_status=publish --post_title="Smoke Normal Yazı $i" --post_content="<p>Normal test içerik $i.</p><h2>Bölüm A $i</h2><p>İçerik.</p><h2>Bölüm B $i</h2><p>İçerik.</p><h3>Alt Bölüm $i</h3><p>İçerik.</p>" --post_category="$NORMAL_CAT"
+          done
           wp post create --post_type=post --post_status=publish --post_title="Smoke Duyuru Gizli" --post_content="<p>Duyuru içerik.</p>" --post_category="$NOTICE_CAT"
           FRONT_ID=$(wp post create --post_type=page --post_status=publish --post_title="Ana Sayfa" --porcelain)
           wp option update home http://127.0.0.1:8080
@@ -172,6 +174,7 @@ jobs:
           curl --fail --silent --show-error http://127.0.0.1:8080/ >/tmp/home.html
           grep -q "ASOSYOLOJİ\|Asosyoloji" /tmp/home.html
           grep -q "Smoke Normal Yazı" /tmp/home.html
+          curl --fail --silent --show-error http://127.0.0.1:8080/llms.txt | grep -q "Asosyoloji"
           if grep -q "Smoke Duyuru Gizli" /tmp/home.html; then
             echo "Excluded announcement category leaked into homepage."
             exit 1
