@@ -328,6 +328,12 @@ function asosyoloji_schema_graph() {
 			'url'   => $logo_url,
 		);
 	}
+
+	$publishing_principles = esc_url_raw( get_theme_mod( 'aso_publishing_principles_url', '' ) );
+	if ( $publishing_principles ) {
+		$organization['publishingPrinciples'] = $publishing_principles;
+	}
+
 	$graph[] = $organization;
 
 	$graph[] = array(
@@ -477,3 +483,24 @@ function asosyoloji_schema_graph() {
 	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
 }
 add_action( 'wp_head', 'asosyoloji_schema_graph', 30 );
+
+
+function asosyoloji_archive_canonical() {
+	if ( ! asosyoloji_theme_seo_enabled() || is_singular() || is_search() || is_404() ) {
+		return;
+	}
+
+	echo '<link rel="canonical" href="' . esc_url( asosyoloji_current_url() ) . '">' . "
+";
+}
+add_action( 'wp_head', 'asosyoloji_archive_canonical', 9 );
+
+function asosyoloji_sitemap_link() {
+	if ( ! asosyoloji_theme_seo_enabled() ) {
+		return;
+	}
+
+	echo '<link rel="sitemap" type="application/xml" href="' . esc_url( home_url( '/wp-sitemap.xml' ) ) . '">' . "
+";
+}
+add_action( 'wp_head', 'asosyoloji_sitemap_link', 8 );
