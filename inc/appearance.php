@@ -100,7 +100,7 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'aso_dark_background',
 		array(
-			'default'           => '#111111',
+			'default'           => '#0d0d0d',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
 	);
@@ -119,7 +119,7 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'aso_dark_surface',
 		array(
-			'default'           => '#1a1a1a',
+			'default'           => '#181818',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
 	);
@@ -138,7 +138,7 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'aso_dark_text',
 		array(
-			'default'           => '#f2f2f2',
+			'default'           => '#f3f0ea',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
 	);
@@ -157,19 +157,19 @@ function asosyoloji_appearance_customize_register( $wp_customize ) {
 	$dark_colors = array(
 		'aso_dark_muted' => array(
 			'label'   => __( 'Karanlık tema ikincil metin', 'asosyoloji' ),
-			'default' => '#b8b8b8',
+			'default' => '#aaa49d',
 		),
 		'aso_dark_border' => array(
 			'label'   => __( 'Karanlık tema çizgi/kenarlık', 'asosyoloji' ),
-			'default' => '#343434',
+			'default' => '#2d2b29',
 		),
 		'aso_dark_link' => array(
 			'label'   => __( 'Karanlık tema bağlantı/vurgu', 'asosyoloji' ),
-			'default' => '#d56a78',
+			'default' => '#c85666',
 		),
 		'aso_dark_footer' => array(
 			'label'   => __( 'Karanlık tema footer zemini', 'asosyoloji' ),
-			'default' => '#080808',
+			'default' => '#070707',
 		),
 	);
 
