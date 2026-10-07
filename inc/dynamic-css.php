@@ -19,22 +19,28 @@ function asosyoloji_font_stack( $choice ) {
 	return isset( $stacks[ $choice ] ) ? $stacks[ $choice ] : $stacks['sans'];
 }
 
+function asosyoloji_theme_color( $setting_id, $default ) {
+	$value = sanitize_hex_color( get_theme_mod( $setting_id, $default ) );
+
+	return $value ? $value : $default;
+}
+
 function asosyoloji_dynamic_css() {
-	$primary   = sanitize_hex_color( get_theme_mod( 'aso_primary_color', '#8f1d2c' ) ) ?: '#8f1d2c';
-	$text      = sanitize_hex_color( get_theme_mod( 'aso_text_color', '#111111' ) ) ?: '#111111';
-	$muted     = sanitize_hex_color( get_theme_mod( 'aso_muted_color', '#666666' ) ) ?: '#666666';
-	$border    = sanitize_hex_color( get_theme_mod( 'aso_border_color', '#d8d8d8' ) ) ?: '#d8d8d8';
-	$bg        = sanitize_hex_color( get_theme_mod( 'aso_background_color', '#ffffff' ) ) ?: '#ffffff';
-	$surface   = sanitize_hex_color( get_theme_mod( 'aso_surface_color', '#f5f3ef' ) ) ?: '#f5f3ef';
-	$dark_bg   = sanitize_hex_color( get_theme_mod( 'aso_dark_background', '#111111' ) ) ?: '#111111';
-	$dark_surf = sanitize_hex_color( get_theme_mod( 'aso_dark_surface', '#1a1a1a' ) ) ?: '#1a1a1a';
-	$dark_text   = sanitize_hex_color( get_theme_mod( 'aso_dark_text', '#f2f2f2' ) ) ?: '#f2f2f2';
-	$dark_muted  = sanitize_hex_color( get_theme_mod( 'aso_dark_muted', '#b8b8b8' ) ) ?: '#b8b8b8';
-	$dark_border = sanitize_hex_color( get_theme_mod( 'aso_dark_border', '#343434' ) ) ?: '#343434';
-	$dark_link   = sanitize_hex_color( get_theme_mod( 'aso_dark_link', '#d56a78' ) ) ?: '#d56a78';
-	$dark_footer = sanitize_hex_color( get_theme_mod( 'aso_dark_footer', '#080808' ) ) ?: '#080808';
-	$container = min( 1600, max( 960, absint( get_theme_mod( 'aso_container_width', 1280 ) ) ) );
-	$article   = min( 980, max( 580, absint( get_theme_mod( 'aso_article_width', 760 ) ) ) );
+	$primary     = asosyoloji_theme_color( 'aso_primary_color', '#8f1d2c' );
+	$text        = asosyoloji_theme_color( 'aso_text_color', '#111111' );
+	$muted       = asosyoloji_theme_color( 'aso_muted_color', '#666666' );
+	$border      = asosyoloji_theme_color( 'aso_border_color', '#d8d8d8' );
+	$bg          = asosyoloji_theme_color( 'aso_background_color', '#ffffff' );
+	$surface     = asosyoloji_theme_color( 'aso_surface_color', '#f5f3ef' );
+	$dark_bg     = asosyoloji_theme_color( 'aso_dark_background', '#111111' );
+	$dark_surf   = asosyoloji_theme_color( 'aso_dark_surface', '#1a1a1a' );
+	$dark_text   = asosyoloji_theme_color( 'aso_dark_text', '#f2f2f2' );
+	$dark_muted  = asosyoloji_theme_color( 'aso_dark_muted', '#b8b8b8' );
+	$dark_border = asosyoloji_theme_color( 'aso_dark_border', '#343434' );
+	$dark_link   = asosyoloji_theme_color( 'aso_dark_link', '#d56a78' );
+	$dark_footer = asosyoloji_theme_color( 'aso_dark_footer', '#080808' );
+	$container   = min( 1600, max( 960, absint( get_theme_mod( 'aso_container_width', 1280 ) ) ) );
+	$article     = min( 980, max( 580, absint( get_theme_mod( 'aso_article_width', 760 ) ) ) );
 	$body_size   = min( 24, max( 15, absint( get_theme_mod( 'aso_body_size', 18 ) ) ) );
 	$logo_width  = min( 900, max( 180, absint( get_theme_mod( 'aso_logo_width', 620 ) ) ) );
 	$logo_mobile = min( 420, max( 120, absint( get_theme_mod( 'aso_logo_width_mobile', 280 ) ) ) );
