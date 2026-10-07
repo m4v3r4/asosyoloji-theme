@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T09:25:47+00:00\n"
+"POT-Creation-Date: 2026-10-07T09:26:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: asosyoloji\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:235
+#: functions.php:236
 #: home.php:13
 #: page.php:20
 msgid "Asosyoloji"
@@ -101,38 +101,38 @@ msgstr ""
 msgid "Tema kaynak kodu"
 msgstr ""
 
-#: functions.php:70
+#: functions.php:71
 msgid "Ana Menü"
 msgstr ""
 
-#: functions.php:71
+#: functions.php:72
 msgid "Alt Menü"
 msgstr ""
 
-#: functions.php:107
+#: functions.php:108
 msgid "Yazılar yükleniyor…"
 msgstr ""
 
-#: functions.php:108
+#: functions.php:109
 #: template-parts/home-latest.php:84
 msgid "Daha fazla yükle"
 msgstr ""
 
-#: functions.php:109
+#: functions.php:110
 msgid "Tüm yazılar yüklendi."
 msgstr ""
 
-#: functions.php:110
+#: functions.php:111
 msgid "Yazılar yüklenemedi. Tekrar deneyin."
 msgstr ""
 
 #. translators: %d: Footer column number.
-#: functions.php:190
+#: functions.php:191
 #, php-format
 msgid "Footer Sütun %d"
 msgstr ""
 
-#: functions.php:192
+#: functions.php:193
 msgid "Footer sütununa blok veya bileşen ekleyin."
 msgstr ""
 
@@ -1077,35 +1077,47 @@ msgstr ""
 msgid "Her satıra bir tam URL girin."
 msgstr ""
 
-#: inc/seo-settings.php:109
+#: inc/seo-settings.php:107
+msgid "Yayın ilkeleri / editoryal politika URL’si"
+msgstr ""
+
+#: inc/seo-settings.php:108
+msgid "Varsa Organization schema içindeki publishingPrinciples alanında kullanılır."
+msgstr ""
+
+#: inc/seo-settings.php:127
 msgid "Varsayılan sosyal paylaşım görseli"
 msgstr ""
 
-#: inc/seo-settings.php:110
+#: inc/seo-settings.php:128
 msgid "Yazıda öne çıkan veya içerik görseli yoksa kullanılır."
 msgstr ""
 
-#: inc/seo-settings.php:119
+#: inc/seo-settings.php:137
 msgid "Uzun yazılarda otomatik İçindekiler oluştur"
 msgstr ""
 
-#: inc/seo-settings.php:120
+#: inc/seo-settings.php:138
 msgid "SEO/GEO özet ve “Bu yazıda” kutusunu göster"
 msgstr ""
 
-#: inc/seo-settings.php:121
+#: inc/seo-settings.php:139
 msgid "Kaynaklar bölümünü yazı sonunda göster"
 msgstr ""
 
-#: inc/seo-settings.php:122
+#: inc/seo-settings.php:140
 msgid "IndexNow bildirimlerini etkinleştir"
 msgstr ""
 
-#: inc/seo-settings.php:153
+#: inc/seo-settings.php:141
+msgid "llms.txt çıktısını etkinleştir"
+msgstr ""
+
+#: inc/seo-settings.php:172
 msgid "IndexNow anahtarı"
 msgstr ""
 
-#: inc/seo-settings.php:154
+#: inc/seo-settings.php:173
 msgid "IndexNow etkinse kullanılır. Tema anahtar doğrulama dosyasını sanal olarak sunar."
 msgstr ""
 
