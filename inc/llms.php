@@ -64,6 +64,8 @@ function asosyoloji_llms_txt() {
 		$lines[] = '- ' . sanitize_text_field( get_the_title( $post ) ) . ': ' . esc_url_raw( get_permalink( $post ) );
 	}
 
+	status_header( 200 );
+	nocache_headers();
 	header( 'Content-Type: text/plain; charset=utf-8' );
 	$output = implode( PHP_EOL, $lines ) . PHP_EOL;
 
