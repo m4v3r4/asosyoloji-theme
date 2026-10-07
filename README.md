@@ -29,3 +29,25 @@ Başlangıç yapısı:
 ## Durum
 
 İlk tema iskeleti hazırlanıyor. Tasarım ve WordPress panel seçenekleri aşamalı olarak geliştirilecek.
+
+
+## Footer Builder
+
+Tema dört ayrı footer widget alanı sağlar:
+
+- Footer Sütun 1
+- Footer Sütun 2
+- Footer Sütun 3
+- Footer Sütun 4
+
+Sütun sayısı **Görünüm → Özelleştir → Asosyoloji Tema Ayarları → Footer Builder** bölümünden 1–4 arasında seçilebilir. Her sütunun içeriği WordPress'in **Görünüm → Bileşenler** arayüzünden blok/widget eklenerek düzenlenebilir.
+
+Footer altında özgür yazılım lisans açıklaması ve kaynak kodu bağlantısı gösterilebilir. Bu alan da Customizer üzerinden açılıp kapatılabilir ve düzenlenebilir.
+
+## Lisans
+
+Tema kaynak kodu **GPL-3.0-or-later** lisansı ile özgür yazılım olarak paylaşılır.
+
+Repo için üretilen dokümantasyon ve yazılımdan ayrı özgün yaratıcı materyaller, aksi belirtilmedikçe **CC BY-SA 4.0** lisansı ile paylaşılır.
+
+Creative Commons lisansları yazılım kodu için tasarlanmadığından tema kodunda GPL kullanılır. Ayrıntılar için `LICENSE.md` dosyasına bakın.
