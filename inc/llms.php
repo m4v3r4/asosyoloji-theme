@@ -14,7 +14,9 @@ function asosyoloji_llms_txt() {
 		return;
 	}
 
-	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$request_path = trim( (string) wp_parse_url( $request_uri, PHP_URL_PATH ), '/' );
+
 	if ( 'llms.txt' !== $request_path ) {
 		return;
 	}
@@ -30,39 +32,36 @@ function asosyoloji_llms_txt() {
 		)
 	);
 
-	header( 'Content-Type: text/plain; charset=utf-8' );
-
-	echo '# ' . sanitize_text_field( $publisher ? $publisher : get_bloginfo( 'name' ) ) . "
-
-";
+	$lines   = array();
+	$lines[] = '# ' . sanitize_text_field( $publisher ? $publisher : get_bloginfo( 'name' ) );
+	$lines[] = '';
 
 	if ( $desc ) {
-		echo sanitize_textarea_field( $desc ) . "
-
-";
+		$lines[] = sanitize_textarea_field( $desc );
+		$lines[] = '';
 	}
 
-	echo '## Site' . "
-";
-	echo '- ' . esc_url_raw( home_url( '/' ) ) . "
+	$lines[] = '## Site';
+	$lines[] = '- ' . esc_url_raw( home_url( '/' ) );
+	$lines[] = '';
+	$lines[] = '## Temel Sayfalar';
 
-";
-
-	echo '## Temel Sayfalar' . "
-";
 	foreach ( get_pages( array( 'number' => 12, 'sort_column' => 'menu_order,post_title' ) ) as $page ) {
-		echo '- ' . sanitize_text_field( get_the_title( $page ) ) . ': ' . esc_url_raw( get_permalink( $page ) ) . "
-";
+		$lines[] = '- ' . sanitize_text_field( get_the_title( $page ) ) . ': ' . esc_url_raw( get_permalink( $page ) );
 	}
 
-	echo "
-## Son Yazılar
-";
+	$lines[] = '';
+	$lines[] = '## Son Yazılar';
+
 	foreach ( $posts as $post ) {
-		echo '- ' . sanitize_text_field( get_the_title( $post ) ) . ': ' . esc_url_raw( get_permalink( $post ) ) . "
-";
+		$lines[] = '- ' . sanitize_text_field( get_the_title( $post ) ) . ': ' . esc_url_raw( get_permalink( $post ) );
 	}
 
+	header( 'Content-Type: text/plain; charset=utf-8' );
+	$output = implode( PHP_EOL, $lines ) . PHP_EOL;
+
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Plain-text response assembled from sanitized values.
+	echo $output;
 	exit;
 }
 add_action( 'template_redirect', 'asosyoloji_llms_txt', 2 );
