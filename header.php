@@ -5,6 +5,34 @@
  * @package Asosyoloji
  */
 
+$menu_alignment = get_theme_mod( 'aso_menu_alignment', 'center' );
+$menu_width     = get_theme_mod( 'aso_menu_width', 'container' );
+$menu_density   = get_theme_mod( 'aso_menu_density', 'normal' );
+$menu_bg        = get_theme_mod( 'aso_menu_background', 'accent' );
+$menu_active    = get_theme_mod( 'aso_menu_active_style', 'underline' );
+$menu_classes   = array(
+	'site-menu-bar',
+	'aso-menu-align-' . sanitize_html_class( $menu_alignment ),
+	'aso-menu-width-' . sanitize_html_class( $menu_width ),
+	'aso-menu-density-' . sanitize_html_class( $menu_density ),
+	'aso-menu-bg-' . sanitize_html_class( $menu_bg ),
+	'aso-menu-active-' . sanitize_html_class( $menu_active ),
+);
+if ( get_theme_mod( 'aso_menu_separators', true ) ) {
+	$menu_classes[] = 'has-separators';
+}
+if ( get_theme_mod( 'aso_menu_uppercase', true ) ) {
+	$menu_classes[] = 'is-uppercase';
+}
+
+$social_links = array();
+foreach ( array( 'instagram', 'x', 'facebook', 'youtube', 'linkedin', 'mastodon', 'telegram' ) as $network ) {
+	$url = esc_url( get_theme_mod( 'aso_social_' . $network, '' ) );
+	if ( $url ) {
+		$social_links[ $network ] = $url;
+	}
+}
+$social_alignment = get_theme_mod( 'aso_social_alignment', 'right' );
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -18,6 +46,21 @@
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'İçeriğe geç', 'asosyoloji' ); ?></a>
 
 <header class="site-header<?php echo get_theme_mod( 'aso_sticky_header', true ) ? ' is-sticky' : ''; ?>">
+	<?php if ( get_theme_mod( 'aso_show_social_bar', true ) && $social_links ) : ?>
+		<div class="site-social-bar aso-social-align-<?php echo esc_attr( $social_alignment ); ?>">
+			<div class="aso-container site-social-bar__inner">
+				<div class="site-social-links" aria-label="<?php esc_attr_e( 'Sosyal medya', 'asosyoloji' ); ?>">
+					<?php foreach ( $social_links as $network => $url ) : ?>
+						<a class="site-social-link site-social-link--<?php echo esc_attr( $network ); ?>" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
+							<span class="screen-reader-text"><?php echo esc_html( ucfirst( $network ) ); ?></span>
+							<?php echo asosyoloji_social_icon( $network ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<div class="site-masthead">
 		<div class="aso-container site-masthead__inner">
 			<div class="site-branding">
@@ -59,8 +102,8 @@
 		</div>
 	</div>
 
-	<div class="site-menu-bar">
-		<div class="aso-container site-menu-bar__inner">
+	<div class="<?php echo esc_attr( implode( ' ', $menu_classes ) ); ?>">
+		<div class="<?php echo 'full' === $menu_width ? 'site-menu-bar__inner site-menu-bar__inner--full' : 'aso-container site-menu-bar__inner'; ?>">
 			<nav class="site-navigation" aria-label="<?php esc_attr_e( 'Ana menü', 'asosyoloji' ); ?>">
 				<?php
 				wp_nav_menu(
