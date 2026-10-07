@@ -87,3 +87,66 @@ jobs:
         run: |
           test -s build/asosyoloji-theme.zip
           unzip -t build/asosyoloji-theme.zip
+
+
+  wordpress-smoke:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP and WP-CLI
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: wp-cli
+
+      - name: Install WordPress
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/wordpress
+          cd /tmp/wordpress
+          wp core download --skip-content --force
+          wp config create             --dbname=wordpress             --dbuser=root             --dbpass=root             --dbhost=127.0.0.1:3306             --skip-check
+          wp core install             --url=http://example.test             --title="Asosyoloji Theme Test"             --admin_user=admin             --admin_password=admin123456             --admin_email=admin@example.test             --skip-email
+
+      - name: Install and activate theme
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/wordpress/wp-content/themes/asosyoloji
+          rsync -a ./ /tmp/wordpress/wp-content/themes/asosyoloji/             --exclude '.git'             --exclude '.github'             --exclude 'build'             --exclude 'vendor'             --exclude 'node_modules'
+          cd /tmp/wordpress
+          wp theme activate asosyoloji
+          wp theme status asosyoloji
+          wp eval 'if ( "Asosyoloji" !== wp_get_theme()->get( "Name" ) ) { exit( 1 ); } echo "Theme activation OK\n";'
+
+      - name: Smoke render
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/wordpress
+          wp post create --post_type=post --post_status=publish --post_title="Smoke Test Yazısı" --post_content="<p>Test içerik.</p>"
+          wp option update show_on_front posts
+          php -S 127.0.0.1:8080 -t /tmp/wordpress >/tmp/wp-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 3
+          curl --fail --silent --show-error http://127.0.0.1:8080/ >/tmp/home.html
+          grep -q "ASOSYOLOJİ\|Asosyoloji" /tmp/home.html
