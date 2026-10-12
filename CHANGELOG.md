@@ -2,6 +2,12 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.14 - 2026-10-12
+
+### Added
+- Asosyoloji Basılı Yayın Arşivi, tema eklentileri ekranına GitHub Release üzerinden tek tık kurulum ve etkinleştirme desteğiyle eklendi.
+- Eklentinin kurulu, etkin ve GitHub sürümü durumları tema yönetim ekranında gösterilir.
+
 ## 0.7.13 - 2026-10-12
 
 ### Changed

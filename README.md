@@ -61,6 +61,8 @@ Yeni sürüm yayınlamak için:
 
 Repo public olduğunda token veya ek WordPress yapılandırması gerekmez.
 
+Tema, **Görünüm → Asosyoloji Eklentileri** ekranından Asosyoloji Haftalık ve Asosyoloji Basılı Yayın Arşivi eklentilerini GitHub Release paketleriyle kurup etkinleştirebilir. Eklentiler kurulduktan sonra yeni sürümler WordPress'in yerleşik eklenti güncelleme ekranında görünür.
+
 
 ## Ana sayfa kategori hariç tutma
 
