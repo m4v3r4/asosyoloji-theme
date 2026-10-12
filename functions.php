@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.7.11' );
+define( 'ASOSYOLOJI_VERSION', '0.7.12' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -456,4 +456,53 @@ function asosyoloji_social_icon( $network ) {
 	);
 
 	return isset( $icons[ $network ] ) ? $icons[ $network ] : '';
+}
+
+function asosyoloji_social_network_labels() {
+	return array(
+		'instagram' => 'Instagram',
+		'x'         => 'X / Twitter',
+		'facebook'  => 'Facebook',
+		'youtube'   => 'YouTube',
+		'linkedin'  => 'LinkedIn',
+		'mastodon'  => 'Mastodon',
+		'telegram'  => 'Telegram',
+	);
+}
+
+function asosyoloji_social_links_from_settings( $prefix = 'aso_social_', $fallback_prefix = '' ) {
+	$hosts = array(
+		'instagram' => array( 'instagram.com' ),
+		'x'         => array( 'x.com', 'twitter.com' ),
+		'facebook'  => array( 'facebook.com', 'fb.com' ),
+		'youtube'   => array( 'youtube.com', 'youtu.be' ),
+		'linkedin'  => array( 'linkedin.com' ),
+		'telegram'  => array( 't.me', 'telegram.me' ),
+	);
+	$links = array();
+
+	foreach ( asosyoloji_social_network_labels() as $network => $label ) {
+		$url = esc_url( get_theme_mod( $prefix . $network, '' ) );
+		if ( ! $url && $fallback_prefix ) {
+			$url = esc_url( get_theme_mod( $fallback_prefix . $network, '' ) );
+		}
+
+		$host    = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
+		$path    = trim( (string) wp_parse_url( $url, PHP_URL_PATH ), '/' );
+		$allowed = ! isset( $hosts[ $network ] ) || array_filter(
+			$hosts[ $network ],
+			static function ( $expected_host ) use ( $host ) {
+				return $host === $expected_host || str_ends_with( $host, '.' . $expected_host );
+			}
+		);
+
+		if ( $url && $path && $allowed ) {
+			$links[ $network ] = array(
+				'url'   => $url,
+				'label' => $label,
+			);
+		}
+	}
+
+	return $links;
 }

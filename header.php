@@ -25,29 +25,7 @@ if ( get_theme_mod( 'aso_menu_uppercase', true ) ) {
 	$menu_classes[] = 'is-uppercase';
 }
 
-$social_links = array();
-$social_hosts = array(
-	'instagram' => array( 'instagram.com' ),
-	'x'         => array( 'x.com', 'twitter.com' ),
-	'facebook'  => array( 'facebook.com', 'fb.com' ),
-	'youtube'   => array( 'youtube.com', 'youtu.be' ),
-	'linkedin'  => array( 'linkedin.com' ),
-	'telegram'  => array( 't.me', 'telegram.me' ),
-);
-foreach ( array( 'instagram', 'x', 'facebook', 'youtube', 'linkedin', 'mastodon', 'telegram' ) as $network ) {
-	$url = esc_url( get_theme_mod( 'aso_social_' . $network, '' ) );
-	$host = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
-	$path = trim( (string) wp_parse_url( $url, PHP_URL_PATH ), '/' );
-	$allowed = ! isset( $social_hosts[ $network ] ) || array_filter(
-		$social_hosts[ $network ],
-		static function ( $expected_host ) use ( $host ) {
-			return $host === $expected_host || str_ends_with( $host, '.' . $expected_host );
-		}
-	);
-	if ( $url && $path && $allowed ) {
-		$social_links[ $network ] = $url;
-	}
-}
+$social_links     = asosyoloji_social_links_from_settings();
 $social_alignment = get_theme_mod( 'aso_social_alignment', 'right' );
 ?>
 <!doctype html>
@@ -66,9 +44,9 @@ $social_alignment = get_theme_mod( 'aso_social_alignment', 'right' );
 		<div class="site-social-bar aso-social-align-<?php echo esc_attr( $social_alignment ); ?>">
 			<div class="aso-container site-social-bar__inner">
 				<div class="site-social-links" aria-label="<?php esc_attr_e( 'Sosyal medya', 'asosyoloji' ); ?>">
-					<?php foreach ( $social_links as $network => $url ) : ?>
-						<a class="site-social-link site-social-link--<?php echo esc_attr( $network ); ?>" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
-							<span class="screen-reader-text"><?php echo esc_html( ucfirst( $network ) ); ?></span>
+					<?php foreach ( $social_links as $network => $social_link ) : ?>
+						<a class="site-social-link site-social-link--<?php echo esc_attr( $network ); ?>" href="<?php echo esc_url( $social_link['url'] ); ?>" target="_blank" rel="noopener noreferrer">
+							<span class="screen-reader-text"><?php echo esc_html( $social_link['label'] ); ?></span>
 							<?php echo asosyoloji_social_icon( $network ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</a>
 					<?php endforeach; ?>

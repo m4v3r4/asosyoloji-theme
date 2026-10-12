@@ -44,7 +44,7 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 					'exclude_categories' => isset( $instance['exclude_categories'] ) ? (array) $instance['exclude_categories'] : array(),
 					'count'              => isset( $instance['count'] ) ? absint( $instance['count'] ) : 5,
 					'layout'             => isset( $instance['layout'] ) ? $instance['layout'] : 'list',
-					'show_image'         => ! empty( $instance['show_image'] ),
+					'show_image'         => true,
 					'show_excerpt'       => ! empty( $instance['show_excerpt'] ),
 					'show_meta'          => ! empty( $instance['show_meta'] ),
 					'heading_level'      => 'h3',
@@ -76,7 +76,7 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 			'exclude_categories' => asosyoloji_sanitize_category_ids( $new_instance['exclude_categories'] ?? array() ),
 			'count'              => min( 12, max( 1, absint( $new_instance['count'] ?? 5 ) ) ),
 			'layout'             => in_array( $new_instance['layout'] ?? 'list', array( 'list', 'compact', 'grid', 'feature' ), true ) ? $new_instance['layout'] : 'list',
-			'show_image'         => ! empty( $new_instance['show_image'] ) ? 1 : 0,
+			'show_image'         => 1,
 			'show_excerpt'       => ! empty( $new_instance['show_excerpt'] ) ? 1 : 0,
 			'show_meta'          => ! empty( $new_instance['show_meta'] ) ? 1 : 0,
 			'author'             => absint( $new_instance['author'] ?? 0 ),
@@ -100,7 +100,6 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 		$excluded   = asosyoloji_sanitize_category_ids( $instance['exclude_categories'] ?? array() );
 		$count      = absint( $instance['count'] ?? 5 );
 		$layout     = $instance['layout'] ?? 'list';
-		$show_image = ! isset( $instance['show_image'] ) || ! empty( $instance['show_image'] );
 		$show_meta  = ! isset( $instance['show_meta'] ) || ! empty( $instance['show_meta'] );
 		$show_excerpt = ! empty( $instance['show_excerpt'] );
 		$categories = get_categories( array( 'hide_empty' => false ) );
@@ -203,7 +202,7 @@ class Asosyoloji_Post_List_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_image' ) ); ?>" value="1" <?php checked( $show_image ); ?>> <?php esc_html_e( 'Görselleri göster', 'asosyoloji' ); ?></label><br>
+			<strong><?php esc_html_e( 'Yazı görselleri tüm görünümlerde otomatik gösterilir.', 'asosyoloji' ); ?></strong><br>
 			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_meta' ) ); ?>" value="1" <?php checked( $show_meta ); ?>> <?php esc_html_e( 'Yazar ve tarihi göster', 'asosyoloji' ); ?></label><br>
 			<label><input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_excerpt' ) ); ?>" value="1" <?php checked( $show_excerpt ); ?>> <?php esc_html_e( 'Özeti göster', 'asosyoloji' ); ?></label>
 		</p>

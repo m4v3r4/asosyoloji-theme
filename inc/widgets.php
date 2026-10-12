@@ -139,7 +139,7 @@ function asosyoloji_render_post_collection( $args = array() ) {
 				);
 				?>
 				<article class="aso-post-widget__item<?php echo ( 'feature' === $layout && 1 === $index ) ? ' is-featured' : ''; ?>">
-					<?php if ( $args['show_image'] && $image ) : ?>
+					<?php if ( $image ) : ?>
 						<a class="aso-post-widget__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 							<?php echo wp_kses_post( $image ); ?>
 						</a>
@@ -457,7 +457,7 @@ function asosyoloji_posts_shortcode( $atts ) {
 			'exclude_categories' => asosyoloji_resolve_category_ids( $atts['exclude'] ),
 			'count'              => absint( $atts['count'] ),
 			'layout'             => sanitize_key( $atts['layout'] ),
-			'show_image'         => '1' === (string) $atts['image'],
+			'show_image'         => true,
 			'show_excerpt'       => '1' === (string) $atts['excerpt'],
 			'show_meta'          => '1' === (string) $atts['meta'],
 			'author'             => absint( $atts['author'] ),

@@ -22,6 +22,7 @@ $slider_interval = min( 15000, max( 3000, absint( get_theme_mod( 'aso_home_slide
 $slider_arrows   = get_theme_mod( 'aso_home_slider_arrows', true );
 $slider_dots     = get_theme_mod( 'aso_home_slider_dots', true );
 $slider_excerpt  = get_theme_mod( 'aso_home_slider_excerpt', true );
+$slider_height   = min( 760, max( 460, absint( get_theme_mod( 'aso_home_slider_height', 520 ) ) ) );
 
 $used_ids = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array();
 
@@ -48,7 +49,7 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 
 <section
 	id="<?php echo esc_attr( $slider_id ); ?>"
-	class="aso-slider aso-slider--<?php echo esc_attr( in_array( $slider_layout, array( 'split', 'overlay' ), true ) ? $slider_layout : 'split' ); ?> aso-width--<?php echo esc_attr( $slider_width ); ?>"
+	class="aso-slider aso-slider--<?php echo esc_attr( in_array( $slider_layout, array( 'split', 'overlay' ), true ) ? $slider_layout : 'split' ); ?> aso-width--<?php echo esc_attr( $slider_width ); ?><?php echo $slider_height <= 480 ? ' aso-slider--compact-height' : ''; ?>"
 	data-slider
 	data-autoplay="<?php echo $slider_autoplay ? 'true' : 'false'; ?>"
 	data-interval="<?php echo esc_attr( $slider_interval ); ?>"
@@ -65,6 +66,8 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 				$GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID();
 				$image      = asosyoloji_get_post_image( get_the_ID(), 'large', array( 'class' => 'aso-slider__img' ) );
 				$categories = get_the_category();
+				$title_length = function_exists( 'mb_strlen' ) ? mb_strlen( get_the_title() ) : strlen( get_the_title() );
+				$title_class  = $title_length > 72 ? ' aso-slider__title--very-long' : ( $title_length > 36 ? ' aso-slider__title--long' : '' );
 				/* translators: 1: Current slide number, 2: Total slide count. */
 				$slide_label = sprintf( __( '%1$d / %2$d', 'asosyoloji' ), $slide_index, $slider_query->post_count );
 				?>
@@ -89,7 +92,7 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 							<div class="aso-slider__kicker"><?php echo esc_html( $categories[0]->name ); ?></div>
 						<?php endif; ?>
 
-						<h2 class="aso-slider__title">
+						<h2 class="aso-slider__title<?php echo esc_attr( $title_class ); ?>">
 							<a href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
 								<?php the_title(); ?>
 							</a>

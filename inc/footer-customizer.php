@@ -77,6 +77,147 @@ function asosyoloji_footer_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_footer_show_social',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_show_social',
+		array(
+			'label'       => __( 'Footer sosyal medya alanını göster', 'asosyoloji' ),
+			'description' => __( 'Footer bağlantısı boşsa Ana Menü ve Sosyal bölümündeki bağlantı kullanılır.', 'asosyoloji' ),
+			'section'     => 'aso_footer_builder',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_social_title',
+		array(
+			'default'           => __( 'Bizi takip edin', 'asosyoloji' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_social_title',
+		array(
+			'label'   => __( 'Sosyal medya alanı başlığı', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_social_alignment',
+		array(
+			'default'           => 'right',
+			'sanitize_callback' => 'asosyoloji_sanitize_select',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_social_alignment',
+		array(
+			'label'   => __( 'Footer sosyal ikon hizası', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'select',
+			'choices' => array(
+				'left'   => __( 'Sol', 'asosyoloji' ),
+				'center' => __( 'Orta', 'asosyoloji' ),
+				'right'  => __( 'Sağ', 'asosyoloji' ),
+			),
+		)
+	);
+
+	foreach ( asosyoloji_social_network_labels() as $network => $label ) {
+		$setting_id = 'aso_footer_social_' . $network;
+		$wp_customize->add_setting(
+			$setting_id,
+			array(
+				'default'           => '',
+				'sanitize_callback' => 'esc_url_raw',
+			)
+		);
+		$wp_customize->add_control(
+			$setting_id,
+			array(
+				/* translators: %s: Social network name. */
+				'label'       => sprintf( __( 'Footer %s bağlantısı', 'asosyoloji' ), $label ),
+				'description' => __( 'Boş bırakılırsa üst alandaki bağlantı kullanılır.', 'asosyoloji' ),
+				'section'     => 'aso_footer_builder',
+				'type'        => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://' ),
+			)
+		);
+	}
+
+	$wp_customize->add_setting(
+		'aso_footer_copyright_text',
+		array(
+			'default'           => '© {year} {site_name}',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_copyright_text',
+		array(
+			'label'       => __( 'Telif metni', 'asosyoloji' ),
+			'description' => __( '{year} ve {site_name} otomatik olarak değiştirilir.', 'asosyoloji' ),
+			'section'     => 'aso_footer_builder',
+			'type'        => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_license_text',
+		array(
+			'default'           => 'GPL-3.0-or-later',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_license_text',
+		array(
+			'label'   => __( 'Lisans metni', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_license_url',
+		array(
+			'default'           => 'https://www.gnu.org/licenses/gpl-3.0.html',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_license_url',
+		array(
+			'label'   => __( 'Lisans bağlantısı', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'url',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_source_label',
+		array(
+			'default'           => __( 'Tema kaynak kodu', 'asosyoloji' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_source_label',
+		array(
+			'label'   => __( 'Kaynak bağlantısı metni', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_footer_repo_url',
 		array(
 			'default'           => 'https://github.com/m4v3r4/asosyoloji-theme',

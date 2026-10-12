@@ -206,7 +206,7 @@ function asosyoloji_render_post_list_block( $attributes ) {
 			'exclude_categories' => isset( $attributes['excludeCategories'] ) ? asosyoloji_sanitize_category_ids( $attributes['excludeCategories'] ) : array(),
 			'count'              => isset( $attributes['count'] ) ? absint( $attributes['count'] ) : 6,
 			'layout'             => isset( $attributes['layout'] ) ? sanitize_key( $attributes['layout'] ) : 'grid',
-			'show_image'         => ! isset( $attributes['showImage'] ) || (bool) $attributes['showImage'],
+			'show_image'         => true,
 			'show_excerpt'       => ! empty( $attributes['showExcerpt'] ),
 			'show_meta'          => ! isset( $attributes['showMeta'] ) || (bool) $attributes['showMeta'],
 			'author'             => isset( $attributes['author'] ) ? absint( $attributes['author'] ) : 0,

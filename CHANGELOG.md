@@ -2,6 +2,13 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.12 - 2026-10-12
+
+### Changed
+- Slider başlıkları içerik uzunluğuna ve ekran genişliğine göre otomatik ölçeklenir; özetler sınırlanır ve kontrol alanı için güvenli boşluk ayrılır.
+- Yazı kartı ve widget görsellerinin flex düzeninde sıfır yüksekliğe sıkışması engellendi; ana sayfa yazı widgetında görseller zorunlu hale getirildi.
+- Footer sosyal medya alanı ile telif, lisans ve kaynak bağlantısı metinleri Özelleştirici üzerinden yönetilebilir hale getirildi.
+
 ## 0.7.11 - 2026-10-07
 
 ### Changed

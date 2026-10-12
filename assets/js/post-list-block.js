@@ -156,13 +156,6 @@
             }
           }),
           el(ToggleControl, {
-            label: __('Görselleri göster', 'asosyoloji'),
-            checked: !!a.showImage,
-            onChange: function (value) {
-              props.setAttributes({ showImage: value });
-            }
-          }),
-          el(ToggleControl, {
             label: __('Özeti göster', 'asosyoloji'),
             checked: !!a.showExcerpt,
             onChange: function (value) {
