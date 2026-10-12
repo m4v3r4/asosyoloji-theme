@@ -2,6 +2,12 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.7.13 - 2026-10-12
+
+### Changed
+- Sliderdaki Durdur/Oynat kontrolü kaldırılarak yön okları ve slayt noktaları sadeleştirildi.
+- “Devamını oku” bağlantısı masaüstü, mobil ve görsel üstü slider düzenlerinde daha belirgin bir butona dönüştürüldü.
+
 ## 0.7.12 - 2026-10-12
 
 ### Changed

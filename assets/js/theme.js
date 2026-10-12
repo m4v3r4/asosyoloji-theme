@@ -258,8 +258,6 @@
 
     const prev = slider.querySelector('[data-slider-prev]');
     const next = slider.querySelector('[data-slider-next]');
-    const pause = slider.querySelector('[data-slider-pause]');
-    const pauseLabel = slider.querySelector('[data-slider-pause-label]');
     const dots = Array.from(slider.querySelectorAll('[data-slider-dot]'));
     const autoplay = slider.dataset.autoplay === 'true' && !reduceMotion;
     const interval = Math.max(3000, Number.parseInt(slider.dataset.interval || '6000', 10) || 6000);
@@ -268,7 +266,6 @@
 
     let index = 0;
     let timer = null;
-    let manuallyPaused = false;
     let touchStartX = 0;
     let touchDeltaX = 0;
 
@@ -326,7 +323,7 @@
         dot.classList.remove('is-progressing');
         dot.setAttribute('aria-current', active ? 'true' : 'false');
 
-        if (active && autoplay && !manuallyPaused && sliderMotion) {
+        if (active && autoplay && sliderMotion) {
           void dot.offsetWidth;
           dot.classList.add('is-progressing');
         }
@@ -349,7 +346,7 @@
 
     const start = () => {
       stop();
-      if (autoplay && !manuallyPaused) {
+      if (autoplay) {
         const activeDot = dots[index];
         if (activeDot && sliderMotion) {
           activeDot.classList.remove('is-progressing');
@@ -359,20 +356,6 @@
         timer = window.setInterval(() => show(index + 1), interval);
       }
     };
-
-    pause?.addEventListener('click', () => {
-      manuallyPaused = !manuallyPaused;
-      pause.setAttribute('aria-pressed', manuallyPaused ? 'true' : 'false');
-      if (pauseLabel) {
-        pauseLabel.textContent = manuallyPaused ? 'Oynat' : 'Durdur';
-      }
-      if (manuallyPaused) {
-        stop();
-        dots.forEach((dot) => dot.classList.remove('is-progressing'));
-      } else {
-        start();
-      }
-    });
 
     prev?.addEventListener('click', () => {
       show(index - 1);

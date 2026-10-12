@@ -122,21 +122,14 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 		</div>
 	</div>
 
-	<?php if ( $slider_arrows || $slider_autoplay ) : ?>
+	<?php if ( $slider_arrows ) : ?>
 		<div class="aso-slider__arrows">
-			<?php if ( $slider_arrows ) : ?>
-				<button class="aso-slider__arrow aso-slider__arrow--prev" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Önceki slayt', 'asosyoloji' ); ?>">
-					<span aria-hidden="true">←</span>
-				</button>
-				<button class="aso-slider__arrow aso-slider__arrow--next" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Sonraki slayt', 'asosyoloji' ); ?>">
-					<span aria-hidden="true">→</span>
-				</button>
-			<?php endif; ?>
-			<?php if ( $slider_autoplay ) : ?>
-				<button class="aso-slider__pause" type="button" data-slider-pause aria-pressed="false">
-					<span data-slider-pause-label><?php esc_html_e( 'Durdur', 'asosyoloji' ); ?></span>
-				</button>
-			<?php endif; ?>
+			<button class="aso-slider__arrow aso-slider__arrow--prev" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Önceki slayt', 'asosyoloji' ); ?>">
+				<span aria-hidden="true">←</span>
+			</button>
+			<button class="aso-slider__arrow aso-slider__arrow--next" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Sonraki slayt', 'asosyoloji' ); ?>">
+				<span aria-hidden="true">→</span>
+			</button>
 		</div>
 	<?php endif; ?>
 
