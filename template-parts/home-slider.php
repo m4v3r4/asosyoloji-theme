@@ -78,7 +78,7 @@ $slider_id = wp_unique_id( 'aso-slider-' );
 					aria-label="<?php echo esc_attr( $slide_label ); ?>"
 				>
 					<?php if ( $image ) : ?>
-						<a class="aso-slider__media" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
+						<a class="aso-slider__media" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
 							<?php echo wp_kses_post( $image ); ?>
 						</a>
 					<?php else : ?>

@@ -63,6 +63,12 @@ Repo public olduğunda token veya ek WordPress yapılandırması gerekmez.
 
 Tema, **Görünüm → Asosyoloji Eklentileri** ekranından Asosyoloji Haftalık ve Asosyoloji Basılı Yayın Arşivi eklentilerini GitHub Release paketleriyle kurup etkinleştirebilir. Eklentiler kurulduktan sonra yeni sürümler WordPress'in yerleşik eklenti güncelleme ekranında görünür.
 
+## İletişim ve altbilgi
+
+`[asosyoloji_iletisim]` kısa kodu yerleşik iletişim formunu gösterir. Eski bir Contact Form 7 kısa kodu sayfada ham metin olarak kalırsa tema bunu otomatik olarak aynı forma dönüştürür. Formlar nonce, tuzak alan ve IP özeti üzerinden hız sınırı kullanır; mesajlar Özelleştiricide seçilen bildirim adresine iletilir.
+
+Altbilgideki bülten alanı ziyaretçinin e-posta adresini site veritabanında saklamaz; yöneticinin seçilen adresine abonelik talebi gönderir. Sosyal hesaplar, bülten metni, gizlilik ve yayın künyesi bağlantıları **Görünüm → Özelleştir → Asosyoloji Tema Ayarları → Footer Builder** bölümünden yönetilir.
+
 
 ## Ana sayfa kategori hariç tutma
 

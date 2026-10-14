@@ -2,6 +2,19 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.8.0 - 2026-10-14
+
+### Added
+- Contact Form 7 kısa kodu işlenemediğinde devreye giren yerleşik iletişim formu eklendi.
+- Altbilgiye onay kutulu bülten talep formu; gizlilik politikası ve yayın künyesi bağlantıları eklendi.
+- Yapılandırılabilir form bildirim adresi ve altbilgi alanları Özelleştiriciye eklendi.
+- WordPress site simgesi tanımlı değilse kullanılan Asosyoloji SVG faviconu eklendi.
+
+### Changed
+- Duyuru özetlerindeki uzun ve boşluksuz bağlantılar mobil ekranda güvenli biçimde satıra bölünür.
+- Slider görsel bağlantıları erişilebilir ad kazandı; slider noktalarının dokunma alanı en az 44 × 44 piksele çıkarıldı.
+- İletişim kısa kodu SEO açıklamasında ham metin olarak görünmez.
+
 ## 0.7.14 - 2026-10-12
 
 ### Added

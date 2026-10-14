@@ -25,6 +25,9 @@ $copyright_text     = strtr(
 $license_text = get_theme_mod( 'aso_footer_license_text', 'GPL-3.0-or-later' );
 $license_url  = get_theme_mod( 'aso_footer_license_url', 'https://www.gnu.org/licenses/gpl-3.0.html' );
 $source_label = get_theme_mod( 'aso_footer_source_label', __( 'Tema kaynak kodu', 'asosyoloji' ) );
+$privacy_url  = get_theme_mod( 'aso_footer_privacy_url', '' );
+$privacy_url  = $privacy_url ? $privacy_url : get_privacy_policy_url();
+$imprint_url  = get_theme_mod( 'aso_footer_imprint_url', '' );
 $has_footer_widgets = has_nav_menu( 'footer' );
 for ( $column = 1; $column <= $footer_columns; $column++ ) {
 	$has_footer_widgets = $has_footer_widgets || is_active_sidebar( 'footer-' . $column );
@@ -48,6 +51,10 @@ for ( $column = 1; $column <= $footer_columns; $column++ ) {
 					<?php echo esc_html( get_theme_mod( 'aso_footer_note', __( 'Bağımsız düşünce, kültür ve toplum dergisi.', 'asosyoloji' ) ) ); ?>
 				</div>
 			</div>
+		<?php endif; ?>
+
+		<?php if ( get_theme_mod( 'aso_footer_show_newsletter', true ) ) : ?>
+			<?php echo asosyoloji_newsletter_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<?php endif; ?>
 
 		<?php if ( get_theme_mod( 'aso_footer_show_social', true ) && $footer_social_links ) : ?>
@@ -92,6 +99,15 @@ for ( $column = 1; $column <= $footer_columns; $column++ ) {
 		<div class="site-footer__bottom">
 			<div class="site-footer__copyright">
 				<?php echo esc_html( $copyright_text ); ?>
+			</div>
+
+			<div class="site-footer__legal">
+				<?php if ( $privacy_url ) : ?>
+					<a href="<?php echo esc_url( $privacy_url ); ?>"><?php esc_html_e( 'Gizlilik', 'asosyoloji' ); ?></a>
+				<?php endif; ?>
+				<?php if ( $imprint_url ) : ?>
+					<a href="<?php echo esc_url( $imprint_url ); ?>"><?php esc_html_e( 'Yayın künyesi', 'asosyoloji' ); ?></a>
+				<?php endif; ?>
 			</div>
 
 			<?php if ( get_theme_mod( 'aso_footer_show_license', true ) ) : ?>

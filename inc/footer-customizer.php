@@ -234,5 +234,103 @@ function asosyoloji_footer_customize_register( $wp_customize ) {
 			'type'        => 'url',
 		)
 	);
+
+	$wp_customize->add_setting(
+		'aso_contact_recipient',
+		array(
+			'default'           => get_option( 'admin_email' ),
+			'sanitize_callback' => 'sanitize_email',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_contact_recipient',
+		array(
+			'label'       => __( 'Form bildirim e-postası', 'asosyoloji' ),
+			'description' => __( 'İletişim ve bülten abonelik talepleri bu adrese gönderilir.', 'asosyoloji' ),
+			'section'     => 'aso_footer_builder',
+			'type'        => 'email',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_show_newsletter',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_show_newsletter',
+		array(
+			'label'   => __( 'Bülten abonelik alanını göster', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_newsletter_title',
+		array(
+			'default'           => __( 'Yeni yazıları kaçırmayın', 'asosyoloji' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_newsletter_title',
+		array(
+			'label'   => __( 'Bülten başlığı', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_newsletter_text',
+		array(
+			'default'           => __( 'Yeni sayılar, yazılar ve etkinliklerden haberdar olmak için bültene katılın.', 'asosyoloji' ),
+			'sanitize_callback' => 'sanitize_textarea_field',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_newsletter_text',
+		array(
+			'label'   => __( 'Bülten açıklaması', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'textarea',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_privacy_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_privacy_url',
+		array(
+			'label'       => __( 'Gizlilik politikası bağlantısı', 'asosyoloji' ),
+			'description' => __( 'Boş bırakılırsa WordPress gizlilik politikası sayfası kullanılır.', 'asosyoloji' ),
+			'section'     => 'aso_footer_builder',
+			'type'        => 'url',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'aso_footer_imprint_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'aso_footer_imprint_url',
+		array(
+			'label'   => __( 'Yayın künyesi bağlantısı', 'asosyoloji' ),
+			'section' => 'aso_footer_builder',
+			'type'    => 'url',
+		)
+	);
 }
 add_action( 'customize_register', 'asosyoloji_footer_customize_register', 50 );

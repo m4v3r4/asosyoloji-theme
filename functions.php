@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '0.7.14' );
+define( 'ASOSYOLOJI_VERSION', '0.8.0' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -32,6 +32,7 @@ require_once get_template_directory() . '/inc/blocks.php';
 require_once get_template_directory() . '/inc/activation.php';
 require_once get_template_directory() . '/inc/github-updater.php';
 require_once get_template_directory() . '/inc/recommended-plugins.php';
+require_once get_template_directory() . '/inc/forms.php';
 
 function asosyoloji_setup() {
 	load_theme_textdomain( 'asosyoloji', get_template_directory() . '/languages' );

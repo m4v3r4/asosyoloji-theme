@@ -192,7 +192,12 @@ function asosyoloji_get_seo_description( $post_id = 0 ) {
 		return asosyoloji_trim_description( get_the_excerpt( $post_id ) );
 	}
 
-	return asosyoloji_trim_description( get_post_field( 'post_content', $post_id ) );
+	$content = (string) get_post_field( 'post_content', $post_id );
+	if ( preg_match( '/\[contact-form-7[^\]]*\]|\[asosyoloji_iletisim[^\]]*\]/iu', $content ) ) {
+		return __( 'Asosyoloji ile yayın, etkinlik ve işbirliği konularında iletişime geçin.', 'asosyoloji' );
+	}
+
+	return asosyoloji_trim_description( strip_shortcodes( $content ) );
 }
 
 function asosyoloji_unicode_word_count( $text ) {
