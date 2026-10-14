@@ -85,7 +85,12 @@ $social_alignment = get_theme_mod( 'aso_social_alignment', 'right' );
 
 				<?php if ( get_theme_mod( 'aso_show_search', true ) ) : ?>
 					<details class="header-search">
-						<summary><?php esc_html_e( 'Ara', 'asosyoloji' ); ?></summary>
+						<summary aria-label="<?php esc_attr_e( 'Ara', 'asosyoloji' ); ?>" title="<?php esc_attr_e( 'Ara', 'asosyoloji' ); ?>">
+							<svg class="header-search__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<circle cx="11" cy="11" r="6.5"></circle>
+								<path d="m16 16 4.25 4.25"></path>
+							</svg>
+						</summary>
 						<div class="header-search__panel">
 							<?php get_search_form(); ?>
 						</div>

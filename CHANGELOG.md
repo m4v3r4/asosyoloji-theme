@@ -2,6 +2,16 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 0.8.1 - 2026-10-14
+
+### Fixed
+- Mobil menü çekmecesinin header yüksekliğine sıkışarak bağlantıları gizlemesi düzeltildi.
+- Menü açıkken ekran yüksekliği ve yön değişimlerinde çekmece konumu yeniden hesaplanır.
+
+### Changed
+- Header içindeki “Ara” metni, erişilebilir adı korunan mercek ikonuyla değiştirildi.
+- Mobil header kontrollerinin dokunma alanları en az 44 × 44 piksel olarak sabitlendi.
+
 ## 0.8.0 - 2026-10-14
 
 ### Added
