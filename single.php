@@ -1,0 +1,160 @@
+<?php
+/**
+ * Single post template.
+ *
+ * @package Asosyoloji
+ */
+
+get_header();
+
+while ( have_posts() ) :
+	the_post();
+
+	$share_links = asosyoloji_share_links( get_the_ID() );
+	$categories  = get_the_category();
+	?>
+	<?php if ( get_theme_mod( 'aso_show_reading_progress', true ) ) : ?>
+		<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+	<?php endif; ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> data-reading-article>
+		<header class="entry-header">
+			<?php if ( ! empty( $categories ) ) : ?>
+				<a class="entry-kicker" href="<?php echo esc_url( get_category_link( $categories[0] ) ); ?>"><?php echo esc_html( $categories[0]->name ); ?></a>
+			<?php endif; ?>
+
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+
+			<?php if ( has_excerpt() ) : ?>
+				<p class="entry-deck"><?php echo esc_html( get_the_excerpt() ); ?></p>
+			<?php endif; ?>
+
+			<div class="entry-meta">
+				<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo esc_html( get_the_author() ); ?></a>
+				<span aria-hidden="true"> · </span>
+				<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
+				<?php if ( get_theme_mod( 'aso_show_reading_time', true ) ) : ?>
+					<span aria-hidden="true"> · </span>
+					<span><?php echo esc_html( asosyoloji_reading_time() ); ?></span>
+				<?php endif; ?>
+			</div>
+		</header>
+
+		<?php $entry_image = has_post_thumbnail() ? get_the_post_thumbnail( get_the_ID(), 'large', array( 'class' => 'entry-featured-image__img', 'fetchpriority' => 'high', 'loading' => 'eager' ) ) : ''; ?>
+		<?php if ( $entry_image ) : ?>
+			<figure class="entry-featured-image">
+				<?php echo wp_kses_post( $entry_image ); ?>
+				<?php if ( get_the_post_thumbnail_caption() ) : ?>
+					<figcaption><?php echo wp_kses_post( get_the_post_thumbnail_caption() ); ?></figcaption>
+				<?php endif; ?>
+			</figure>
+		<?php endif; ?>
+
+		<?php if ( get_theme_mod( 'aso_show_reading_tools', true ) || get_theme_mod( 'aso_show_share', true ) ) : ?>
+			<div class="entry-tools">
+				<?php if ( get_theme_mod( 'aso_show_reading_tools', true ) ) : ?>
+					<div class="reading-tools" role="group" aria-label="<?php esc_attr_e( 'Yazı boyutu', 'asosyoloji' ); ?>">
+						<button type="button" data-font-decrease aria-label="<?php esc_attr_e( 'Yazıyı küçült', 'asosyoloji' ); ?>">A−</button>
+						<button type="button" data-font-reset aria-label="<?php esc_attr_e( 'Yazı boyutunu sıfırla', 'asosyoloji' ); ?>">A</button>
+						<button type="button" data-font-increase aria-label="<?php esc_attr_e( 'Yazıyı büyüt', 'asosyoloji' ); ?>">A+</button>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( get_theme_mod( 'aso_show_share', true ) ) : ?>
+					<div class="share-tools" role="group" aria-label="<?php esc_attr_e( 'Paylaş', 'asosyoloji' ); ?>">
+						<?php foreach ( $share_links as $network => $share_url ) : ?>
+							<a href="<?php echo esc_url( $share_url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( asosyoloji_share_label( $network ) ); ?></a>
+						<?php endforeach; ?>
+						<button type="button" data-copy-link data-url="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Bağlantıyı kopyala', 'asosyoloji' ); ?></button>
+					</div>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+
+		<?php echo wp_kses_post( asosyoloji_geo_summary_markup( get_the_ID() ) ); ?>
+
+		<div class="entry-content" data-reading-content>
+			<?php
+			the_content();
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . esc_html__( 'Sayfalar:', 'asosyoloji' ),
+					'after'  => '</div>',
+				)
+			);
+			?>
+		</div>
+
+		<?php echo wp_kses_post( asosyoloji_citations_markup( get_the_ID() ) ); ?>
+
+		<footer class="entry-footer">
+			<?php the_tags( '<p>', ' · ', '</p>' ); ?>
+		</footer>
+	</article>
+
+	<?php if ( get_theme_mod( 'aso_show_author_box', true ) ) : ?>
+		<section class="author-box aso-container">
+			<div class="author-box__avatar"><?php echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), 96 ) ); ?></div>
+			<div class="author-box__content">
+				<h2><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo esc_html( get_the_author() ); ?></a></h2>
+				<?php if ( get_the_author_meta( 'description' ) ) : ?>
+					<p><?php echo esc_html( get_the_author_meta( 'description' ) ); ?></p>
+				<?php endif; ?>
+
+				<?php $author_links = asosyoloji_author_social_links( get_the_author_meta( 'ID' ) ); ?>
+				<?php if ( $author_links ) : ?>
+					<div class="author-social-links">
+						<?php foreach ( $author_links as $author_link ) : ?>
+							<a href="<?php echo esc_url( $author_link['url'] ); ?>" target="_blank" rel="me noopener noreferrer"><?php echo esc_html( $author_link['label'] ); ?></a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		</section>
+	<?php endif; ?>
+
+	<div class="aso-container post-navigation-wrap">
+		<?php the_post_navigation(); ?>
+	</div>
+
+	<?php if ( comments_open() || get_comments_number() ) : ?>
+		<?php comments_template(); ?>
+	<?php endif; ?>
+
+	<?php if ( get_theme_mod( 'aso_show_related_posts', true ) ) : ?>
+		<?php
+		$category_ids = wp_get_post_categories( get_the_ID() );
+		$related = new WP_Query(
+			array(
+				'posts_per_page' => min( 6, max( 2, absint( get_theme_mod( 'aso_related_count', 3 ) ) ) ),
+				'post__not_in'   => array( get_the_ID() ),
+				'category__in'   => $category_ids,
+				'post_status'    => 'publish',
+				'no_found_rows'  => true,
+				'ignore_sticky_posts' => true,
+			)
+		);
+		?>
+		<?php if ( $related->have_posts() ) : ?>
+			<section class="related-posts home-section">
+				<div class="aso-container">
+					<div class="section-heading">
+						<h2 class="section-title"><?php esc_html_e( 'Benzer Yazılar', 'asosyoloji' ); ?></h2>
+					</div>
+					<div class="article-grid">
+						<?php
+						while ( $related->have_posts() ) :
+							$related->the_post();
+							get_template_part( 'template-parts/content', 'card' );
+						endwhile;
+						?>
+					</div>
+					<?php wp_reset_postdata(); ?>
+				</div>
+			</section>
+		<?php endif; ?>
+	<?php endif; ?>
+
+	<?php
+endwhile;
+
+get_footer();

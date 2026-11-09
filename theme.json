@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "name": "Asosyoloji Bordo",
+          "color": "#731c3f"
+        },
+        {
+          "slug": "black",
+          "name": "Mürekkep",
+          "color": "#1e1a1c"
+        },
+        {
+          "slug": "white",
+          "name": "Beyaz",
+          "color": "#ffffff"
+        },
+        {
+          "slug": "soft",
+          "name": "Kağıt",
+          "color": "#f6f2ef"
+        },
+        {
+          "slug": "tint",
+          "name": "Açık Bordo",
+          "color": "#f4e3ea"
+        },
+        {
+          "slug": "muted",
+          "name": "Gri",
+          "color": "#5f5559"
+        }
+      ]
+    },
+    "spacing": {
+      "units": [
+        "px",
+        "rem",
+        "%",
+        "vw"
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "serif",
+          "name": "IBM Plex Serif",
+          "fontFamily": "\"IBM Plex Serif\", Georgia, serif"
+        },
+        {
+          "slug": "sans",
+          "name": "Roboto",
+          "fontFamily": "Roboto, \"Helvetica Neue\", Arial, sans-serif"
+        }
+      ]
+    }
+  }
+}

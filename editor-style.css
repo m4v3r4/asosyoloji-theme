@@ -1,0 +1,96 @@
+@font-face {
+  font-family: "IBM Plex Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/ibmplexserif-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/ibmplexserif-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Serif";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/ibmplexserif-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/ibmplexserif-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/roboto-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/roboto-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/roboto-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/roboto-700.woff2") format("woff2");
+}
+
+body,
+.editor-styles-wrapper {
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  color: #1e1a1c;
+  line-height: 1.7;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper .editor-post-title__input {
+  font-family: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  line-height: 1.2;
+}
+
+.editor-styles-wrapper a {
+  color: #731c3f;
+}
+
+.editor-styles-wrapper blockquote {
+  margin-inline: 0;
+  padding: 14px 18px;
+  border-left: 3px solid #731c3f;
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, #731c3f 9%, #ffffff);
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-style: italic;
+}

@@ -1,0 +1,165 @@
+<?php
+/**
+ * Homepage editorial slider.
+ *
+ * @package Asosyoloji
+ */
+
+$slider_source   = get_theme_mod( 'aso_home_slider_source', 'latest' );
+$slider_category = absint( get_theme_mod( 'aso_home_slider_category', 0 ) );
+$excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_slider_exclude_categories', array() ) );
+$slider_count    = min( 10, max( 2, absint( get_theme_mod( 'aso_home_slider_count', 5 ) ) ) );
+$slider_layout   = get_theme_mod( 'aso_home_slider_layout', 'overlay' );
+$slider_width    = get_theme_mod( 'aso_home_slider_width', 'inherit' );
+if ( 'inherit' === $slider_width ) {
+	$slider_width = get_theme_mod( 'aso_page_content_width', 'wide' );
+}
+if ( ! in_array( $slider_width, array( 'narrow', 'wide', 'full' ), true ) ) {
+	$slider_width = 'wide';
+}
+$slider_autoplay = get_theme_mod( 'aso_home_slider_autoplay', true );
+$slider_interval = min( 15000, max( 3000, absint( get_theme_mod( 'aso_home_slider_interval', 6000 ) ) ) );
+$slider_arrows   = get_theme_mod( 'aso_home_slider_arrows', true );
+$slider_dots     = get_theme_mod( 'aso_home_slider_dots', true );
+$slider_excerpt  = get_theme_mod( 'aso_home_slider_excerpt', true );
+$slider_height   = min( 760, max( 460, absint( get_theme_mod( 'aso_home_slider_height', 520 ) ) ) );
+
+$used_ids = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array();
+
+$args = array(
+	'posts_per_page'      => $slider_count,
+	'post_status'         => 'publish',
+	'ignore_sticky_posts' => false,
+	'post__not_in'        => $used_ids,
+	'category__not_in'   => $excluded_categories,
+);
+
+if ( 'category' === $slider_source && $slider_category ) {
+	$args['cat'] = $slider_category;
+}
+
+$slider_query = new WP_Query( $args );
+
+if ( ! $slider_query->have_posts() ) {
+	return;
+}
+
+$slider_id = wp_unique_id( 'aso-slider-' );
+?>
+
+<section
+	id="<?php echo esc_attr( $slider_id ); ?>"
+	class="aso-slider aso-slider--<?php echo esc_attr( in_array( $slider_layout, array( 'split', 'overlay' ), true ) ? $slider_layout : 'overlay' ); ?> aso-width--<?php echo esc_attr( $slider_width ); ?><?php echo $slider_height <= 480 ? ' aso-slider--compact-height' : ''; ?>"
+	data-slider
+	data-autoplay="<?php echo $slider_autoplay ? 'true' : 'false'; ?>"
+	data-interval="<?php echo esc_attr( $slider_interval ); ?>"
+	aria-roledescription="<?php esc_attr_e( 'carousel', 'asosyoloji' ); ?>"
+	aria-label="<?php esc_attr_e( 'Öne çıkan yazılar', 'asosyoloji' ); ?>"
+>
+	<div class="aso-slider__viewport">
+		<div class="aso-slider__track" data-slider-track>
+			<?php
+			$slide_index = 0;
+			while ( $slider_query->have_posts() ) :
+				$slider_query->the_post();
+				++$slide_index;
+				$GLOBALS['asosyoloji_home_used_post_ids'][] = get_the_ID();
+				// The first slide is the largest element above the fold: load it immediately.
+				$image_attr = 1 === $slide_index
+					? array(
+						'class'         => 'aso-slider__img',
+						'loading'       => 'eager',
+						'fetchpriority' => 'high',
+						'sizes'         => '(max-width: 900px) 100vw, 1280px',
+					)
+					: array(
+						'class'   => 'aso-slider__img',
+						'loading' => 'lazy',
+					);
+				$image      = asosyoloji_get_post_image( get_the_ID(), 'large', $image_attr );
+				$categories = get_the_category();
+				$title_length = function_exists( 'mb_strlen' ) ? mb_strlen( get_the_title() ) : strlen( get_the_title() );
+				$title_class  = $title_length > 72 ? ' aso-slider__title--very-long' : ( $title_length > 36 ? ' aso-slider__title--long' : '' );
+				/* translators: 1: Current slide number, 2: Total slide count. */
+				$slide_label = sprintf( __( '%1$d / %2$d', 'asosyoloji' ), $slide_index, $slider_query->post_count );
+				?>
+				<article
+					class="aso-slider__slide<?php echo 1 === $slide_index ? ' is-active' : ''; ?>"
+					data-slider-slide
+					aria-hidden="<?php echo 1 === $slide_index ? 'false' : 'true'; ?>"
+					aria-label="<?php echo esc_attr( $slide_label ); ?>"
+				>
+					<?php if ( $image ) : ?>
+						<a class="aso-slider__media" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+							<?php echo $image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built by get_the_post_thumbnail() or escaped helpers; kses would drop fetchpriority. ?>
+						</a>
+					<?php else : ?>
+						<a class="aso-slider__media aso-slider__placeholder" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+							<?php echo asosyoloji_logo_images( 'aso-slider__img is-fallback-image is-logo-fallback', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the helper. ?>
+						</a>
+					<?php endif; ?>
+
+					<div class="aso-slider__content">
+						<?php if ( ! empty( $categories ) ) : ?>
+							<div class="aso-slider__kicker"><?php echo esc_html( $categories[0]->name ); ?></div>
+						<?php endif; ?>
+
+						<h2 class="aso-slider__title<?php echo esc_attr( $title_class ); ?>">
+							<a href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
+								<?php the_title(); ?>
+							</a>
+						</h2>
+
+						<div class="aso-slider__meta">
+							<span><?php echo esc_html( get_the_author() ); ?></span>
+							<span aria-hidden="true"> · </span>
+							<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+								<?php echo esc_html( get_the_date() ); ?>
+							</time>
+						</div>
+
+						<?php if ( $slider_excerpt ) : ?>
+							<div class="aso-slider__excerpt"><?php the_excerpt(); ?></div>
+						<?php endif; ?>
+
+						<a class="aso-slider__read-more" href="<?php the_permalink(); ?>" tabindex="<?php echo 1 === $slide_index ? '0' : '-1'; ?>">
+							<?php esc_html_e( 'Devamını oku', 'asosyoloji' ); ?>
+						</a>
+					</div>
+				</article>
+				<?php
+			endwhile;
+			wp_reset_postdata();
+			?>
+		</div>
+	</div>
+
+	<?php if ( $slider_arrows ) : ?>
+		<div class="aso-slider__arrows">
+			<button class="aso-slider__arrow aso-slider__arrow--prev" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Önceki slayt', 'asosyoloji' ); ?>">
+				<span aria-hidden="true">←</span>
+			</button>
+			<button class="aso-slider__arrow aso-slider__arrow--next" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Sonraki slayt', 'asosyoloji' ); ?>">
+				<span aria-hidden="true">→</span>
+			</button>
+		</div>
+	<?php endif; ?>
+
+	<?php if ( $slider_dots ) : ?>
+		<div class="aso-slider__dots" data-slider-dots aria-label="<?php esc_attr_e( 'Slayt seçimi', 'asosyoloji' ); ?>">
+			<?php for ( $dot_index = 0; $dot_index < $slider_query->post_count; $dot_index++ ) : ?>
+				<?php
+				/* translators: %d: Slide number. */
+				$dot_label = sprintf( __( '%d. slayta git', 'asosyoloji' ), $dot_index + 1 );
+				?>
+				<button
+					class="aso-slider__dot<?php echo 0 === $dot_index ? ' is-active' : ''; ?>"
+					type="button"
+					data-slider-dot="<?php echo esc_attr( $dot_index ); ?>"
+					aria-label="<?php echo esc_attr( $dot_label ); ?>"
+					aria-current="<?php echo 0 === $dot_index ? 'true' : 'false'; ?>"
+				></button>
+			<?php endfor; ?>
+		</div>
+	<?php endif; ?>
+</section>
