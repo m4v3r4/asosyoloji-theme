@@ -180,6 +180,22 @@ function asosyoloji_github_force_refresh() {
 	delete_site_transient( 'asosyoloji_github_latest_release' );
 }
 add_action( 'wp_update_themes', 'asosyoloji_github_force_refresh', 1 );
+// Dashboard → Updates → "Check again" deletes the update_themes transient first.
+add_action( 'delete_site_transient_update_themes', 'asosyoloji_github_force_refresh' );
+
+/**
+ * Clear the companion plugins' cached GitHub releases on a manual update check.
+ *
+ * Asosyoloji Haftalık up to 1.0.0 cached its release for an hour and ignored
+ * "Check again", so a new release stayed invisible; this fixes it from the theme.
+ */
+function asosyoloji_clear_companion_release_caches() {
+	delete_site_transient( 'asosyoloji_weekly_github_release' );
+	delete_site_transient( 'asoprint_github_release' );
+	delete_site_transient( 'asosyoloji_companion_release_weekly' );
+	delete_site_transient( 'asosyoloji_companion_release_print' );
+}
+add_action( 'delete_site_transient_update_plugins', 'asosyoloji_clear_companion_release_caches', 1 );
 
 
 /**

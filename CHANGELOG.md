@@ -2,6 +2,15 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 1.0.1 - 2026-11-09
+
+### Added
+- Arama sonuçlarında eşleşen yazarlar, yazılardan önce kartlar hâlinde gösterilir (fotoğraf, ad, yazı sayısı). Türkçe harf farkları yok sayılır: “sumer” Sümer'i, “isil” Işıl'ı bulur.
+- Arama sayfasının başlığında yeniden arama kutusu.
+
+### Fixed
+- Pano → Güncellemeler → “Tekrar kontrol et” artık temanın ve eklentilerin GitHub sürüm önbelleğini temizler; yeni sürümler beklemeden görünür. Asosyoloji Haftalık 1.0.0 ve öncesindeki, güncellemenin bir saat görünmemesine yol açan önbellek sorunu da tema üzerinden giderilir.
+
 ## 1.0.0 - 2026-11-09
 
 İlk kararlı sürüm. Depo geçmişi bu sürümle temiz bir başlangıca alındı; önceki sürümlerin notları aşağıda korunmuştur.
