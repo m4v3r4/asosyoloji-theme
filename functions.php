@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ASOSYOLOJI_VERSION', '1.0.1' );
+define( 'ASOSYOLOJI_VERSION', '1.0.2' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/dynamic-css.php';
@@ -523,9 +523,10 @@ function asosyoloji_ajax_load_latest_posts() {
 		: array();
 
 	$args = array(
-		'posts_per_page'   => $count,
-		'offset'           => $offset,
-		'post_status'      => 'publish',
+		'posts_per_page'      => $count,
+		'offset'              => $offset,
+		'ignore_sticky_posts' => true,
+		'post_status'         => 'publish',
 		'orderby'          => $orderby,
 		'order'            => $order,
 		'post__not_in'     => $excluded_posts,

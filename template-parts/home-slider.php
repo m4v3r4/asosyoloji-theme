@@ -5,7 +5,7 @@
  * @package Asosyoloji
  */
 
-$slider_source   = get_theme_mod( 'aso_home_slider_source', 'latest' );
+$slider_source   = get_theme_mod( 'aso_home_slider_source', 'sticky' );
 $slider_category = absint( get_theme_mod( 'aso_home_slider_category', 0 ) );
 $excluded_categories = asosyoloji_home_excluded_categories( get_theme_mod( 'aso_home_slider_exclude_categories', array() ) );
 $slider_count    = min( 10, max( 2, absint( get_theme_mod( 'aso_home_slider_count', 5 ) ) ) );
@@ -29,16 +29,37 @@ $used_ids = ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'a
 $args = array(
 	'posts_per_page'      => $slider_count,
 	'post_status'         => 'publish',
-	'ignore_sticky_posts' => false,
+	'ignore_sticky_posts' => true,
+	'no_found_rows'       => true,
 	'post__not_in'        => $used_ids,
-	'category__not_in'   => $excluded_categories,
+	'category__not_in'    => $excluded_categories,
 );
 
 if ( 'category' === $slider_source && $slider_category ) {
 	$args['cat'] = $slider_category;
 }
 
-$slider_query = new WP_Query( $args );
+$slider_query = null;
+
+// Editors pick slider posts by making them sticky; without any, fall back to the latest posts.
+if ( 'sticky' === $slider_source ) {
+	$sticky_ids = array_values( array_diff( array_map( 'absint', (array) get_option( 'sticky_posts', array() ) ), $used_ids ) );
+	if ( $sticky_ids ) {
+		$slider_query = new WP_Query(
+			array_merge(
+				$args,
+				array(
+					'post__in'     => $sticky_ids,
+					'post__not_in' => array(),
+				)
+			)
+		);
+	}
+}
+
+if ( ! $slider_query || ! $slider_query->have_posts() ) {
+	$slider_query = new WP_Query( $args );
+}
 
 if ( ! $slider_query->have_posts() ) {
 	return;

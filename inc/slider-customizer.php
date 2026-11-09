@@ -37,17 +37,19 @@ function asosyoloji_slider_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'aso_home_slider_source',
 		array(
-			'default'           => 'latest',
+			'default'           => 'sticky',
 			'sanitize_callback' => 'asosyoloji_sanitize_select',
 		)
 	);
 	$wp_customize->add_control(
 		'aso_home_slider_source',
 		array(
-			'label'   => __( 'İçerik kaynağı', 'asosyoloji' ),
-			'section' => 'aso_home_slider',
-			'type'    => 'select',
-			'choices' => array(
+			'label'       => __( 'İçerik kaynağı', 'asosyoloji' ),
+			'description' => __( 'Başa sabitlenmiş yazılar: yazı düzenleme ekranında “Bu yazıyı başa sabitle” ile işaretlenenler. Hiç yoksa son yazılar gösterilir.', 'asosyoloji' ),
+			'section'     => 'aso_home_slider',
+			'type'        => 'select',
+			'choices'     => array(
+				'sticky'   => __( 'Başa sabitlenmiş yazılar', 'asosyoloji' ),
 				'latest'   => __( 'Son yazılar', 'asosyoloji' ),
 				'category' => __( 'Belirli kategori', 'asosyoloji' ),
 			),

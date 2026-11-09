@@ -2,6 +2,15 @@
 
 All notable changes to the Asosyoloji WordPress Theme are documented here.
 
+## 1.0.2 - 2026-11-09
+
+### Changed
+- Ana sayfa akışı (“Son Yazılar”) artık her zaman en yeni yazıyla başlar; slider'da gösterilen yazıları atlamaz. Eski davranış Customizer → Son Yazılar'daki seçenekle açılabilir.
+- Slider'ın varsayılan kaynağı “Başa sabitlenmiş yazılar”: editör, yazı düzenleme ekranında “Bu yazıyı başa sabitle” ile slider'a yazı seçer. Sabitlenmiş yazı yoksa son yazılar gösterilir.
+
+### Fixed
+- Başa sabitlenmiş yazıların akışın başına tarih sırası dışında eklenmesi ve “Daha fazla yükle”nin bu yüzden yazı atlaması.
+
 ## 1.0.1 - 2026-11-09
 
 ### Added

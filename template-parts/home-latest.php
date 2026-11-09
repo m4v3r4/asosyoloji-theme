@@ -29,13 +29,18 @@ if ( ! in_array( $latest_order, array( 'ASC', 'DESC' ), true ) ) {
 	$latest_order = 'DESC';
 }
 
+// By default the feed always starts with the newest post, even if the slider shows it too.
+$skip_used = get_theme_mod( 'aso_home_latest_skip_used', false );
+
 $args = array(
-	'posts_per_page' => $count,
-	'post_status'    => 'publish',
-	'orderby'        => $latest_orderby,
-	'order'          => $latest_order,
-	'post__not_in'      => ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
-	'category__not_in'   => $excluded_categories,
+	'posts_per_page'      => $count,
+	'post_status'         => 'publish',
+	'orderby'             => $latest_orderby,
+	'order'               => $latest_order,
+	// Sticky posts would be prepended out of date order and break the load-more offset.
+	'ignore_sticky_posts' => true,
+	'post__not_in'        => $skip_used && ! empty( $GLOBALS['asosyoloji_home_used_post_ids'] ) ? array_map( 'absint', $GLOBALS['asosyoloji_home_used_post_ids'] ) : array(),
+	'category__not_in'    => $excluded_categories,
 );
 
 if ( $category ) {

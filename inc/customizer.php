@@ -688,6 +688,24 @@ function asosyoloji_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'aso_home_latest_skip_used',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'asosyoloji_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'aso_home_latest_skip_used',
+		array(
+			'label'       => __( 'Slider ve diğer bölümlerde gösterilen yazıları akışta tekrar gösterme', 'asosyoloji' ),
+			'description' => __( 'Kapalıyken akış her zaman en yeni yazıyla başlar.', 'asosyoloji' ),
+			'section'     => 'aso_home_latest',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'aso_home_show_chips',
 		array(
 			'default'           => true,
